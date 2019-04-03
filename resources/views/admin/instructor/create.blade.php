@@ -96,7 +96,7 @@
                             @endif
                         </div>
         
-                        {{-- <div class="md-form">
+                         <div class="md-form">
                             <input type="password" name="password" id="password" placeholder="Leave empty, default password is secret" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}">
                             <label for="password">Password</label>
                             @if ($errors->has('password'))
@@ -104,7 +104,7 @@
                                 <strong>{{ $errors->first('password') }}</strong>
                             </span>
                             @endif
-                        </div> --}}
+                        </div> 
         
                         <button type="submit" name="button" class="btn btn-primary float-right mt-4"><i class="fa fa-save"></i> Save</button>
                     </form>

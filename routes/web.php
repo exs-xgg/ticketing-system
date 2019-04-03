@@ -15,9 +15,9 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('/register-token', 'HomeController@register_token')->name('register_token');
+Route::get('/register', 'HomeController@register')->name('register');
 Route::post('/register-token', 'HomeController@check_token')->name('check_token');
-Route::get('/register/privacy-policy/{token}', 'HomeController@privacy_policy')->name('privacy_policy');
+Route::get('/register/privacy-policy', 'HomeController@privacy_policy')->name('privacy_policy');
 Route::get('/register/{token}', 'HomeController@register_student')->name('register_student');
 Route::post('/register/student/{section}', 'HomeController@register')->name('register.student');
 
@@ -27,8 +27,14 @@ Auth::routes(['verify' => true]);
 Route::prefix('admin')->name('admin.')->middleware(['admin', 'auth'])->group(function () {
     Route::put('/course/{course}/status', 'Admin\CourseController@status')->name('course.status');
     Route::get('/dashboard', 'HomeController@admin_dashboard')->name('dashboard');
+    
     Route::get('/courses', 'Admin\CourseController@index')->name('course.index');
     Route::resource('/course', 'Admin\CourseController')->except('index');
+
+    Route::get('/faq', 'Admin\FaqController@index')->name('faq.index');
+    Route::resource('/faq', 'Admin\FaqController')->except('index');
+    Route::delete('/faq/{faq}', 'FaqController@forceDestroy')->name('faq.destroy');
+
     Route::get('/instructor/{id}/course/{course}/section/{section}', 'Admin\InstructorController@section')->name('instructor.section');
     Route::get('/instructor/{id}/course/{course}', 'Admin\InstructorController@course')->name('instructor.course');
     Route::delete('/instructor/trash/{user}', 'Admin\InstructorController@forceDestroy')->name('instructor.forceDestroy');

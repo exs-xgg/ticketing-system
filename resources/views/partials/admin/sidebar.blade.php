@@ -20,6 +20,9 @@
                 <li>
                     <a href="{{route('admin.student.index')}}" class="{{Nav::hasSegment('student', 2)}} collapsible-header waves-effect arrow-r"><i class="fa fa-user"></i> RHU Accounts</a>
                 </li>
+                  <li>
+                    <a href="{{route('admin.faq.index')}}" class="{{Nav::hasSegment('faq', 2)}} collapsible-header waves-effect arrow-r"><i class="fa fa-question"></i> FAQ</a>
+                </li>
             </ul>
         </li>
     </ul>

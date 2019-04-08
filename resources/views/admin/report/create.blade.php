@@ -26,31 +26,29 @@
                     <h5 class="text-oswald mb-0">Add FAQ</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('admin.faq.store')}}" method="post">
+                    <form action="{{route('report.store')}}" method="post">
                         {{ csrf_field() }}
-                         
-                         <div class="md-form">
-                             <select class="select-wrapper mdb-select" name="prob_category" id="prob_category">
-                                  <option value="" selected>Select</option>
-                                  <option value="Technical" {{ old('prob_category') == 'Technical' ? 'selected' : ''}}>Technical</option>
-                                  <option value="PCB" {{ old('prob_category') == 'PCB' ? 'selected' : ''}}>PCB</option>
-                                  <option value="Eclaims" {{ old('prob_category') == 'Eclaims' ? 'selected' : ''}}>Eclaims</option>
-                                 <option value="HPP" {{ old('prob_category') == 'HPP' ? 'selected' : ''}}>HPP</option>        
-                              </select>
-                                <label for="prob_category">Problem Category</label>
-                            </div>
-
-                         <div class="md-form">
-                             <select class="select-wrapper mdb-select" name="sub_category" id="sub_category">
-                                  <option value="" selected>Select</option>
-                                  <option value="Technical" {{ old('sub_category') == 'Technical' ? 'selected' : ''}}>Technical</option>
-                                  <option value="PCB" {{ old('sub_category') == 'PCB' ? 'selected' : ''}}>PCB</option>
-                                  <option value="Eclaims" {{ old('sub_category') == 'Eclaims' ? 'selected' : ''}}>Eclaims</option>
-                                 <option value="HPP" {{ old('sub_category') == 'HPP' ? 'selected' : ''}}>HPP</option>        
-                              </select>
-                                <label for="sub_category">Sub-Category</label>
+        
+                        <div class="md-form">
+                            <input type="text" name="prob_category" id="prob_category" class="form-control ">
+                            <label for="name">Problem Category <span class="red-asterisk">*</span></label>
+                            @if ($errors->has('prob_category'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('prob_category') }}</strong>
+                            </span>
+                            @endif
                         </div>
 
+        
+                        <div class="md-form">
+                            <input type="text" name="sub_category" id="sub_category" class="form-control {{$errors->has('sub_category') ? 'is-invalid' : ''}}" value="{{old('sub_category')}}">
+                            <label for="code">Sub_Category</label>
+                            @if ($errors->has('sub_category'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('sub_category') }}</strong>
+                            </span>
+                            @endif
+                        </div>
         
                         <div class="form-group">
                             <label class="select2Label">Problem</label>
@@ -85,7 +83,6 @@
 @section('script')
 <script src="{{ asset('js/select2.min.js') }}"></script>
 <script>
-      $('.mdb-select').material_select();
     $('.multiple-select').select2();
     $('.multiple-select').select2().val({!! json_encode(old('instructors')) !!}).trigger('change');
     $('.datepicker').pickadate({

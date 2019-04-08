@@ -1,19 +1,17 @@
 @extends('layouts.app')
- @section('styles')
+
+@section('styles')
 <link href="{{ asset('css/addons/datatables.min.css') }}" rel="stylesheet">
 @endsection
+
 @section('content')
-     <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-            </div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 d-flex justify-content-between">
             <div class="post-prev-title">
-                <h3>Frequently Asked Question</h3>
+                <h3>Concerns</h3>
             </div>
-            <a href="{{route('admin.faq.create')}}" class="btn btn-primary mr-0 my-0"><i class="fa fa-plus"></i> Add FAQ</a>
+            <a href="{{route('admin.concern.create')}}" class="btn btn-primary mr-0 my-0"><i class="fa fa-plus"></i> Add concern</a>
         </div>
     </div>
     <hr class="mt-2">
@@ -22,59 +20,46 @@
             <div class="card">
                 <div class="text-white blue text-center py-4 px-4">
                     <i class="fa fa-list fa-3x tiles-left-icon"></i>
-                    <h2 class="card-title pt-2 text-white text-oswald"><strong>{{ number_format(count($faqs) )}}</strong></h2>
-                    <h2 class="text-uppercase text-white text-oswald">FAQ{{ count($faqs) > 1 ? 's' : '' }}</h2>
+                    <h2 class="card-title pt-2 text-white text-oswald"><strong>{{ number_format(count($concerns) )}}</strong></h2>
+                    <h2 class="text-uppercase text-white text-oswald">Concerns{{ count($concerns) > 1 ? 's' : '' }}</h2>
                 </div>
             </div>
         </div>
     </div>
-   
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
     <div class="row mt-3">
         <div class="col-xl-12 col-md-12 mb-4">
             <div class="card">
                 <div class="card-body pb-0">
                     <table id="table" class="table text-nowrap" cellspacing="0" width="100%">
                         <thead>
-
-                            <th class="th-sm">id</th>
+                            <tr>
+                                <th class="th-sm">Ticket#</th>
+                                <th class="th-sm">Date</th>
                                 <th class="th-sm">Problem Category</th>
                                 <th class="th-sm">Sub Category</th>
-                                <th class="th-sm">Problem</th>
-                                 <th class="th-sm">Solution</th>
-                                <th class="th-sm">Action</th>
+                                  <th class="th-sm">Action</th>
                             </tr>
                         </thead>
-                           <tbody>
-                            @foreach ($faqs as $faq)
-                            <tr>
-                                <td>{{$faq->id }}</td>
-                                <td>{{$faq->prob_category }}</td>
-                                <td>{{$faq->sub_category}}</td>
-                                <td>{{$faq->problem}}</td>
-                                <td>{{$faq->solution}}</td>
-            <td>
-                    <form action="{{ route('admin.faq.destroy',$faq->id) }}" method="POST">
-   
-    
-                    <a class="btn btn-primary" href="{{ route('admin.faq.edit',$faq->id) }}">Edit</a>
-   
-                    @csrf
-                    @method('DELETE')
-      
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </table>
-  
-   
-      
+                        <tbody>
+                            @foreach ($concerns as $concern)
+                                 <tr>
+                                <td>{{$concern->ticket}}</td>
+                                <td>{{$concern->created_at}}</td>
+                                <td>{{$concern->prob_category}}</td>
+                                <td>{{$concern->sub_category}}</td>
+                                <td>
+                                    <a href="{{route('admin.concern.edit', $concern->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
+                                    <a href="javascript:void(0);" data-href="{{ route('admin.concern.destroy', $concern->id) }}" class="anchor_delete text-danger" data-method="delete" data-action="concern" data-from="concern" data-toggle="tooltip" title="Delete" data-placement="right"><i class="fa fa-trash"></i></a> 
+                                </td>
+                            </tr>    
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('script')

@@ -13,7 +13,7 @@
             <div class="post-prev-title">
                 <h3>Frequently Asked Question</h3>
             </div>
-            <a href="{{route('admin.faq.create')}}" class="btn btn-primary mr-0 my-0"><i class="fa fa-plus"></i> Add FAQ</a>
+            <a href="{{route('report.create')}}" class="btn btn-primary mr-0 my-0"><i class="fa fa-plus"></i> Add FAQ</a>
         </div>
     </div>
     <hr class="mt-2">
@@ -22,8 +22,8 @@
             <div class="card">
                 <div class="text-white blue text-center py-4 px-4">
                     <i class="fa fa-list fa-3x tiles-left-icon"></i>
-                    <h2 class="card-title pt-2 text-white text-oswald"><strong>{{ number_format(count($faqs) )}}</strong></h2>
-                    <h2 class="text-uppercase text-white text-oswald">FAQ{{ count($faqs) > 1 ? 's' : '' }}</h2>
+                    <h2 class="card-title pt-2 text-white text-oswald"><strong>{{ number_format(count($reports) )}}</strong></h2>
+                    <h2 class="text-uppercase text-white text-oswald">FAQ{{ count($reports) > 1 ? 's' : '' }}</h2>
                 </div>
             </div>
         </div>
@@ -50,18 +50,18 @@
                             </tr>
                         </thead>
                            <tbody>
-                            @foreach ($faqs as $faq)
+                            @foreach ($reports as $report)
                             <tr>
-                                <td>{{$faq->id }}</td>
-                                <td>{{$faq->prob_category }}</td>
-                                <td>{{$faq->sub_category}}</td>
-                                <td>{{$faq->problem}}</td>
-                                <td>{{$faq->solution}}</td>
+                                <td>{{$report->id }}</td>
+                                <td>{{$report->prob_category }}</td>
+                                <td>{{$report->sub_category}}</td>
+                                <td>{{$report->problem}}</td>
+                                <td>{{$report->solution}}</td>
             <td>
-                    <form action="{{ route('admin.faq.destroy',$faq->id) }}" method="POST">
+                    <form action="{{ route('faq.destroy',$faq->id) }}" method="POST">
    
     
-                    <a class="btn btn-primary" href="{{ route('admin.faq.edit',$faq->id) }}">Edit</a>
+                    <a class="btn btn-primary" href="{{ route('faq.edit',$faq->id) }}">Edit</a>
    
                     @csrf
                     @method('DELETE')
@@ -73,7 +73,7 @@
         @endforeach
     </table>
   
-   
+    {!! $reports->links() !!}
       
 @endsection
 

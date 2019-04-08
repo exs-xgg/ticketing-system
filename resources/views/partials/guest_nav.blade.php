@@ -8,6 +8,9 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav ml-auto mt-lg-0">
             <li class="nav-item">
+                <a class="nav-link" href="{{route('faq')}}">Faq</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('login')}}">Login </a>
             </li>
             <li class="nav-item">

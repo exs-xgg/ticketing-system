@@ -23,13 +23,13 @@
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header text-white bg-primary">
-                    <h5 class="text-oswald mb-0">Add FAQ</h5>
+                    <h5 class="text-oswald mb-0">Add Concern</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('admin.faq.store')}}" method="post">
+                    <form action="{{route('admin.concern.store')}}" method="post">
                         {{ csrf_field() }}
-                         
-                         <div class="md-form">
+        
+                        <div class="md-form">
                              <select class="select-wrapper mdb-select" name="prob_category" id="prob_category">
                                   <option value="" selected>Select</option>
                                   <option value="Technical" {{ old('prob_category') == 'Technical' ? 'selected' : ''}}>Technical</option>
@@ -63,16 +63,15 @@
                         </div>
 
                             <div class="form-group">
-                            <label class="select2Label">Solution</label>
-                            <textarea type="text" id="solution" name="solution" rows="5" class="form-control rounded-0 {{$errors->has('solution') ? 'is-invalid' : ''}}">{{old('solution')}}</textarea>
-                            @if ($errors->has('solution'))
+                            <label class="select2Label">What happened before encountering the problem?</label>
+                            <textarea type="text" id="before" name="before" rows="5" class="form-control rounded-0 {{$errors->has('before') ? 'is-invalid' : ''}}">{{old('before')}}</textarea>
+                            @if ($errors->has('before'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('solution') }}</strong>
+                                <strong>{{ $errors->first('before') }}</strong>
                             </span>
                             @endif
                         </div>
         
-                    
                         <button type="submit" name="button" class="btn btn-primary float-right mt-4"><i class="fa fa-save"></i> Save</button>
                     </form>
                 </div>
@@ -85,7 +84,7 @@
 @section('script')
 <script src="{{ asset('js/select2.min.js') }}"></script>
 <script>
-      $('.mdb-select').material_select();
+          $('.mdb-select').material_select();
     $('.multiple-select').select2();
     $('.multiple-select').select2().val({!! json_encode(old('instructors')) !!}).trigger('change');
     $('.datepicker').pickadate({

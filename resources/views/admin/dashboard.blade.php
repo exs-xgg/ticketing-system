@@ -15,9 +15,9 @@
             <div class="card blue">
                 <div class="view overlay text-white text-center py-4">
                     <i class="fa fa-list fa-3x tiles-left-icon"></i>
-                    <h2 class="card-title text-white text-oswald"><strong>{{$course_total}}</strong></h2>
-                    <h2 class="text-uppercase text-white text-oswald">Concerns{{$course_total > 1 ? 's' : ''}}</h2>
-                    <a href="{{route('admin.course.index')}}" class="px-4">
+                    <h2 class="card-title text-white text-oswald"><strong>{{$concern_total}}</strong></h2>
+                    <h2 class="text-uppercase text-white text-oswald">Concerns{{$concern_total > 1 ? 's' : ''}}</h2>
+                    <a href="{{route('admin.concern.index')}}" class="px-4">
                         <div class="mask rgba-white-slight">
                         </div>
                     </a>
@@ -79,27 +79,3 @@
 </div>
 @endsection
 
-@section('script')
-
-<script>
-    //doughnut
-    var ctxD = document.getElementById("doughnutChart").getContext('2d');
-    var myLineChart = new Chart(ctxD, {
-        type: 'doughnut',
-        data: {
-            labels: ["Lessons", "Quizzes", "Assignments"],
-            datasets: [
-                {
-                    data: {!! json_encode($pie_data) !!},
-                    backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
-                }
-            ]
-        },
-        options: {
-            responsive: true
-        }
-    });
-</script>
-
-@endsection

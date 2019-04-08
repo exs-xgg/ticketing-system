@@ -76,6 +76,10 @@
                                             </div>
                                             <button type="submit" name="button" class="btn btn-primary btn-block mt-4">Login</button>
 
+                                            <center> <a class="btn btn-link" href="{{ route('register') }}">
+                                                    {{ __('Dont have an account yet? click here.') }}
+                                                </a></center>
+
                                         </form>
                                     </div>
                                 </div>

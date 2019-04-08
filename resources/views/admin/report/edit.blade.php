@@ -31,7 +31,7 @@
                 <div class="card-header text-white bg-primary">
                     <h5 class="text-oswald mb-0">Update FAQ</h5>
                 </div>
-    <form action="{{ route('admin.faq.update',$faq->id) }}" method="POST">
+    <form action="{{ route('amin.faq.update',$faq->id) }}" method="POST">
         @csrf
         @method('PUT')
    
@@ -57,14 +57,14 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Problem:</strong>
-                   <textarea type="text" name="problem" rows="5" id="problem" class="form-control rounded-0 {{$errors->has('problem') ? 'is-invalid' : ''}}">{{$faq->problem}}</textarea>
+                   <textarea type="text" name="problem" rows="5" id="problem" class="form-control rounded-0 {{$errors->has('problem') ? 'is-invalid' : ''}}">{{ $faq->problem }}</textarea>
                 </div>
             </div>
                 <div class="md-form">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Solution:</strong>
-                     <textarea type="text" name="solution" rows="5" id="solution" class="form-control rounded-0 {{$errors->has('solution') ? 'is-invalid' : ''}}">{{$faq->solution}}</textarea>
+                     <textarea type="text" name="solution" rows="5" id="solution" class="form-control rounded-0 {{$errors->has('solution') ? 'is-invalid' : ''}}">{{ $faq->solution }}</textarea>
                 </div>
             </div>
             

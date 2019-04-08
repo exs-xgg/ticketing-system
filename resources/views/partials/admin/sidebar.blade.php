@@ -12,7 +12,7 @@
                     <a href="{{route('admin.dashboard')}}" class="{{Nav::isRoute('admin.dashboard')}} collapsible-header waves-effect arrow-r"><i class="fa fa-tachometer"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="{{route('admin.course.index')}}" class="{{Nav::hasSegment('course', 2)}} {{Nav::isRoute('admin.course.index')}} collapsible-header waves-effect arrow-r"><i class="fa fa-list"></i> Concern Records</a>
+                    <a href="{{route('admin.concern.index')}}" class="{{Nav::hasSegment('course', 2)}} {{Nav::isRoute('admin.course.index')}} collapsible-header waves-effect arrow-r"><i class="fa fa-list"></i> Concern Records</a>
                 </li>
                 <li>
                     <a href="{{route('admin.instructor.index')}}" class="{{Nav::hasSegment('instructor', 2)}} collapsible-header waves-effect arrow-r"><i class="fa fa-users"></i> Admin Accounts</a>

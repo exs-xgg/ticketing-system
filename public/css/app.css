@@ -186,6 +186,12 @@ a {
   -webkit-text-decoration-skip: objects;
 }
 
+
+a,
+.aleft{
+  text-align: 
+}
+
 a:hover {
   color: #1d68a7;
   text-decoration: underline;

@@ -6,7 +6,7 @@
         <div class="col-lg-10 mt-5">
             <div class="card">
                 <div class="card-header text-white bg-primary">
-                    <h5 class="text-oswald mb-0">Client Registration</h5>
+                    <h5 class="text-oswald mb-0">HCI Registration</h5>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">

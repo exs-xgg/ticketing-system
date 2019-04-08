@@ -3,14 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Course;
-use App\Announcement;
-use App\Section;
+use App\Concern;
 use Auth;
-use App\Lesson;
-use App\Take;
-use App\Pass;
-use App\Token;
 use DateTime;
 use carbon\Carbon;
 

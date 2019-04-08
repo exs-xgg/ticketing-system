@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\User;
 use App\Section;
-use App\Course;
+use App\Concern;
 use App\Mail\newAccount;
 use Illuminate\Support\Facades\Mail;
 use App\Rules\ValidUsername;

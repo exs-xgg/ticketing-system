@@ -16,7 +16,7 @@ class studentMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user() &&  Auth::user()->role == "student") {
+        if(Auth::user() &&  Auth::user()->role == "client") {
             return $next($request);
         }
         return redirect('/');

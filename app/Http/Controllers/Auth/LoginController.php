@@ -27,7 +27,7 @@ class LoginController extends Controller
            return redirect()->route('admin.dashboard');
        } elseif ($user->role == "instructor") {
            return redirect()->route('instructor.dashboard');
-       } elseif ($user->role == "student") {
+       } elseif ($user->role == "client") {
             if($user->studentNumber == ''){
                 return redirect()->route('profile.index');
             }

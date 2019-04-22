@@ -6,13 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Faq extends Model
 {
-	protected $table = 'Faqs';
+	 protected $table = 'Faq';
     protected $fillable = [
-        'prob_category',
-        'sub_category',
-        'problem',
-        'solution',
+        'prob_category', 'sub_category', 'problem', 'solution'
     ];
-
-
 }
+

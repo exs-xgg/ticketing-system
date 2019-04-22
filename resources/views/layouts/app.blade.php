@@ -41,8 +41,8 @@
             @if (Auth::check() && Auth::user()->role == 'admin')
                 @include('partials.admin.sidebar')
             @elseif (Auth::check() && Auth::user()->role == 'instructor')
-                @include('partials.instructor.sidebar')
-            @elseif (Auth::check() && Auth::user()->role == 'student')
+                @include('partials.admin.sidebar')
+            @elseif (Auth::check() && Auth::user()->role == 'client')
                 @include('partials.student.sidebar')
             @endif
 

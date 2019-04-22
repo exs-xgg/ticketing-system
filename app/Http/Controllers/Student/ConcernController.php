@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Student;
 
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Concern;
-use App\Client;
 use Auth;
 use App\User;
 use DataTables;
@@ -21,7 +20,7 @@ class ConcernController extends Controller
     public function index()
     {
         $data['concerns'] = Concern::latest()->get();
-        return view('admin.concern.index', $data);
+        return view('student.concern.index', $data);
     }
 
     public function concernsList()

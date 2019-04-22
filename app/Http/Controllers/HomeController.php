@@ -47,7 +47,7 @@ class HomeController extends Controller
         return view('auth.faq', $data);
     }
 
-    public function register(UserRequest $request, $section)
+    public function register(UserRequest $request)
     {
         $request->validate([
             'firstName' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
@@ -72,7 +72,7 @@ class HomeController extends Controller
             'password'  => Hash::make($request->password),
         ]);
 
-        $user->sections()->sync($request->sections, false);
+        
 
         return redirect()->route('student.dashboard');
 

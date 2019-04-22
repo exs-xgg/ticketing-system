@@ -47,12 +47,7 @@ class UserController extends Controller
         }
 
             
-        if ($user->role == 'student' && $user->studentNumber == '') {
-            $request->validate([
-                'studentNumber'  => 'required|alpha_num|unique:users|digits:10',
-            ]);
-            $user->studentNumber = $request->studentNumber;
-        }
+      
 
         // if ($user->role == 'student') {
         //     if(Carbon::parse($request->formatted_birthDate_submit)->age >= 16 ){

@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="post-prev-title">
-                <h3>Courses</h3>
+                <h3>Concern</h3>
             </div>
             <hr class="mt-3">
         </div>
@@ -21,7 +21,7 @@
                     <h5 class="text-oswald mb-0">Update Concern</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('admin.concern.update', $concern->id)}}" method="post">
+                    <form action="{{route('student.concern.update', $concern->id)}}" method="post">
                         {{ csrf_field() }} {{method_field('PUT')}}
         
                        <div class="md-form">

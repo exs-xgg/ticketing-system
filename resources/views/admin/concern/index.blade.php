@@ -2,6 +2,17 @@
 
 @section('styles')
 <link href="{{ asset('css/addons/datatables.min.css') }}" rel="stylesheet">
+
+<style>
+         pre {
+            overflow-x: auto;
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+         }
+      </style>
 @endsection
 
 @section('content')
@@ -21,7 +32,7 @@
                 <div class="text-white blue text-center py-4 px-4">
                     <i class="fa fa-list fa-3x tiles-left-icon"></i>
                     <h2 class="card-title pt-2 text-white text-oswald"><strong>{{ number_format(count($concerns) )}}</strong></h2>
-                    <h2 class="text-uppercase text-white text-oswald">Concerns{{ count($concerns) > 1 ? 's' : '' }}</h2>
+                    <h2 class="text-uppercase text-white text-oswald">Concern{{ count($concerns) > 1 ? 's' : '' }}</h2>
                 </div>
             </div>
         </div>
@@ -35,21 +46,51 @@
                             <tr>
                                 <th class="th-sm">Ticket#</th>
                                 <th class="th-sm">Date</th>
+                                <th class="th-sm">Receiver 1</th>
+                                 <th class="th-sm">Receiver 2</th>
                                 <th class="th-sm">Problem Category</th>
                                 <th class="th-sm">Sub Category</th>
-                                  <th class="th-sm">Action</th>
+                                <th class="th-sm">Priority</th>
+                                <th class="th-sm">Status</th>
+                                <th class="th-sm">Problem</th>
+                                <th class="th-sm">Before Problem</th>
+                                <th class="th-sm">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($concerns as $concern)
+
+                              @foreach ($concerns as $data)
                                  <tr>
-                                <td>{{$concern->ticket}}</td>
-                                <td>{{$concern->created_at}}</td>
-                                <td>{{$concern->prob_category}}</td>
-                                <td>{{$concern->sub_category}}</td>
+                                <td>{{$data->ticket}}</td>
+                                <td>{{$data->created_at}}</td>
+                                 <td>
+                                    @foreach ($data->users as $key => $user)
+                                      <a>{{ $user->name() }}</a>
+                                          {{ $key < count($data->users) - 1 ? ', ' : ''  }}
+                                        @endforeach  
+                                  </td>   
+                                   <td>
+                                    @foreach ($data->users as $key => $user)
+                                      <a>{{ $user->name() }}</a>
+                                          {{ $key < count($data->users) - 2 ? ', ' : ''  }}
+                                        @endforeach  
+                                  </td>   
+
+                                <td>{{$data->prob_category}}</td>
+                                <td>{{$data->sub_category}}</td>
+                                <td>{{$data->priority}}</td>
+                                <td>{{$data->status}}</td>
+                                 <td><pre>{{$data->problem}}<pre></td>
+                                <td><pre>{{$data->before}}<pre></td>
+
+
+
+
+
+
                                 <td>
-                                    <a href="{{route('admin.concern.edit', $concern->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
-                                    <a href="javascript:void(0);" data-href="{{ route('admin.concern.destroy', $concern->id) }}" class="anchor_delete text-danger" data-method="delete" data-action="concern" data-from="concern" data-toggle="tooltip" title="Delete" data-placement="right"><i class="fa fa-trash"></i></a> 
+                                    <a href="{{route('admin.concern.edit', $data->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
+                                    <a href="javascript:void(0);" data-href="{{ route('admin.concern.destroy', $data->id) }}" class="anchor_delete text-danger" data-method="delete" data-action="concern" data-from="concern" data-toggle="tooltip" title="Delete" data-placement="right"><i class="fa fa-trash"></i></a> 
                                 </td>
                             </tr>    
                             @endforeach

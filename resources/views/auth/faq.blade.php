@@ -2,6 +2,7 @@
 
 @section('styles')
 <link href="{{ asset('css/addons/datatables.min.css') }}" rel="stylesheet">
+
   <style>
          pre {
             overflow-x: auto;
@@ -12,6 +13,8 @@
             word-wrap: break-word;
          }
       </style>
+
+
 @endsection
 
 @section('content')
@@ -21,15 +24,12 @@
             <div class="post-prev-title">
                 <h3>Frequently Asked Question</h3>
             </div>
+             <a class="btn btn-link mr-0 my-0" href="{{ route('login') }}"> {{ __('Cant find your concern? Clcik here to Login and Report a problem.') }} </a>
         </div>
     </div>
-  <br> 
-    
-    <div class="row mt-1">
-
-      <a class="aleft btn btn-link" href="{{ route('login') }}">
-      {{ __('Cant find your concern? Click here to Login and Report your problem.') }}
-      </a>
+    <hr class="mt-2">
+   
+    <div class="row mt-3">
         <div class="col-xl-12 col-md-12 mb-4">
             <div class="card">
                 <div class="card-body pb-0">
@@ -40,6 +40,7 @@
                                 <th class="th-sm">Sub Category</th>
                                 <th class="th-sm">Problem</th>
                                  <th class="th-sm">Solution</th>
+                               
                             </tr>
                         </thead>
                            <tbody>
@@ -48,7 +49,8 @@
                                 <td>{{$faq->prob_category }}</td>
                                 <td>{{$faq->sub_category}}</td>
                                 <td><pre>{{$faq->problem}}<pre></td>
-                                 <td><pre>{{$faq->solution}}<pre></td>
+                                <td><pre>{{$faq->solution}}<pre></td>
+                               
                             </tr>
                             @endforeach
                         </tbody>
@@ -56,9 +58,6 @@
                 </div>
             </div>
         </div>
-
-      
-
     </div>
 </div>
 @endsection

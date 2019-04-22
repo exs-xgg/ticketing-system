@@ -53,11 +53,11 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'firstName'    => 'required|regex:/^[\pL\s\-]+$/u|min:2|max:255',
             'lastName'     => 'required|regex:/^[\pL\s\-]+$/u|min:2|max:255',
-            'middleName'   => 'nullable|regex:/^[\pL\s\-]+$/u|min:2|max:255',
-            'suffix'   => 'nullable|regex:/^[\pL\s\-]+$/u|min:1|max:255',
-            'studentNumber'         => 'required|alpha_num|unique:users|digits:10',
+           
+            
+            
             // 'birthDate'             => 'required|max:255|16Above',
-            'birthDate'             => 'required|max:255',
+          
             // 'username'              => 'required|alpha_dash|unique:users|min:5|max:255',
             'username'     => ['required','unique:users','min:5','max:255', new ValidUsername],
             'email'                 => 'required|string|email|unique:users|max:255',
@@ -76,12 +76,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            'role'          => 'student',
+            'role'          => 'client',
             'firstName'     => $data['firstName'],
-            'middleName'    => $data['middleName'],
             'lastName'      => $data['lastName'],
-            'studentNumber' => $data['studentNumber'],
-            'birthDate'     => $data['formatted_birthDate_submit'],
             'username'      => $data['username'],
             'email'         => $data['email'],
             'mobileNumber'  => $data['mobileNumber'],
@@ -89,7 +86,7 @@ class RegisterController extends Controller
             'avatar'        => 'profile_pic.png'
         ]);
 
-        $user->sections()->sync($data['sections'], false);
+        
 
         return $user;
     }

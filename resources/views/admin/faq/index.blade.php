@@ -1,6 +1,16 @@
 @extends('layouts.app')
  @section('styles')
 <link href="{{ asset('css/addons/datatables.min.css') }}" rel="stylesheet">
+<style>
+         pre {
+            overflow-x: auto;
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+         }
+      </style>
 @endsection
 @section('content')
      <div class="row">
@@ -41,7 +51,6 @@
                     <table id="table" class="table text-nowrap" cellspacing="0" width="100%">
                         <thead>
 
-                            <th class="th-sm">id</th>
                                 <th class="th-sm">Problem Category</th>
                                 <th class="th-sm">Sub Category</th>
                                 <th class="th-sm">Problem</th>
@@ -52,11 +61,10 @@
                            <tbody>
                             @foreach ($faqs as $faq)
                             <tr>
-                                <td>{{$faq->id }}</td>
                                 <td>{{$faq->prob_category }}</td>
                                 <td>{{$faq->sub_category}}</td>
-                                <td>{{$faq->problem}}</td>
-                                <td>{{$faq->solution}}</td>
+                                <td><pre>{{$faq->problem}}<pre></td>
+                                <td><pre>{{$faq->solution}}<pre></td>
             <td>
                     <form action="{{ route('admin.faq.destroy',$faq->id) }}" method="POST">
    
@@ -73,7 +81,7 @@
         @endforeach
     </table>
   
-   
+
       
 @endsection
 

@@ -2,6 +2,7 @@
 
 @section('styles')
 <link href="{{ asset('css/select2.css') }}" rel="stylesheet">
+
 <style>
     .select2-results{
         border: 1px solid #ced4da !important;
@@ -28,8 +29,8 @@
                 <div class="card-body">
                     <form action="{{route('admin.faq.store')}}" method="post">
                         {{ csrf_field() }}
-                         
-                         <div class="md-form">
+        
+                       <div class="md-form">
                              <select class="select-wrapper mdb-select" name="prob_category" id="prob_category">
                                   <option value="" selected>Select</option>
                                   <option value="Technical" {{ old('prob_category') == 'Technical' ? 'selected' : ''}}>Technical</option>

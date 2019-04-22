@@ -1,19 +1,28 @@
 @extends('layouts.app')
- @section('styles')
+
+@section('styles')
 <link href="{{ asset('css/addons/datatables.min.css') }}" rel="stylesheet">
+
+<style>
+         pre {
+            overflow-x: auto;
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+         }
+      </style>
 @endsection
+
 @section('content')
-     <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-            </div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 d-flex justify-content-between">
             <div class="post-prev-title">
-                <h3>Frequently Asked Question</h3>
+                <h3>Concerns</h3>
             </div>
-            <a href="{{route('report.create')}}" class="btn btn-primary mr-0 my-0"><i class="fa fa-plus"></i> Add FAQ</a>
+            <a href="{{route('student.concern.create')}}" class="btn btn-primary mr-0 my-0"><i class="fa fa-plus"></i> Add concern</a>
         </div>
     </div>
     <hr class="mt-2">
@@ -22,59 +31,76 @@
             <div class="card">
                 <div class="text-white blue text-center py-4 px-4">
                     <i class="fa fa-list fa-3x tiles-left-icon"></i>
-                    <h2 class="card-title pt-2 text-white text-oswald"><strong>{{ number_format(count($reports) )}}</strong></h2>
-                    <h2 class="text-uppercase text-white text-oswald">FAQ{{ count($reports) > 1 ? 's' : '' }}</h2>
+                    <h2 class="card-title pt-2 text-white text-oswald"><strong>{{ number_format(count($concerns) )}}</strong></h2>
+                    <h2 class="text-uppercase text-white text-oswald">Concern{{ count($concerns) > 1 ? 's' : '' }}</h2>
                 </div>
             </div>
         </div>
     </div>
-   
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
     <div class="row mt-3">
         <div class="col-xl-12 col-md-12 mb-4">
             <div class="card">
                 <div class="card-body pb-0">
                     <table id="table" class="table text-nowrap" cellspacing="0" width="100%">
                         <thead>
-
-                            <th class="th-sm">id</th>
+                            <tr>
+                                <th class="th-sm">Ticket#</th>
+                                <th class="th-sm">Date</th>
+                                <th class="th-sm">Receiver 1</th>
+                                 <th class="th-sm">Receiver 2</th>
                                 <th class="th-sm">Problem Category</th>
                                 <th class="th-sm">Sub Category</th>
+                                <th class="th-sm">Priority</th>
+                                <th class="th-sm">Status</th>
                                 <th class="th-sm">Problem</th>
-                                 <th class="th-sm">Solution</th>
+                                <th class="th-sm">Before Problem</th>
                                 <th class="th-sm">Action</th>
                             </tr>
                         </thead>
-                           <tbody>
-                            @foreach ($reports as $report)
-                            <tr>
-                                <td>{{$report->id }}</td>
-                                <td>{{$report->prob_category }}</td>
-                                <td>{{$report->sub_category}}</td>
-                                <td>{{$report->problem}}</td>
-                                <td>{{$report->solution}}</td>
-            <td>
-                    <form action="{{ route('faq.destroy',$faq->id) }}" method="POST">
-   
-    
-                    <a class="btn btn-primary" href="{{ route('faq.edit',$faq->id) }}">Edit</a>
-   
-                    @csrf
-                    @method('DELETE')
-      
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </table>
-  
-    {!! $reports->links() !!}
-      
+                        <tbody>
+
+                              @foreach ($concerns as $data)
+                                 <tr>
+                                <td>{{$data->ticket}}</td>
+                                <td>{{$data->created_at}}</td>
+                                 <td>
+                                    @foreach ($data->users as $key => $user)
+                                      <a>{{ $user->name() }}</a>
+                                          {{ $key < count($data->users) - 1 ? ', ' : ''  }}
+                                        @endforeach  
+                                  </td>   
+                                   <td>
+                                    @foreach ($data->users as $key => $user)
+                                      <a>{{ $user->name() }}</a>
+                                          {{ $key < count($data->users) - 2 ? ', ' : ''  }}
+                                        @endforeach  
+                                  </td>   
+
+                                <td>{{$data->prob_category}}</td>
+                                <td>{{$data->sub_category}}</td>
+                                <td>{{$data->priority}}</td>
+                                <td>{{$data->status}}</td>
+                                 <td><pre>{{$data->problem}}<pre></td>
+                                <td><pre>{{$data->before}}<pre></td>
+
+
+
+
+
+
+                                <td>
+                                    <a href="{{route('admin.concern.edit', $data->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
+                                   
+                                </td>
+                            </tr>    
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('script')

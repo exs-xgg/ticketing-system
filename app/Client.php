@@ -4,11 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Client extends Model
 {
     protected $fillable = [
         'firstName',
-        'middleName',
         'lastName',
         'birthDate',
         'email',
@@ -20,8 +19,14 @@ class Student extends Model
         'password', 'remember_token',
     ];
 
-    public function sections()
+    public function concern()
     {
-        return $this->belongsToMany('App\Section')->where('isActive', true);;
+        return $this->belongsToMany('App\Concern');
     }
+ public function faq()
+    {
+        return $this->belongsToMany('App\Faq');
+    }
+
+
 }

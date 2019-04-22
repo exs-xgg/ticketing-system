@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Client;
 use Auth;
 use DataTables;
 
@@ -21,6 +22,6 @@ class FaqController extends Controller
         return view('auth.faq.blade', $data);
     }
 
-
+   
     
 }

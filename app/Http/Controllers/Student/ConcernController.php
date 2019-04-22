@@ -28,7 +28,7 @@ class ConcernController extends Controller
         $concerns = Concern::latest()->get();
         return DataTables::of($concerns)
                         ->addColumn('action', function ($concern) {
-                            return '<a href="'.route('admin.concern.edit', $concern->id).'" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>';
+                            return '<a href="'.route('student.concern.edit', $concern->id).'" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>';
                         })
                         
                         // ->addColumn('admins', function (Concern $concern) {
@@ -49,9 +49,8 @@ class ConcernController extends Controller
     {
 
          $admins = User::where('role', 'admin')->get();
-         $clients = User::where('role', 'client')->get();
-
-        return view('admin.concern.create', compact('admins'),compact('clients'));
+    
+        return view('student.concern.create', compact('admins'));
 
 
 
@@ -81,13 +80,13 @@ class ConcernController extends Controller
 
         $concern->save();
         $concern->users()->sync($request->admins, false);
-        $concern->users()->sync($request->clients, false);
+        // $concern->users()->sync($request->clients, false);
 
 
         session()->flash('status', 'Successfully saved');
         session()->flash('type', 'success');
 
-        return redirect()->route('admin.concern.index');
+        return redirect()->route('student.concern.index');
 
     }
 
@@ -111,7 +110,7 @@ class ConcernController extends Controller
     public function edit(Concern $concern)
     {
 
-        return view('admin.concern.edit', compact('concern'));
+        return view('student.concern.edit', compact('concern'));
     }
 
     /**

@@ -50,9 +50,16 @@ Route::prefix('admin')->name('admin.')->middleware(['admin', 'auth'])->group(fun
 
 
 
-Route::prefix('student')->name('student.')->middleware(['verified', 'client', 'auth'])->group(function () {
+Route::prefix('student')->name('student.')->middleware(['verified', 'student', 'auth'])->group(function () {
     Route::get('/concerns', 'Student\ConcernController@index')->name('concern.index');
     Route::resource('/concern', 'Student\ConcernController')->except('index');
+
+
+
+
+
+
+    
 
     Route::get('/dashboard', 'HomeController@student_dashboard')->name('dashboard');
     Route::get('/course/{course}/section/{section}/announcements', 'StudentController@announcement')->name('announcement');

@@ -26,7 +26,7 @@
                     <h5 class="text-oswald mb-0">Add Concern</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('admin.concern.store')}}" method="post">
+                    <form action="{{route('student.concern.store')}}" method="post">
                         {{ csrf_field() }}
         
                         <div class="md-form">
@@ -81,14 +81,7 @@
                             </select>
                         </div>
 
-                          <p class="select2Label mb-0 mt-3">Reporter</p>
-                        <div class="md-form mt-0">
-                            <select class="select-wrapper mdb-select" id="admins" name="admins[]" style="width:100% !important;">
-                                @foreach ($clients as $client)
-                                    <option value="{{ $client->id }}" {{ $client->id === old('clients') ? 'selected' : ''  }}>{{ $client->name() }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        
 
                         
 

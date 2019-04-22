@@ -1,4 +1,13 @@
 @extends('layouts.app')
+@section('styles')
+<link href="{{ asset('css/select2.css') }}" rel="stylesheet">
+
+<style>
+    .select2-results{
+        border: 1px solid #ced4da !important;
+    }
+</style>
+@endsection
    
 @section('content')
    
@@ -34,22 +43,33 @@
     <form action="{{ route('admin.faq.update',$faq->id) }}" method="POST">
         @csrf
         @method('PUT')
-   
-        <div class="md-form">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Problem Category:</strong>
-                    <input type="text" name="prob_category" value="{{ $faq->prob_category }}" class="form-control" >
-                </div>
-            </div>
-           
-           <div class="md-form">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Sub Category:</strong>
-                    <input type="text" name="sub_category" value="{{ $faq->sub_category }}" class="form-control" >
-                </div>
-            </div>
+
+
+
+                         <div class="md-form">
+                             <select class="select-wrapper mdb-select" name="prob_category" id="prob_category" value="{{ $faq->prob_category }}"class="form-control" >
+                                  <option value="" selected>Select</option>
+                                  <option value="Technical" {{ old('prob_category') == 'Technical' ? 'selected' : ''}}>Technical</option>
+                                  <option value="PCB" {{ old('prob_category') == 'PCB' ? 'selected' : ''}}>PCB</option>
+                                  <option value="Eclaims" {{ old('prob_category') == 'Eclaims' ? 'selected' : ''}}>Eclaims</option>
+                                 <option value="HPP" {{ old('prob_category') == 'HPP' ? 'selected' : ''}}>HPP</option>        
+                              </select>
+                                <label for="prob_category">Problem Category</label>
+                            </div>
+
+                         <div class="md-form">
+                             <select class="select-wrapper mdb-select" name="sub_category" id="sub_category"value="{{ $faq->sub_category }}"class="form-control">
+                                  <option value="" selected>Select</option>
+                                  <option value="Technical" {{ old('sub_category') == 'Technical' ? 'selected' : ''}}>Technical</option>
+                                  <option value="PCB" {{ old('sub_category') == 'PCB' ? 'selected' : ''}}>PCB</option>
+                                  <option value="Eclaims" {{ old('sub_category') == 'Eclaims' ? 'selected' : ''}}>Eclaims</option>
+                                 <option value="HPP" {{ old('sub_category') == 'HPP' ? 'selected' : ''}}>HPP</option>        
+                              </select>
+                                <label for="sub_category">Sub-Category</label>
+                        </div>
+
+
+
            <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 
@@ -74,4 +94,19 @@
         </div>
    
     </form>
+@endsection
+@section('script')
+<script src="{{ asset('js/select2.min.js') }}"></script>
+<script>
+      $('.mdb-select').material_select();
+    $('.multiple-select').select2();
+    $('.multiple-select').select2().val({!! json_encode(old('instructors')) !!}).trigger('change');
+    $('.datepicker').pickadate({
+        max: new Date(),
+        formatSubmit: 'yyyy-mm-dd',
+        hiddenPrefix: 'formatted_',
+        selectYears: 50
+    });
+
+</script>
 @endsection

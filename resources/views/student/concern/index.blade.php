@@ -22,7 +22,7 @@
             <div class="post-prev-title">
                 <h3>Concerns</h3>
             </div>
-            <a href="{{route('admin.concern.create')}}" class="btn btn-primary mr-0 my-0"><i class="fa fa-plus"></i> Add concern</a>
+            <a href="{{route('student.concern.create')}}" class="btn btn-primary mr-0 my-0"><i class="fa fa-plus"></i> Add concern</a>
         </div>
     </div>
     <hr class="mt-2">
@@ -90,7 +90,7 @@
 
                                 <td>
                                     <a href="{{route('admin.concern.edit', $data->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
-                                    <a href="javascript:void(0);" data-href="{{ route('admin.concern.destroy', $data->id) }}" class="anchor_delete text-danger" data-method="delete" data-action="concern" data-from="concern" data-toggle="tooltip" title="Delete" data-placement="right"><i class="fa fa-trash"></i></a> 
+                                   
                                 </td>
                             </tr>    
                             @endforeach

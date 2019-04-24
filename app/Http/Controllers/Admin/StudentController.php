@@ -18,8 +18,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = User::where('role', 'student')->latest()->get();
-        return view('admin.student.index', compact('students'));
+        $clients = User::where('role', 'client')->latest()->get();
+        return view('admin.student.index', compact('clients'));
     }
 
 

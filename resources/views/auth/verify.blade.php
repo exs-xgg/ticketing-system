@@ -6,7 +6,7 @@
         <div class="col-lg-10 mt-5">
             <div class="card">
                 <div class="card-header text-white bg-primary">
-                    <h5 class="text-oswald mb-0">Verify Your Email Address</h5>
+                    <h5 class="text-oswald mb-0">Account Approval</h5>
                 </div>
                 <div class="card-body">
                     @if (session('resent'))
@@ -14,8 +14,8 @@
                             {{ __('A fresh verification link has been sent to your email address.') }}
                         </div>
                     @endif
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }}, <a href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>.
+                    {{ __('Before proceeding, your account must be approved by the admin.') }}
+                    {{ __('If your account has not been approved yet') }}, <a href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>.
                 </div>
             </div>
         </div>

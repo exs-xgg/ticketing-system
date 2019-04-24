@@ -53,11 +53,14 @@ class HomeController extends Controller
             'firstName' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
             'middleName'=> 'nullable|regex:/^[\pL\s\-]+$/u|max:255',
             'lastName'  => 'required|regex:/^[\pL\s\-]+$/u|max:255',
-            'birthDate' => 'required|max:255',
             'username'  => 'required|alpha_dash|unique:users|max:255',
             'email'     => 'required|string|email|unique:users|max:255',
             'password'  => 'required|string|min:6|confirmed',
-            'mobileNumber'=> 'nullable|alpha_num|digits:11|unique:users',
+            'mobileNumber'=> 'required|alpha_num|digits:11|unique:users',
+            'region'      => 'required',
+            'provinpality'=> 'required',
+            'facilice'    => 'required',
+            'municity'    => 'required'
         ]);
 
         $user = User::create([
@@ -65,11 +68,14 @@ class HomeController extends Controller
             'firstName' => $request->firstName,
             'middleName'=> $request->middleName,
             'lastName'  => $request->lastName,
-            'birthDate' => $request->formatted_birthDate_submit,
-            'mobileNumber'     => $request->mobileNumber,
+            'mobileNumber'=> $request->mobileNumber,
             'username'  => $request->username,
             'email'     => $request->email,
             'password'  => Hash::make($request->password),
+            'region'        => $request->region,
+            'province'      => $request->province,
+            'municipality'  => $request->municipality,
+            'facility'      => $request->facility,
         ]);
 
         

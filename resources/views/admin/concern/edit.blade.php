@@ -26,7 +26,7 @@
         
                        <div class="md-form">
                              <select class="select-wrapper mdb-select" name="priority" id="priority">
-                                  <option value="" selected>Select</option>
+                                  <option value="" disabled selected>Select</option>
                                   <option value="level 1" {{ old('priority') == 'level 1' ? 'selected' : ''}}>Level 1(within 24 hours)</option>
                                   <option value="level 2" {{ old('priority') == 'level 2' ? 'selected' : ''}}>Level 2(2-3 days)</option>
                                   <option value="level 3" {{ old('priority') == 'level 3' ? 'selected' : ''}}>Level 3(4 and above)</option>      

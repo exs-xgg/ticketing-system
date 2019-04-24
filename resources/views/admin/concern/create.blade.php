@@ -31,7 +31,7 @@
         
                         <div class="md-form">
                              <select class="select-wrapper mdb-select" name="prob_category" id="prob_category">
-                                  <option value="" selected>Select</option>
+                                  <option value="" disabled selected>Select</option>
                                   <option value="Technical" {{ old('prob_category') == 'Technical' ? 'selected' : ''}}>Technical</option>
                                   <option value="PCB" {{ old('prob_category') == 'PCB' ? 'selected' : ''}}>PCB</option>
                                   <option value="Eclaims" {{ old('prob_category') == 'Eclaims' ? 'selected' : ''}}>Eclaims</option>
@@ -42,7 +42,7 @@
 
                          <div class="md-form">
                              <select class="select-wrapper mdb-select" name="sub_category" id="sub_category">
-                                  <option value="" selected>Select</option>
+                                  <option value="" disabled selected>Select</option>
                                   <option value="Technical" {{ old('sub_category') == 'Technical' ? 'selected' : ''}}>Technical</option>
                                   <option value="PCB" {{ old('sub_category') == 'PCB' ? 'selected' : ''}}>PCB</option>
                                   <option value="Eclaims" {{ old('sub_category') == 'Eclaims' ? 'selected' : ''}}>Eclaims</option>

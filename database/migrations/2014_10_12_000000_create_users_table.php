@@ -25,6 +25,12 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->string('mobileNumber')->unique()->nullable();
+            $table->string('region');
+            $table->string('province');
+            $table->string('municipality');
+            $table->string('facility');
+
+
             $table->rememberToken();
             $table->timestamps();
         });
@@ -37,7 +43,9 @@ class CreateUsersTable extends Migration
           'email' => 'admin@app.com',
           'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',
           'created_at' => date("Y-m-d h:i:s"),
-          'updated_at' => date("Y-m-d h:i:s")
+          'updated_at' => date("Y-m-d h:i:s"),
+          'verified_at' =>date("Y-m-d h:i:s"),
+          'deleted_at' =>date("Y-m-d h:i:s")
         ]);
     }
 

@@ -13,6 +13,10 @@ class Client extends Model
         'email',
         'username',
         'password',
+        'region',
+        'province',
+        'municipality',
+        'facility'
     ];
 
     protected $hidden = [

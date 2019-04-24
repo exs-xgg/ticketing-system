@@ -59,11 +59,11 @@ class RegisterController extends Controller
             // 'birthDate'             => 'required|max:255|16Above',
           
             // 'username'              => 'required|alpha_dash|unique:users|min:5|max:255',
-            'username'     => ['required','unique:users','min:5','max:255', new ValidUsername],
+            'username'              => ['required','unique:users','min:5','max:255', new ValidUsername],
             'email'                 => 'required|string|email|unique:users|max:255',
             'mobileNumber'          => 'nullable|alpha_num|digits:11|unique:users',
-            'password' => 'required|min:8|confirmed|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}/',
-            'password_confirmation' => 'required'
+            'password_confirmation' => 'required',
+            'password'              => 'required|min:8|'
         ]);
     }
 

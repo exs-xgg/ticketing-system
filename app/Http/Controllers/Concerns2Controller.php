@@ -35,13 +35,16 @@ class Concerns2Controller extends Controller
      */
     public function store(Request $request)
     {
-        $concern = New Concerns2;
+        $concern =  Concerns2::firstOrNew(['concerns_id' => $request->input('concerns_id')]);
         // $request = $request->all();
         $concern->remark = $request->remark;
         $concern->concerns_id = $request->concerns_id;
         $concern->priority = $request->priority;
         $concern->status = $request->status;
         $concern->receiver2 = $request->receiver2;
+        // $request = $request->all();
+        // $concern = extract_field_to_save($concern,$request);
+
         $concern->save();
 
         // return $data->id;

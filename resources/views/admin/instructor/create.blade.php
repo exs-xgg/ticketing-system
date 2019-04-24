@@ -97,8 +97,8 @@
                         </div>
         
                          <div class="md-form">
-                            <input type="password" name="password" id="password" placeholder="Leave empty, default password is secret" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}">
-                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}">
+                            <label for="username">Password <span class="red-asterisk">*</span></label>
                             @if ($errors->has('password'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('password') }}</strong>

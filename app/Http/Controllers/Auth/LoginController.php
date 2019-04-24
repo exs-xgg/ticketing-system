@@ -29,7 +29,7 @@ class LoginController extends Controller
            return redirect()->route('instructor.dashboard');
        } elseif ($user->role == "client") {
             if($user->studentNumber == ''){
-                return redirect()->route('profile.index');
+                return redirect()->route('student.concern.index');
             }
             return redirect()->route('student.dashboard');
        }

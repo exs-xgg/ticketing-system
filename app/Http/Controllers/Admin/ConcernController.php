@@ -20,7 +20,10 @@ class ConcernController extends Controller
      */
     public function index()
     {
-        $data['concerns'] = Concern::latest()->get();
+        $data['concerns'] = Concern::join('users','users.id','=','concerns.receiver1')
+                            
+                                ->orderBy('concerns.created_at')
+                                ->get();
         return view('admin.concern.index', $data);
     }
 
@@ -51,7 +54,7 @@ class ConcernController extends Controller
 
          $admins = User::where('role', 'admin')->get();
          $clients = User::where('role', 'client')->get();
-
+       
         return view('admin.concern.create', compact('admins'),compact('clients'));
 
 
@@ -78,6 +81,9 @@ class ConcernController extends Controller
         $concern->problem = $request->problem;
         $concern->before = $request->before;
         $concern->ticket = random_int(1, 10000);
+        $concern->receiver1 = $request->receiver1;
+        $concern->receiver2 = $request->receiver2;
+        $concern->reporter = $request->reporter;
    
 
         $concern->save();
@@ -130,17 +136,19 @@ class ConcernController extends Controller
          'priority' => 'required',
           'status' => 'required',
         
-        
-         
             
         ]);
+       
         $concern->priority = $request->priority;
         $concern->status = $request->status;
+        
+
+
+  
     
 
         $concern->save();
-
-  
+        
         return redirect()->route('admin.concern.index')
                         ->with('success','Concern updated successfully');
     }

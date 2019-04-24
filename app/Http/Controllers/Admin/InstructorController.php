@@ -223,7 +223,6 @@ class InstructorController extends Controller
     public function forceDestroy($id)
     {
         $user = User::withTrashed()->findOrFail($id);
-        $user->courses()->detach();
         $user->forceDelete();
 
         session()->flash('status', 'Successfully deleted');

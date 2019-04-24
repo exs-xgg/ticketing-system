@@ -46,6 +46,7 @@
                             <tr>
                                 <th class="th-sm">Ticket#</th>
                                 <th class="th-sm">Date</th>
+                                <th class="th-sm">Reporter</th>
                                 <th class="th-sm">Receiver 1</th>
                                  <th class="th-sm">Receiver 2</th>
                                 <th class="th-sm">Problem Category</th>
@@ -58,12 +59,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php
+                            echo($concerns)
+                            ?>
 
                               @foreach ($concerns as $data)
                                  <tr>
                                 <td>{{$data->ticket}}</td>
                                 <td>{{$data->created_at}}</td>
+                                <td>{{$data->reporter}}</td>
                                  <td>
+                                   
+                                        {{$data->firstName}} {{$data->middleName}} {{$data->LastName}}
+                                  </td>   
+                                 <!-- <td>
                                     @foreach ($data->users as $key => $user)
                                       <a>{{ $user->name() }}</a>
                                           {{ $key < count($data->users) - 1 ? ', ' : ''  }}
@@ -74,7 +83,8 @@
                                       <a>{{ $user->name() }}</a>
                                           {{ $key < count($data->users) - 2 ? ', ' : ''  }}
                                         @endforeach  
-                                  </td>   
+                                  </td>    -->
+                                <td></td>
 
                                 <td>{{$data->prob_category}}</td>
                                 <td>{{$data->sub_category}}</td>

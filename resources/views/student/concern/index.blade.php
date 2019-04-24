@@ -22,7 +22,7 @@
             <div class="post-prev-title">
                 <h3>Concerns</h3>
             </div>
-            <a href="{{route('student.concern.create')}}" class="btn btn-primary mr-0 my-0"><i class="fa fa-plus"></i> Add concern</a>
+            <a href="{{route('student.concern.create')}}" class="btn btn-primary mr-0 my-0"><i class="fa fa-plus"></i> Report a problem</a>
         </div>
     </div>
     <hr class="mt-2">
@@ -89,7 +89,7 @@
 
 
                                 <td>
-                                    <a href="{{route('admin.concern.edit', $data->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
+                                    <a href="{{route('student.concern.edit', $data->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
                                    
                                 </td>
                             </tr>    

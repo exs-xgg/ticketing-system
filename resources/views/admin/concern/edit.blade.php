@@ -58,6 +58,8 @@
 
                 <p>if the receiver 1 did it click yes  </p>
                 <p>if not choose the assigned receiver </p>
+                
+                <button onclick="myFunction()">Yes</button>
                        
                         <p  class="select2Label mb-0 mt-3">Assign to Receiver 2</p>
                         <div  class="md-form mt-0" id=demo>
@@ -68,8 +70,6 @@
                             </select>
                         </div>
 
-
-                <button onclick="myFunction()">Yes</button>
 
         
                         <button type="submit" name="button" class="btn btn-primary float-right mt-4"><i class="fa fa-pencil"></i> Update</button>

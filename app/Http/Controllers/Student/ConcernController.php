@@ -6,12 +6,11 @@ namespace App\Http\Controllers\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Concern;
+use App\Client;
 use Auth;
 use App\User;
-use App\Client;
-use App\DataTables;
+use DataTables;
 use Carbon\carbon;
-use Purifier;
 class ConcernController extends Controller
 {
     /**
@@ -21,9 +20,13 @@ class ConcernController extends Controller
      */
     public function index()
     {
-        // $user = Auth::user();
-        // $data['concerns'] = Concern::where('reporter', $user->id)->latest()->get();
-        $data['concerns'] = Concern::latest()->get();
+
+        $data['concerns'] = Concern::select('concerns.id', 'ticket', 'prob_category', 'receiver1', 'concern2.receiver2', 'reporter', 'sub_category', 'problem', 'before', 'concern2.priority', 'concern2.status', 'concern2.remark', 'concerns.created_at', 'firstName', 'middleName', 'lastName')
+                            ->join('users', 'users.id', '=', 'concerns.receiver1')
+                            ->leftJoin('concern2', 'concerns.id', '=', 'concern2.concerns_id')
+                            ->orderBy('concerns.created_at')
+                            ->get();
+
         return view('student.concern.index', $data);
     }
 
@@ -32,7 +35,7 @@ class ConcernController extends Controller
         $concerns = Concern::latest()->get();
         return DataTables::of($concerns)
                         ->addColumn('action', function ($concern) {
-                            return '<a href="'.route('student.concern.edit', $concern->id).'" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>';
+                            return '<a href="'.route('student.concern.edit', $concerns->id).'" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>';
                         })
                         
                         // ->addColumn('admins', function (Concern $concern) {
@@ -53,13 +56,15 @@ class ConcernController extends Controller
     {
 
          $admins = User::where('role', 'admin')->get();
-    
-        return view('student.concern.create', compact('admins'));
+         $clients = User::where('role', 'client')->get();
+       
+        return view('student.concern.create', compact('admins'),compact('clients'));
 
 
 
       /*  return view('admin.concern.create');*/
     }
+
 
 
     /**
@@ -70,7 +75,6 @@ class ConcernController extends Controller
      */
     public function store(Request $request)
     {
-        
         $request->validate([
             'prob_category' => 'string|max:255',
         ]);
@@ -80,24 +84,21 @@ class ConcernController extends Controller
         $concern->sub_category = $request->sub_category;
         $concern->problem = $request->problem;
         $concern->before = $request->before;
-        $concern->receiver1 = $request->receiver1;
-
         $concern->ticket = random_int(1, 10000);
         $concern->receiver1 = $request->receiver1;
         $concern->receiver2 = $request->receiver2;
-   
+
    
 
         $concern->save();
         $concern->users()->sync($request->admins, false);
-        // $concern->users()->sync($request->clients, false);
+        $concern->users()->sync($request->clients, false);
 
 
         session()->flash('status', 'Successfully saved');
         session()->flash('type', 'success');
 
         return redirect()->route('student.concern.index');
-
     }
 
     /**
@@ -119,8 +120,10 @@ class ConcernController extends Controller
      */
     public function edit(Concern $concern)
     {
+        $admins = User::where('role', 'admin')->get();
+         $clients = User::where('role', 'client')->get();
 
-        return view('student.concern.edit', compact('concern'));
+        return view('student.concern.edit', compact('concern'), compact('clients'));
     }
 
     /**
@@ -138,18 +141,21 @@ class ConcernController extends Controller
          'problem' => 'required',
           'before' => 'required',
         
-        
-         
             
         ]);
+
         $concern->problem = $request->problem;
         $concern->before = $request->before;
+     
+    
 
+
+
+  
     
 
         $concern->save();
-
-  
+        
         return redirect()->route('student.concern.index')
                         ->with('success','Concern updated successfully');
     }

@@ -91,8 +91,8 @@
                         <p class="select2Label mb-0 mt-3">Assign to Receiver 1</p>
                         <div class="md-form mt-0">
                             <select class="select-wrapper mdb-select" id="admins" name="admins[]" style="width:100% !important;">
-                                @foreach ($admins as $admin)
-                                    <option value="{{ $admin->id }}" {{ $admin->id === old('admins') ? 'selected' : ''  }}>{{ $admin->name() }}</option>
+                                @foreach ($clients as $client)
+                                    <option value="{{ $client->id }}" {{ $client->id === old('admins') ? 'selected' : ''  }}>{{ $client->name() }}</option>
                                 @endforeach
                             </select>
                         </div>

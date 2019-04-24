@@ -20,11 +20,13 @@ class ConcernController extends Controller
      */
     public function index()
     {
+
         $data['concerns'] = Concern::select('concerns.id', 'ticket', 'prob_category', 'receiver1', 'concern2.receiver2', 'reporter', 'sub_category', 'problem', 'before', 'concern2.priority', 'concern2.status', 'concern2.remark', 'concerns.created_at', 'firstName', 'middleName', 'lastName')
                             ->join('users', 'users.id', '=', 'concerns.receiver1')
                             ->leftJoin('concern2', 'concerns.id', '=', 'concern2.concerns_id')
                             ->orderBy('concerns.created_at')
                             ->get();
+
         return view('admin.concern.index', $data);
     }
 
@@ -55,7 +57,7 @@ class ConcernController extends Controller
 
          $admins = User::where('role', 'admin')->get();
          $clients = User::where('role', 'client')->get();
-
+       
         return view('admin.concern.create', compact('admins'),compact('clients'));
 
 
@@ -85,6 +87,7 @@ class ConcernController extends Controller
         $concern->ticket = random_int(1, 10000);
         $concern->receiver1 = $request->receiver1;
         $concern->receiver2 = $request->receiver2;
+
    
 
         $concern->save();
@@ -138,18 +141,21 @@ class ConcernController extends Controller
          'priority' => 'required',
           'status' => 'required',
         
-        
-         
             
         ]);
+
         $concern2->priority = $request->priority;
         $concern2->status = $request->status;
         $concern2->receiver2 = $request->receiver2;
     
 
-        $concern->save();
+
 
   
+    
+
+        $concern->save();
+        
         return redirect()->route('admin.concern.index')
                         ->with('success','Concern updated successfully');
     }

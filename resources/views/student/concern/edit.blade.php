@@ -23,8 +23,10 @@
                 <div class="card-body">
                     <form action="{{route('student.concern.update', $concern->id)}}" method="post">
                         {{ csrf_field() }} {{method_field('PUT')}}
+
         
                     <div class="row">
+
             <div class="col-xs-12 col-sm-12 col-md-12">
                 
                 <div class="md-form">
@@ -41,11 +43,13 @@
                      <textarea type="text" name="before" rows="5" id="before" class="form-control rounded-0 {{$errors->has('before') ? 'is-invalid' : ''}}">{{ $concern->before }}</textarea>
                 </div>
             </div>
+
             
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
+
 
       
                     </form>

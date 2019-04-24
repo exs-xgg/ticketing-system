@@ -70,6 +70,7 @@
                             </select>
                         </div>
 
+
         
                         <button type="submit" name="button" class="btn btn-primary float-right mt-4"><i class="fa fa-pencil"></i> Update</button>
                     </form>
@@ -85,6 +86,7 @@
 <script>
     $('.mdb-select').material_select();
     $('.multiple-select').select2();
+
     $('.multiple-select').select2().val({!! json_encode(old('admins')) !!}).trigger('change');
   
     $('.datepicker').pickadate({

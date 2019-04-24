@@ -11,6 +11,7 @@ use App\User;
 use App\Client;
 use App\DataTables;
 use Carbon\carbon;
+use Purifier;
 class ConcernController extends Controller
 {
     /**
@@ -20,6 +21,8 @@ class ConcernController extends Controller
      */
     public function index()
     {
+        // $user = Auth::user();
+        // $data['concerns'] = Concern::where('reporter', $user->id)->latest()->get();
         $data['concerns'] = Concern::latest()->get();
         return view('student.concern.index', $data);
     }
@@ -131,15 +134,17 @@ class ConcernController extends Controller
     {
        
 
-    $request->validate([
+        $request->validate([
          'problem' => 'required',
-            'before' => 'required',
- 
-       
+          'before' => 'required',
+        
+        
+         
             
         ]);
         $concern->problem = $request->problem;
-         $concern->before = $request->before;
+        $concern->before = $request->before;
+
     
 
         $concern->save();

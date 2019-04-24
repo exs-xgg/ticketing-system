@@ -13,35 +13,8 @@
 
         <form action="{{route('profile.update')}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }} {{method_field('PUT')}}
-            <div class="row mt-3 pr-3">
-                <div class="col-lg-4 col-md-12 mb-5 text-center pr-0">
-                    <div class="card">
-                        <div class="card-header text-white bg-primary">
-                            <h5 class="text-oswald mb-0 text-left">Profile Avatar</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="md-form mt-0">
-                                <img class="img-fluid img-preview z-depth-1 profile-avatar rounded-circle mb-3" style="object-fit: cover;height:300px; width:300px;">
-                                <div class="file-field">
-                                    <div class="btn btn-primary btn-sm">
-                                        <span><i class="fa fa-image"></i> Choose</span>
-                                        <input type="file" name="avatar" onchange="previewFile()">
-                                    </div>
-                                    <a href="javascript:void(0);" data-href="{{ route('profile.picture.remove') }}" class="btn btn-danger btn-sm remove_avatar" data-method="put" data-value="{{ $user->id }}">
-                                        <span><i class="fa fa-times"></i> Remove</span>
-                                    </a>
-                                </div>
-        
-                                @if ($errors->has('image'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('image') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-12 pr-0">
+           <div class="row mt-3 justify-content-center">
+        <div class="col-lg-8">
                     <div class="card">
                         <div class="card-header text-white bg-primary">
                             <h5 class="text-oswald mb-0">Personal Information</h5>

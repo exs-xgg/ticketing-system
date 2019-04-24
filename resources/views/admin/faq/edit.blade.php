@@ -16,7 +16,7 @@
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.<br><br>
             <ul>
-                <h1>Nice jo</h1>
+           
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
@@ -47,27 +47,7 @@
 
 
 
-                         <div class="md-form">
-                             <select class="select-wrapper mdb-select" name="prob_category" id="prob_category" value="{{ $faq->prob_category }}"class="form-control" >
-                                  <option value="" selected>Select</option>
-                                  <option value="Technical" {{ old('prob_category') == 'Technical' ? 'selected' : ''}}>Technical</option>
-                                  <option value="PCB" {{ old('prob_category') == 'PCB' ? 'selected' : ''}}>PCB</option>
-                                  <option value="Eclaims" {{ old('prob_category') == 'Eclaims' ? 'selected' : ''}}>Eclaims</option>
-                                 <option value="HPP" {{ old('prob_category') == 'HPP' ? 'selected' : ''}}>HPP</option>        
-                              </select>
-                                <label for="prob_category">Problem Category</label>
-                            </div>
-
-                         <div class="md-form">
-                             <select class="select-wrapper mdb-select" name="sub_category" id="sub_category"value="{{ $faq->sub_category }}"class="form-control">
-                                  <option value="" selected>Select</option>
-                                  <option value="Technical" {{ old('sub_category') == 'Technical' ? 'selected' : ''}}>Technical</option>
-                                  <option value="PCB" {{ old('sub_category') == 'PCB' ? 'selected' : ''}}>PCB</option>
-                                  <option value="Eclaims" {{ old('sub_category') == 'Eclaims' ? 'selected' : ''}}>Eclaims</option>
-                                 <option value="HPP" {{ old('sub_category') == 'HPP' ? 'selected' : ''}}>HPP</option>        
-                              </select>
-                                <label for="sub_category">Sub-Category</label>
-                        </div>
+                         
 
 
 
@@ -90,7 +70,7 @@
             </div>
             
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </div>
    

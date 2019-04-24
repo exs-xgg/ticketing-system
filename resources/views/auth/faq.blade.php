@@ -24,7 +24,7 @@
             <div class="post-prev-title">
                 <h3>Frequently Asked Question</h3>
             </div>
-             <a class="btn btn-link mr-0 my-0" href="{{ route('login') }}"> {{ __('Cant find your concern? Clcik here to Login and Report a problem.') }} </a>
+             <a class="btn btn-link mr-0 my-0" href="{{ route('login') }}"> {{ __('Cannot find your concern? Click here to Login and Report a problem.') }} </a>
         </div>
     </div>
     <hr class="mt-2">

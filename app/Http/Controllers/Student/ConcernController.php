@@ -21,15 +21,18 @@ class ConcernController extends Controller
      */
     public function index()
     {
-        // $user = Auth::user();
-        // $data['concerns'] = Concern::where('reporter', $user->id)->latest()->get();
-        $data['concerns'] = Concern::latest()->get();
+          $data['concerns'] = Concern::select('concerns.id', 'ticket', 'prob_category', 'receiver1', 'concern2.receiver2', 'sub_category', 'problem', 'before', 'concern2.priority', 'concern2.status', 'concern2.remark', 'concerns.created_at', 'firstName', 'middleName', 'lastName')
+                            ->join('users', 'users.id', '=', 'concerns.receiver1')
+                            ->leftJoin('concern2', 'concerns.id', '=', 'concern2.concerns_id')
+                            ->orderBy('concerns.created_at')
+                            ->get();
+
         return view('student.concern.index', $data);
     }
 
     public function concernsList()
     {
-        $concerns = Concern::latest()->get();
+        $concerns =  Concern::where('reporter', $user->id)->latest()->get();
         return DataTables::of($concerns)
                         ->addColumn('action', function ($concern) {
                             return '<a href="'.route('student.concern.edit', $concern->id).'" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>';
@@ -80,8 +83,6 @@ class ConcernController extends Controller
         $concern->sub_category = $request->sub_category;
         $concern->problem = $request->problem;
         $concern->before = $request->before;
-        $concern->receiver1 = $request->receiver1;
-
         $concern->ticket = random_int(1, 10000);
         $concern->receiver1 = $request->receiver1;
         $concern->receiver2 = $request->receiver2;

@@ -28,7 +28,7 @@
     </div>
     <div class="row">
         <div class="col-xl-12 col-md-12 mb-4">
-            <a href="{{route('admin.instructor.trash')}}" class="btn btn-link"><i class="fa fa-trash red-text"></i> Trash</a>
+             <a href="{{route('admin.instructor.trash')}}" class="btn btn-link"><i class="fa fa-trash red-text"></i> Deactivated Admin</a>
             <div class="card">
                 <div class="card-body pb-0">
                     <table id="example" class="table text-nowrap" cellspacing="0" width="100%">
@@ -50,7 +50,7 @@
                                 <td>{{$instructor->mobileNumber}}</td>
                                 <td>
                                     <a href="{{route('admin.instructor.edit', $instructor->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
-                                    <a href="javascript:void(0);" data-href="{{ route('admin.instructor.destroy', $instructor->id) }}" class="anchor_delete text-danger" data-method="delete" data-action="instructor" data-from="instructor" data-toggle="tooltip" title="Delete" data-placement="right"><i class="fa fa-trash"></i></a> 
+                                    <a href="javascript:void(0);" data-href="{{ route('admin.instructor.destroy', $instructor->id) }}" class="deactivate text-danger" data-method="delete" data-action="deactivate" data-from="instructor" data-toggle="tooltip" title="Deactivate" data-placement="right"><i class="fa fa-trash"></i></a> 
                                 </td>
                             </tr>
                             @endforeach

@@ -43,10 +43,26 @@
                          <div class="md-form">
                              <select class="select-wrapper mdb-select" name="sub_category" id="sub_category">
                                   <option value="" selected>Select</option>
-                                  <option value="Technical" {{ old('sub_category') == 'Technical' ? 'selected' : ''}}>Technical</option>
-                                  <option value="PCB" {{ old('sub_category') == 'PCB' ? 'selected' : ''}}>PCB</option>
-                                  <option value="Eclaims" {{ old('sub_category') == 'Eclaims' ? 'selected' : ''}}>Eclaims</option>
-                                 <option value="HPP" {{ old('sub_category') == 'HPP' ? 'selected' : ''}}>HPP</option>        
+                                  <option value="Network/Connection" {{ old('sub_category') == 'Network/Connection' ? 'selected' : ''}}>Technical- Network/Connection</option>
+                                  <option value="Server/Backup" {{ old('sub_category') == 'Server/Backup' ? 'selected' : ''}}>Technical- Server/Backup</option>
+                                  <option value="Performance Issue" {{ old('sub_category') == 'Performance Issue' ? 'selected' : ''}}>Technical- Performance Issue</option>
+                                 <option value="Submission Statistics" {{ old('sub_category') == 'Submission Statistics' ? 'selected' : ''}}>PCB- Submission Statistics</option>        
+                
+                              <option value="Resubmission Request" {{ old('sub_category') == 'Resubmission Request' ? 'selected' : ''}}>PCB- Resubmission Request</option>        
+                              
+                               <option value="Cipher Keys" {{ old('sub_category') == 'Cipher Keys' ? 'selected' : ''}}>Eclaims- Cipher Keys</option>        
+                              
+                              <option value="Error Encountered" {{ old('sub_category') == 'Error Encountered' ? 'selected' : ''}}>Eclaims- Error Encountered</option>        
+                              
+                              <option value="Module 2 Training" {{ old('sub_category') == 'Module 2 Training' ? 'selected' : ''}}>HPP- Module 2 Training</option>        
+                              
+                              <option value="Module 1 Training" {{ old('sub_category') == 'Module 1 Training' ? 'selected' : ''}}>HPP- Module 1 Training</option>        
+                              
+                              <option value="Module 1&2 Training" {{ old('sub_category') == 'Module 1&2 Training' ? 'selected' : ''}}>HPP- Module 1&2 Training</option>        
+                            
+                               <option value="New Site" {{ old('sub_category') == 'New Site' ? 'selected' : ''}}>HPP- New Site</option>        
+                              
+                              <option value="Refresher Training" {{ old('sub_category') == 'Refresher Training' ? 'selected' : ''}}>HPP- Refresher Training</option>        
                               </select>
                                 <label for="sub_category">Sub-Category</label>
                         </div>

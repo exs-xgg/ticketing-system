@@ -99,16 +99,14 @@ class FaqController extends Controller
        
 
         $request->validate([
-         'prob_category' => 'required',
-            'sub_category' => 'required',
+       
             'problem' => 'required',
             'solution' => 'required',
          
        
             
         ]);
-        $faq->prob_category = $request->prob_category;
-         $faq->sub_category = $request->sub_category;
+        
           $faq->problem = $request->problem;
            $faq->solution = $request->solution;
             $faq->save();

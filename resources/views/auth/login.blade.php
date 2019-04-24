@@ -70,9 +70,7 @@
                                                         </label>
                                                     </div>
                                                 </div>
-                                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                    {{ __('Forgot Your Password?') }}
-                                                </a>
+                                               
                                             </div>
                                             <button type="submit" name="button" class="btn btn-primary btn-block mt-4">Login</button>
 

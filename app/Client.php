@@ -28,5 +28,11 @@ class Client extends Model
         return $this->belongsToMany('App\Faq');
     }
 
+public function faq()
+    {
+        return $this->belongsToMany('App\User');
+    }
+
+
 
 }

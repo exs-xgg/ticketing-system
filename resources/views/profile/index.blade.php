@@ -59,17 +59,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 col-lg-6 col-md-6">
-                                        <div class="md-form">
-                                            <input type="text" pattern="[A-Za-z]*" title="Only Alphabets" name="middleName" id="middleName" class="form-control {{$errors->has('middleName') ? 'is-invalid' : ''}}" value="{{$user->middleName ? $user->middleName : old('middleName')}}">
-                                            <label for="middleName">Middle name</label>
-                                            @if ($errors->has('middleName'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('middleName') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
+
                                     <div class="col-sm-12 col-lg-6 col-md-6">
                                         <div class="md-form">
                                             <input type="text" pattern="[A-Za-z]*" title="Only Alphabets" name="lastName" id="lastName" class="form-control {{$errors->has('lastName') ? 'is-invalid' : ''}}" value="{{$user->lastName}}">
@@ -81,70 +71,10 @@
                                             @endif
                                         </div>
                                     </div>
+                            </div>
 
+                            <div class="form-row">
                                     <div class="col-sm-12 col-lg-6 col-md-6">
-                                        <div class="md-form">
-                                            <select class="select-wrapper mdb-select" name="suffix" id="suffix">
-                                              <option value="" selected>Select</option>
-                                              @foreach($suffix as $data)
-                                                <option value="{{ $data }}" {{ $user->suffixName == $data ? 'selected' : ''}}>{{ $data }}</option>
-                                              @endforeach
-                                            </select>
-                                            
-                                            <!--<input type="text" pattern="[A-Za-z]*" title="Only Alphabets" name="suffix" id="suffix" class="form-control {{$errors->has('suffix') ? 'is-invalid' : ''}}" value="{{$user->suffixName ? $user->suffixName : old('suffix')}}">-->
-                                            <label for="suffix">Suffix</label>
-                                            <!--@if ($errors->has('suffix'))-->
-                                            <!--    <span class="invalid-feedback" role="alert">-->
-                                            <!--        <strong>{{ $errors->first('suffix') }}</strong>-->
-                                            <!--    </span>-->
-                                            <!--@endif-->
-                                        </div>
-                                    </div>
-
-                                </div>
-                                @if ($user->role == 'student')
-                                    @if ($user->studentNumber == '')
-                                        <p class="red-text"> <i class="fa fa-exclamation-triangle"></i> Update your Student Number</p>
-                                        <div class="md-form">
-                                            <input type="text" name="studentNumber" id="studentNumber" class="form-control {{$errors->has('studentNumber') ? 'is-invalid' : ''}}" value="{{$user->studentNumber ? $user->studentNumber : old('studentNumber')}}">
-                                            <label for="studentNumber">Student Number <span class="red-asterisk">*</span></label>
-                                            @if ($errors->has('studentNumber'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('studentNumber') }}</strong>
-                                            </span>
-                                            @endif
-                                        </div>
-                                    @else 
-                                        <div class="md-form">
-                                            <input type="text" readonly class="form-control" value="{{$user->studentNumber}}">
-                                            <label>
-                                                Student Number 
-                                                {{-- <span class="red-asterisk">Can't be change</span> --}}
-                                            </label>
-                                        </div>
-                                    @endif
-                                @endif
-            
-                                <div class="form-row">
-                                    @if ($user->role == 'student') 
-                                        <div class="col-lg-12">
-                                            <div class="md-form">
-                                                <input placeholder="Select date" type="text" name="birthDate" id="birthDate" class="form-control datepicker {{$errors->has('birthDate') ? 'is-invalid' : ''}}" value="{{date('j F, Y',strtotime($user->birthDate))}}">
-                                                <label for="birthDate">Date of Birth <span class="red-asterisk">*</span></label>
-                                                @if ($errors->has('birthDate'))
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('birthDate') }}</strong>
-                                                    </span>
-                                                @endif
-                                                @if (Session::has('statusError'))
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ Session::get('statusError') }}</strong>
-                                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    @endif
-                                    <div class="col-lg-12">
                                         <div class="md-form">
                                             <input type="email" name="email" id="email" class="form-control {{$errors->has('email') ? 'is-invalid' : ''}}" value="{{$user->email}}">
                                             <label for="email">Email Address <span class="red-asterisk">*</span></label>
@@ -155,18 +85,8 @@
                                             @endif
                                         </div>
                                     </div>
-                                </div>
-                                <div class="md-form">
-                                    <input type="text" name="mobileNumber" id="mobileNumber" class="form-control {{$errors->has('mobileNumber') ? 'is-invalid' : ''}}" value="{{$user->mobileNumber ? $user->mobileNumber : old('mobileNumber')}}">
-                                    <label for="mobileNumber">Mobile Number</label>
-                                    @if ($errors->has('mobileNumber'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('mobileNumber') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                                <div class="form-row">
-                                    <div class="col-12">
+
+                                    <div class="col-sm-12 col-lg-6 col-md-6">
                                         <div class="md-form">
                                             <input type="text" name="username" id="username" class="form-control {{$errors->has('username') ? 'is-invalid' : ''}}" value="{{$user->username}}">
                                             <label for="username">Username <span class="red-asterisk">*</span></label>
@@ -177,7 +97,21 @@
                                             @endif
                                         </div>
                                     </div>
-                                </div>
+                            </div>
+            
+                                <div class="form-row">
+                                    <div class="col-lg-6">
+                                        <div class="md-form">
+                                            <input type="text" name="mobileNumber" id="mobileNumber" class="form-control {{$errors->has('mobileNumber') ? 'is-invalid' : ''}}" value="{{$user->mobileNumber ? $user->mobileNumber : old('mobileNumber')}}">
+                                            <label for="mobileNumber">Mobile Number</label>
+                                            @if ($errors->has('mobileNumber'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('mobileNumber') }}</strong>
+                                            </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div><br>
                                 <button type="submit" name="button" class="btn btn-primary float-right mt-4"><i class="fa fa-pencil"></i> Update</button>
                         </div>
                     </div>

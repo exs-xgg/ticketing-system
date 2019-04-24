@@ -64,17 +64,18 @@
                                 <td>{{$data->ticket}}</td>
                                 <td>{{$data->created_at}}</td>
                                  <td>
+                                   <!--  @foreach ($data->users as $key => $user)
+                                    <a>{{ $user->name() }}</a>
+                                       {{ $key < count($data->users) - 1 ? ', ' : ''  }}
+                                    @endforeach   -->
+                                        {{$data->firstName}} {{$data->middleName}} {{$data->lastName}}
+                                 </td>   
+                                 <td>
                                     @foreach ($data->users as $key => $user)
-                                      <a>{{ $user->name() }}</a>
-                                          {{ $key < count($data->users) - 1 ? ', ' : ''  }}
-                                        @endforeach  
-                                  </td>   
-                                   <td>
-                                    @foreach ($data->users as $key => $user)
-                                      <a>{{ $user->name() }}</a>
-                                          {{ $key < count($data->users) - 2 ? ', ' : ''  }}
-                                        @endforeach  
-                                  </td>   
+                                    <a>{{ $user->name() }}</a>
+                                       {{ $key < count($data->users) - 2 ? ', ' : ''  }}
+                                    @endforeach  
+                                 </td>   
 
                                 <td>{{$data->prob_category}}</td>
                                 <td>{{$data->sub_category}}</td>
@@ -89,7 +90,9 @@
 
 
                                 <td>
-                                    <a href="{{route('student.concern.edit', $data->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
+
+                                    <a href="{{route('student.concern.edit', $data->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Update" data-placement="left"><i class="fa fa-pencil"></i></a>
+
                                    
                                 </td>
                             </tr>    

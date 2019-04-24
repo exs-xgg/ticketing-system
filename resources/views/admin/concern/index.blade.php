@@ -55,13 +55,16 @@
                                 <th class="th-sm">Status</th>
                                 <th class="th-sm">Problem</th>
                                 <th class="th-sm">Before Problem</th>
+                                <th class="th-sm">Remarks</th>
                                 <th class="th-sm">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+
+<!-- 
                             <?php
                             echo($concerns)
-                            ?>
+                            ?> -->
 
                               @foreach ($concerns as $data)
                                  <tr>
@@ -69,22 +72,23 @@
                                 <td>{{$data->created_at}}</td>
                                 <td>{{$data->reporter}}</td>
                                  <td>
-                                   
-                                        {{$data->firstName}} {{$data->middleName}} {{$data->LastName}}
-                                  </td>   
-                                 <!-- <td>
-                                    @foreach ($data->users as $key => $user)
+
+                                   <!--  @foreach ($data->users as $key => $user)
+
                                       <a>{{ $user->name() }}</a>
                                           {{ $key < count($data->users) - 1 ? ', ' : ''  }}
-                                        @endforeach  
+                                        @endforeach   -->
+                                    {{$data->firstName}}  {{$data->lastName}}
                                   </td>   
                                    <td>
-                                    @foreach ($data->users as $key => $user)
+                                  <!--   @foreach ($data->users as $key => $user)
                                       <a>{{ $user->name() }}</a>
                                           {{ $key < count($data->users) - 2 ? ', ' : ''  }}
-                                        @endforeach  
-                                  </td>    -->
-                                <td></td>
+
+                                        @endforeach   -->
+                                        {{$data->receiver2}}
+                                  </td>   
+
 
                                 <td>{{$data->prob_category}}</td>
                                 <td>{{$data->sub_category}}</td>
@@ -92,12 +96,7 @@
                                 <td>{{$data->status}}</td>
                                  <td><pre>{{$data->problem}}<pre></td>
                                 <td><pre>{{$data->before}}<pre></td>
-
-
-
-
-
-
+                                <td>{{$data->remark}}</td>
                                 <td>
                                     <a href="{{route('admin.concern.edit', $data->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
                                     <a href="javascript:void(0);" data-href="{{ route('admin.concern.destroy', $data->id) }}" class="anchor_delete text-danger" data-method="delete" data-action="concern" data-from="concern" data-toggle="tooltip" title="Delete" data-placement="right"><i class="fa fa-trash"></i></a> 

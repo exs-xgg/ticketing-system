@@ -52,6 +52,8 @@ Route::prefix('admin')->name('admin.')->middleware(['admin', 'auth'])->group(fun
     Route::get('/list/courses', 'Admin\CourseController@coursesList')->name('courseList');
 });
 
+Route::resource('concern2', 'Concerns2Controller');
+
 
 
 

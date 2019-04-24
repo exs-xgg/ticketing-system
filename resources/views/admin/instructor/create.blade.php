@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="post-prev-title">
-                <h3>Instructors</h3>
+                <h3>Admin</h3>
             </div>
             <hr class="mt-3">
         </div>
@@ -14,7 +14,7 @@
         <div class="col-lg-9">
             <div class="card">
                 <div class="card-header text-white bg-primary">
-                    <h5 class="text-oswald mb-0">Add Instructor</h5>
+                    <h5 class="text-oswald mb-0">Add Admin</h5>
                 </div>
                 <div class="card-body">
                     <form action="{{route('admin.instructor.store')}}" method="post">

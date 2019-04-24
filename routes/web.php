@@ -59,7 +59,7 @@ Route::resource('concern2', 'Concerns2Controller');
 
 Route::prefix('student')->name('student.')->middleware(['verified', 'student', 'auth'])->group(function () {
     Route::get('/concerns', 'Student\ConcernController@index')->name('concern.index');
-    Route::resource('/concern', 'Student\ConcernController')->except('index');
+    Route::resource('/concern', 'Student\ConcernController');
 
 
 

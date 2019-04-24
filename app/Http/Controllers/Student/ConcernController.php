@@ -8,7 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Concern;
 use Auth;
 use App\User;
-use DataTables;
+use App\Client;
+use App\DataTables;
 use Carbon\carbon;
 class ConcernController extends Controller
 {
@@ -66,6 +67,7 @@ class ConcernController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'prob_category' => 'string|max:255',
         ]);
@@ -75,7 +77,12 @@ class ConcernController extends Controller
         $concern->sub_category = $request->sub_category;
         $concern->problem = $request->problem;
         $concern->before = $request->before;
+        $concern->receiver1 = $request->receiver1;
+
         $concern->ticket = random_int(1, 10000);
+        $concern->receiver1 = $request->receiver1;
+        $concern->receiver2 = $request->receiver2;
+   
    
 
         $concern->save();
@@ -124,22 +131,21 @@ class ConcernController extends Controller
     {
        
 
-        $request->validate([
-         'priority' => 'required',
-          'status' => 'required',
-        
-        
-         
+    $request->validate([
+         'problem' => 'required',
+            'before' => 'required',
+ 
+       
             
         ]);
-        $concern->priority = $request->priority;
-        $concern->status = $request->status;
+        $concern->problem = $request->problem;
+         $concern->before = $request->before;
     
 
         $concern->save();
 
   
-        return redirect()->route('admin.concern.index')
+        return redirect()->route('student.concern.index')
                         ->with('success','Concern updated successfully');
     }
 

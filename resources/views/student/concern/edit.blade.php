@@ -24,29 +24,30 @@
                     <form action="{{route('student.concern.update', $concern->id)}}" method="post">
                         {{ csrf_field() }} {{method_field('PUT')}}
         
-                       <div class="md-form">
-                             <select class="select-wrapper mdb-select" name="priority" id="priority">
-                                  <option value="" selected>Select</option>
-                                  <option value="level 1" {{ old('priority') == 'level 1' ? 'selected' : ''}}>Level 1(within 24 hours)</option>
-                                  <option value="level 2" {{ old('priority') == 'level 2' ? 'selected' : ''}}>Level 2(2-3 days)</option>
-                                  <option value="level 3" {{ old('priority') == 'level 3' ? 'selected' : ''}}>Level 3(4 and above)</option>      
-                              </select>
-                                <label for="priority">Priority level</label>
-                            </div>
+                    <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                
+                <div class="md-form">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Problem:</strong>
+                   <textarea type="text" name="problem" rows="5" id="problem" class="form-control rounded-0 {{$errors->has('problem') ? 'is-invalid' : ''}}">{{ $concern->problem }}</textarea>
+                </div>
+            </div>
+                <div class="md-form">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Before Problem:</strong>
+                     <textarea type="text" name="before" rows="5" id="before" class="form-control rounded-0 {{$errors->has('before') ? 'is-invalid' : ''}}">{{ $concern->before }}</textarea>
+                </div>
+            </div>
+            
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
 
-                         <div class="md-form">
-                             <select class="select-wrapper mdb-select" name="status" id="status">
-                                  <option value="" selected>Select</option>
-                                  <option value="Open" {{ old('sub_category') == 'Open' ? 'selected' : ''}}>Open</option>
-                                  <option value="Ongoing" {{ old('sub_category') == 'Ongoing' ? 'selected' : ''}}>Ongoing</option>
-                                  <option value="Resolved" {{ old('sub_category') == 'Resolved' ? 'selected' : ''}}>Resolved</option>
-                                 <option value="Closed" {{ old('sub_category') == 'Closed' ? 'selected' : ''}}>Closed</option>        
-                              </select>
-                                <label for="status">Status</label>
-                        </div>
-
-        
-                        <button type="submit" name="button" class="btn btn-primary float-right mt-4"><i class="fa fa-pencil"></i> Update</button>
+      
                     </form>
                 </div>
             </div>

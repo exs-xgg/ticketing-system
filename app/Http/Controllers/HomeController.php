@@ -32,8 +32,8 @@ class HomeController extends Controller
     public function admin_dashboard()
     {
         $data['concern_total'] = Concern::count();
-        $data['instructor_total'] = User::where('role', 'instructor')->count();
-        $data['student_total'] = User::where('role', 'student')->count();
+        $data['instructor_total'] = User::where('role', 'admin')->count();
+        $data['student_total'] = User::where('role', 'client')->count();
         $data['new_users'] = User::latest()->limit(10)->get();
 
         return view('admin.dashboard', $data);

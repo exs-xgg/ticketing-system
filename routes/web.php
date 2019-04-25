@@ -29,7 +29,8 @@ Route::prefix('admin')->name('admin.')->middleware(['admin', 'auth'])->group(fun
     Route::get('/dashboard', 'HomeController@admin_dashboard')->name('dashboard');
     
     Route::get('/concerns', 'Admin\ConcernController@index')->name('concern.index');
-    Route::resource('/concern', 'Admin\ConcernController')->except('index');
+    Route::resource('/concern', 'Admin\ConcernController');
+    Route::resource('/concerns', 'Admin\ConcernController');
 
     Route::get('/faq', 'Admin\FaqController@index')->name('faq.index');
     Route::resource('/faq', 'Admin\FaqController')->except('index');
@@ -62,6 +63,7 @@ Route::prefix('student')->name('student.')->middleware(['verified', 'student', '
     Route::resource('/concern', 'Student\ConcernController')->except('index');
 
 
+// 
 
 
 
@@ -100,6 +102,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile/picture', 'UserController@profile_remove')->name('profile.picture.remove');
     Route::get('/change-password', 'UserController@change_password_index')->name('change.password.index');
     Route::put('/change-password', 'UserController@change_password_update')->name('change.password.update');
+
 
        
 });

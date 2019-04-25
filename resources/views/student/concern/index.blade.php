@@ -46,7 +46,6 @@
                             <tr>
                                 <th class="th-sm">Ticket#</th>
                                 <th class="th-sm">Date</th>
-                                <th class="th-sm">Reporter</th>
                                 <th class="th-sm">Receiver 1</th>
                                  <th class="th-sm">Receiver 2</th>
                                 <th class="th-sm">Problem Category</th>
@@ -70,7 +69,7 @@
                                  <tr>
                                 <td>{{$data->ticket}}</td>
                                 <td>{{$data->created_at}}</td>
-                                <td>{{$data->reporter}}</td>
+                                
                                  <td>
 
                                    <!--  @foreach ($data->users as $key => $user)

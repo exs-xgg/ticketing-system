@@ -18,7 +18,7 @@
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header text-white bg-primary">
-                    <h5 class="text-oswald mb-0">Update Concern</h5>
+                    <h5 class="text-oswald mb-0">Update for Receiver 1</h5>
                 </div>
                 <div class="card-body">
                     <form action="{{route('concern2.store', $concern->id)}}" method="post">
@@ -40,7 +40,7 @@
                                      
 
  
- <div class="md-form">
+                <div class="md-form">
                              <select class="select-wrapper mdb-select" name="status" id="status">
                                   <option value="" selected>Select</option>
                                   <option value="Open" {{ old('sub_category') == 'Open' ? 'selected' : ''}}>Open</option>
@@ -60,12 +60,9 @@
                             @endif
                         </div>
 
-                <p>if the receiver 1 did it click yes  </p>
-                <p>if not choose the assigned receiver </p>
                 
-                <button onclick="myFunction()">Yes</button>
                        
-                        <p  class="select2Label mb-0 mt-3">Assign to Receiver 2</p>
+                        <p  class="select2Label mb-0 mt-3">Endorse To:</p>
                         <div  class="md-form mt-0" id=demo>
                             <select class="select-wrapper mdb-select" id="receiver2" name="receiver2" style="width:100% !important;">
                                 @foreach ($clients as $admin)

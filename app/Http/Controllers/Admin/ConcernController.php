@@ -21,7 +21,7 @@ class ConcernController extends Controller
     public function index()
     {
 
-        $data['concerns'] = Concern::select('concerns.id', 'ticket', 'prob_category', 'receiver1', 'concern2.receiver2', 'reporter', 'sub_category', 'problem', 'before', 'concern2.priority', 'concern2.status', 'concern2.remark', 'concerns.created_at', 'firstName', 'middleName', 'lastName')
+        $data['concerns'] = Concern::select('concerns.id', 'ticket', 'prob_category', 'receiver1', 'concern2.receiver2', 'reporter', 'sub_category', 'problem', 'before', 'concern2.priority', 'concern2.status', 'concern2.remark','comment', 'concerns.created_at', 'firstName', 'middleName', 'lastName')
                             ->join('users', 'users.id', '=', 'concerns.receiver1')
                             ->leftJoin('concern2', 'concerns.id', '=', 'concern2.concerns_id')
                             ->orderBy('concerns.created_at')
@@ -87,6 +87,8 @@ class ConcernController extends Controller
         $concern->ticket = random_int(1, 10000);
         $concern->receiver1 = $request->receiver1;
         $concern->receiver2 = $request->receiver2;
+        $concern->comment = $request->comment;
+       
 
    
 
@@ -98,6 +100,9 @@ class ConcernController extends Controller
         session()->flash('status', 'Successfully saved');
         session()->flash('type', 'success');
 
+
+        
+
         return redirect()->route('admin.concern.index');
     }
 
@@ -107,9 +112,9 @@ class ConcernController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Concern $concern)
     {
-        //
+        return view('admin.concern.show',compact('concern'));
     }
 
     /**
@@ -139,17 +144,17 @@ class ConcernController extends Controller
     {
        
 
-        $request->validate([
-         'priority' => 'required',
-          'status' => 'required',
+        // $request->validate([
+        //  'priority' => 'required',
+        //   'status' => 'required',
         
             
-        ]);
+        // ]);
 
-        $concern2->priority = $request->priority;
-        $concern2->status = $request->status;
-        $concern2->receiver2 = $request->receiver2;
-    
+        // $concern2->priority = $request->priority;
+        // $concern2->status = $request->status;
+        // $concern2->receiver2 = $request->receiver2;
+         $concern->comment = $request->comment;
 
 
 

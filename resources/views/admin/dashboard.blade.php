@@ -16,7 +16,7 @@
                 <div class="view overlay text-white text-center py-4">
                     <i class="fa fa-list fa-3x tiles-left-icon"></i>
                     <h2 class="card-title text-white text-oswald"><strong>{{$concern_total}}</strong></h2>
-                    <h2 class="text-uppercase text-white text-oswald">Concerns{{$concern_total > 1 ? 's' : ''}}</h2>
+                    <h2 class="text-uppercase text-white text-oswald">Concern{{$concern_total > 1 ? 's' : ''}}</h2>
                     <a href="{{route('admin.concern.index')}}" class="px-4">
                         <div class="mask rgba-white-slight">
                         </div>

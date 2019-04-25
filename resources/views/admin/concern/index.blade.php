@@ -46,7 +46,6 @@
                             <tr>
                                 <th class="th-sm">Ticket#</th>
                                 <th class="th-sm">Date</th>
-                                <th class="th-sm">Reporter</th>
                                 <th class="th-sm">Receiver 1</th>
                                  <th class="th-sm">Receiver 2</th>
                                 <th class="th-sm">Problem Category</th>
@@ -70,7 +69,7 @@
                                  <tr>
                                 <td>{{$data->ticket}}</td>
                                 <td>{{$data->created_at}}</td>
-                                <td>{{$data->reporter}}</td>
+                        
                                  <td>
 
                                    <!--  @foreach ($data->users as $key => $user)
@@ -99,6 +98,7 @@
                                 <td>{{$data->remark}}</td>
                                 <td>
                                     <a href="{{route('admin.concern.edit', $data->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
+                                    <a href="{{route('admin.concern.show', $data->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="comment" data-placement="left"><i class="fa fa-eye"></i></a>
                                     <a href="javascript:void(0);" data-href="{{ route('admin.concern.destroy', $data->id) }}" class="anchor_delete text-danger" data-method="delete" data-action="concern" data-from="concern" data-toggle="tooltip" title="Delete" data-placement="right"><i class="fa fa-trash"></i></a> 
                                 </td>
                             </tr>    

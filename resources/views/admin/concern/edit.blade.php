@@ -29,14 +29,18 @@
                        <div class="md-form">
                              <select class="select-wrapper mdb-select" name="priority" id="priority">
                                   <option value="" selected>Select</option>
-                                  <option value="level 1" {{ old('priority') == 'level 1' ? 'selected' : ''}}>Level 1(within 24 hours)</option>
-                                  <option value="level 2" {{ old('priority') == 'level 2' ? 'selected' : ''}}>Level 2(2-3 days)</option>
-                                  <option value="level 3" {{ old('priority') == 'level 3' ? 'selected' : ''}}>Level 3(4 and above)</option>      
+                                  <option value="level 1: 24 hours" {{ old('priority') == 'level 1: 24 hours' ? 'selected' : ''}}>Level 1(within 24 hours)</option>
+                                  <option value="level 2: 2-3 days" {{ old('priority') == 'level 2: 2-3 days' ? 'selected' : ''}}>Level 2(2-3 days)</option>
+                                  <option value="level 3: 4&above" {{ old('priority') == 'level 3: 4&above' ? 'selected' : ''}}>Level 3(4 and above)</option>      
                               </select>
-                                <label for="priority">Priority level</label>
-                            </div>
+                              <label for="status">Priority level</label>
+                         </div> 
 
-                         <div class="md-form">
+
+                                     
+
+ 
+ <div class="md-form">
                              <select class="select-wrapper mdb-select" name="status" id="status">
                                   <option value="" selected>Select</option>
                                   <option value="Open" {{ old('sub_category') == 'Open' ? 'selected' : ''}}>Open</option>

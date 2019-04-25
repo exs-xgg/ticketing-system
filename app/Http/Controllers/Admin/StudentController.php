@@ -23,14 +23,17 @@ class StudentController extends Controller
     }
 
 
-    public function status(Request $request, $id)
+    public function status(Request $request)
     {
-        // $user = Auth::user();
+        $user = Auth::user();
         // $course = $user->courses()->findOrFail($course_id);
-        $data['student'] = User::where('role', 'student')->findOrFail($id);
-        $data['student']->status = $request->status == 1 ? true : false;
-        $data['student']->save();
-        $status = $request->status == 1 ? 'Lesson Activated' : 'Lesson Deactivated';
+        $clients = User::where('role', 'client')->findOrFail($request->id);
+        $clients->status = $request->status == 1 ? true : false;
+        $clients->save();
+        $status = $request->status == 1 ? 'Account Activated' : 'Account Deactivated';
         return json_encode(['text' => 'success', 'return' => '1', 'status' => $status]);
     }
 }
+
+
+        

@@ -14,7 +14,12 @@ class Concerns2Controller extends Controller
      */
     public function index()
     {
-        //
+        // $admins = User::where('role', 'admin')->get();
+        // $clients = User::where('role', 'client')->get();
+        // // $priority['priority'] = ['level 1: 24 hours','level 2: 2-3 days','level 3: 4&above']; 
+        // // $status['status'] = ['Open','Ongoing','Resolved','Closed'];
+
+        // return view('admin.concern.edit', compact('concern'), compact('clients'), $priority, $status);
     }
 
     /**

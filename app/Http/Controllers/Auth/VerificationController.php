@@ -29,7 +29,7 @@ class VerificationController extends Controller
 
     protected function redirectTo()
     {
-        session()->flash('status', 'Email Address verified');
+        session()->flash('status', 'Account verified');
         session()->flash('type', 'success');
         return '/profile';
     }

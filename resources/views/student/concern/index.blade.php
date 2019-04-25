@@ -55,15 +55,15 @@
                                 <th class="th-sm">Problem</th>
                                 <th class="th-sm">Before Problem</th>
                                 <th class="th-sm">Remarks</th>
+
+
                                 <th class="th-sm">Action</th>
                             </tr>
                         </thead>
                         <tbody>
 
-<!-- 
-                            <?php
-                            echo($concerns)
-                            ?> -->
+                            
+
 
                               @foreach ($concerns as $data)
                                  <tr>

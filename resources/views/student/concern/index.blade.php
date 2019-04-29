@@ -22,7 +22,7 @@
             <div class="post-prev-title">
                 <h3>Concerns</h3>
             </div>
-            <a href="{{route('student.concern.index')}}" class="btn btn-primary mr-0 my-0"><i class="fa fa-plus"></i> Add concern</a>
+            <a href="{{route('student.concern.create')}}" class="btn btn-primary mr-0 my-0"><i class="fa fa-plus"></i> Add concern</a>
         </div>
     </div>
     <hr class="mt-2">
@@ -55,21 +55,21 @@
                                 <th class="th-sm">Problem</th>
                                 <th class="th-sm">Before Problem</th>
                                 <th class="th-sm">Remarks</th>
-
-
                                 <th class="th-sm">Action</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            
-
+<!-- 
+                            <?php
+                            echo($concerns)
+                            ?> -->
 
                               @foreach ($concerns as $data)
                                  <tr>
                                 <td>{{$data->ticket}}</td>
                                 <td>{{$data->created_at}}</td>
-                                
+                        
                                  <td>
 
                                    <!--  @foreach ($data->users as $key => $user)
@@ -98,8 +98,8 @@
                                 <td>{{$data->remark}}</td>
                                 <td>
                                     <a href="{{route('student.concern.edit', $data->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
-                                     <a href="{{route('student.concern.show', $data->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="comment" data-placement="left"><i class="fa fa-eye"></i></a>
-                                    <a href="javascript:void(0);" data-href="{{ route('student.concern.destroy', $data->id) }}" class="anchor_delete text-danger" data-method="delete" data-action="concern" data-from="concern" data-toggle="tooltip" title="Delete" data-placement="right"><i class="fa fa-trash"></i></a> 
+                                    <!-- <a href="javascript:void(0);" data-href="{{ route('admin.concern.destroy', $data->id) }}" class="anchor_delete text-danger" data-method="delete" data-action="concern" data-from="concern" data-toggle="tooltip" title="Delete" data-placement="right"><i class="fa fa-trash" </i></a> -->
+
                                 </td>
                             </tr>    
                             @endforeach

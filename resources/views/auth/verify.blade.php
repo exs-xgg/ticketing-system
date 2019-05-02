@@ -6,7 +6,7 @@
         <div class="col-lg-10 mt-5">
             <div class="card">
                 <div class="card-header text-white bg-primary">
-                    <h5 class="text-oswald mb-0">Verify Your Email Address</h5>
+                    <h5 class="text-oswald mb-0">Verification of the Account</h5>
                 </div>
                 <div class="card-body">
                     @if (session('resent'))
@@ -14,8 +14,8 @@
                             {{ __('A fresh verification link has been sent to your email address.') }}
                         </div>
                     @endif
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }}, <a href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>.
+                   <center>{{ __('Your Account is being check and verify by the Wireless Access for Health.') }}</center> 
+                    {{ __('') }} 
                 </div>
             </div>
         </div>

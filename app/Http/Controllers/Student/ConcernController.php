@@ -20,8 +20,10 @@ class ConcernController extends Controller
      */
     public function index()
     {
+
         $user = Auth::User();
         $data['concerns'] = Concern::select('concerns.id', 'ticket', 'reporter', 'prob_category', 'receiver1', 'concern2.receiver2', 'sub_category', 'problem', 'before', 'concern2.priority', 'concern2.status', 'concern2.remark', 'concerns.created_at', 'firstName', 'middleName', 'lastName')
+
                             ->join('users', 'users.id', '=', 'concerns.receiver1')
                             ->leftJoin('concern2', 'concerns.id', '=', 'concern2.concerns_id')
                             ->where('reporter', '=', $user->id)
@@ -33,7 +35,7 @@ class ConcernController extends Controller
 
     public function concernsList()
     {
-        $concerns = Concern::latest()->get();
+        $concerns =  Concern::where('reporter', $user->id)->latest()->get();
         return DataTables::of($concerns)
                         ->addColumn('action', function ($concern) {
                             return '<a href="'.route('student.concern.edit', $concerns->id).'" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>';
@@ -109,9 +111,9 @@ class ConcernController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Concern $concern)
     {
-        //
+         return view('student.concern.show',compact('concern'));
     }
 
     /**

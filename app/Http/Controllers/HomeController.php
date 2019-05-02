@@ -69,6 +69,7 @@ class HomeController extends Controller
             'mobileNumber'     => $request->mobileNumber,
             'username'  => $request->username,
             'email'     => $request->email,
+            // 'status'         => $data['status'],
             'password'  => Hash::make($request->password),
         ]);
 

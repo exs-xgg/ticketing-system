@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-lg-12 d-flex justify-content-between">
             <div class="post-prev-title">
-                <h3>Frequently Asked Question</h3>
+                <h3>Frequently Asked Question</h3>JOOOOOOOO<h3>
             </div>
             <a href="{{route('admin.faq.create')}}" class="btn btn-primary mr-0 my-0"><i class="fa fa-plus"></i> Add FAQ</a>
         </div>

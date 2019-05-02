@@ -44,7 +44,7 @@
                 <div class="view overlay text-white text-center py-4">
                     <i class="fa fa-user fa-3x tiles-left-icon"></i>
                     <h2 class="card-title text-white text-oswald"><strong>{{$student_total}}</strong></h2>
-                    <h2 class="text-uppercase text-white text-oswald">RHU Accounts{{$student_total > 1 ? 's' : ''}}</h2>
+                    <h2 class="text-uppercase text-white text-oswald">HCI Accounts{{$student_total > 1 ? 's' : ''}}</h2>
                     <a href="{{route('admin.student.index')}}" class="px-4">
                         <div class="mask rgba-white-slight">
                         </div>

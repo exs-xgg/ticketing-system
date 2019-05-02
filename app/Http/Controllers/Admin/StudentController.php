@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
-// use App\Client;
 use Auth;
 use DataTables;
 
@@ -18,8 +17,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $clients = User::where('role', 'client')->latest()->get();
-        return view('admin.student.index', compact('clients'));
+        $students = User::where('role', 'student')->latest()->get();
+        return view('admin.student.index', compact('students'));
     }
 
 

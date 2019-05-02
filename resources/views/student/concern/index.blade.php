@@ -12,6 +12,21 @@
             white-space: -o-pre-wrap;
             word-wrap: break-word;
          }
+            
+          
+                                
+                   /* .level1{
+                        color:  !important;
+                    }
+                    .level2{
+                        color: !important;
+                    }
+                    .level3{
+                        color: !important;
+                    }
+*/
+
+
       </style>
 @endsection
 
@@ -22,7 +37,7 @@
             <div class="post-prev-title">
                 <h3>Concerns</h3>
             </div>
-            <a href="{{route('student.concern.index')}}" class="btn btn-primary mr-0 my-0"><i class="fa fa-plus"></i> Add concern</a>
+            <a href="{{route('student.concern.create')}}" class="btn btn-primary mr-0 my-0"><i class="fa fa-plus"></i> Add concern</a>
         </div>
     </div>
     <hr class="mt-2">
@@ -46,8 +61,8 @@
                             <tr>
                                 <th class="th-sm">Ticket#</th>
                                 <th class="th-sm">Date</th>
-                                <th class="th-sm">Receiver 1</th>
-                                 <th class="th-sm">Receiver 2</th>
+                                <th class="th-sm"> Report to</th>
+                                 <th class="th-sm"> Endorse to </th>
                                 <th class="th-sm">Problem Category</th>
                                 <th class="th-sm">Sub Category</th>
                                 <th class="th-sm">Priority</th>
@@ -69,7 +84,8 @@
                                  <tr>
                                 <td>{{$data->ticket}}</td>
                                 <td>{{$data->created_at}}</td>
-                                
+
+                        
                                  <td>
 
                                    <!--  @foreach ($data->users as $key => $user)
@@ -85,20 +101,30 @@
                                           {{ $key < count($data->users) - 2 ? ', ' : ''  }}
 
                                         @endforeach   -->
-                                        {{$data->receiver2}}
+                                         {{ \App\User::where('id', $data->receiver2)->value('firstName') }}
+                                        {{ \App\User::where('id', $data->receiver2)->value('lastName') }}
                                   </td>   
 
 
                                 <td>{{$data->prob_category}}</td>
                                 <td>{{$data->sub_category}}</td>
-                                <td>{{$data->priority}}</td>
+
+                                <td
+                                 class="
+                                @if($data->priority == 'level 1') blue
+                                @elseif($data->priority == 'level 2') yellow 
+                                @elseif($data->priority == 'level 3') amber
+                                @endif">
+                                {{ $data->priority }}</td>
+
                                 <td>{{$data->status}}</td>
                                  <td><pre>{{$data->problem}}<pre></td>
                                 <td><pre>{{$data->before}}<pre></td>
                                 <td>{{$data->remark}}</td>
+
                                 <td>
-                                    <a href="{{route('student.concern.edit', $data->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
-                                    <a href="javascript:void(0);" data-href="{{ route('student.concern.destroy', $data->id) }}" class="anchor_delete text-danger" data-method="delete" data-action="concern" data-from="concern" data-toggle="tooltip" title="Delete" data-placement="right"><i class="fa fa-trash"></i></a> 
+                                    <a href="{{route('admin.concern.edit', $data->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
+                                    <a href="javascript:void(0);" data-href="{{ route('admin.concern.destroy', $data->id) }}" class="anchor_delete text-danger" data-method="delete" data-action="concern" data-from="concern" data-toggle="tooltip" title="Delete" data-placement="right"><i class="fa fa-trash"></i></a> 
                                 </td>
                             </tr>    
                             @endforeach

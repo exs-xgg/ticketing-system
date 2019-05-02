@@ -81,6 +81,7 @@ class ConcernController extends Controller
 
         $concern = new Concern;
         $concern->prob_category = $request->prob_category;
+         $concern->reporter = $request->reporter;
         $concern->sub_category = $request->sub_category;
         $concern->problem = $request->problem;
         $concern->before = $request->before;
@@ -128,7 +129,7 @@ class ConcernController extends Controller
         $admins = User::where('role', 'admin')->get();
          $clients = User::where('role', 'client')->get();
 
-        return view('admin.concern.edit', compact('concern'), compact('clients'));
+        return view('admin.concern.edit', compact('concern'), compact('admins'));
     }
 
     /**

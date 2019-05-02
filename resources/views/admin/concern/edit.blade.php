@@ -39,7 +39,6 @@
                          <div class="md-form">
                              <select class="select-wrapper mdb-select" name="status" id="status">
                                   <option value="" selected>Select</option>
-                                  <option value="Open" {{ old('sub_category') == 'Open' ? 'selected' : ''}}>Open</option>
                                   <option value="Ongoing" {{ old('sub_category') == 'Ongoing' ? 'selected' : ''}}>Ongoing</option>
                                   <option value="Resolved" {{ old('sub_category') == 'Resolved' ? 'selected' : ''}}>Resolved</option>
                                  <option value="Closed" {{ old('sub_category') == 'Closed' ? 'selected' : ''}}>Closed</option>        
@@ -56,15 +55,11 @@
                             @endif
                         </div>
 
-                <p>if the receiver 1 did it click yes  </p>
-                <p>if not choose the assigned receiver </p>
-                
-                <button onclick="myFunction()">Yes</button>
-                       
-                        <p  class="select2Label mb-0 mt-3">Assign to Receiver 2</p>
-                        <div  class="md-form mt-0" id=demo>
+          
+                     <p class="select2Label mb-0 mt-3">Assign to Receiver 2</p>
+                        <div class="md-form mt-0">
                             <select class="select-wrapper mdb-select" id="receiver2" name="receiver2" style="width:100% !important;">
-                                @foreach ($clients as $admin)
+                                @foreach ($admins as $admin)
                                     <option value="{{ $admin->id }}" {{ $admin->id === old('admin') ? 'selected' : ''  }}>{{ $admin->name() }}</option>
                                 @endforeach
                             </select>
@@ -95,17 +90,6 @@
         hiddenPrefix: 'formatted_',
         selectYears: 50
     });
-
-</script>
-<script>
-function myFunction() {
-    var greeting;
-  if (myFunction = false) {
-    show = demo
-  } 
-  document.getElementById("demo").innerHTML = greeting;
-}
-
 
 </script>
 @endsection

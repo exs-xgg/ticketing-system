@@ -50,7 +50,7 @@ Route::prefix('admin')->name('admin.')->middleware(['admin', 'auth'])->group(fun
     Route::get('/student', 'Admin\StudentController@index')->name('student.index');
 
     // datables
-    Route::get('/list/courses', 'Admin\CourseController@coursesList')->name('courseList');
+   
 });
 
 Route::resource('concern2', 'Concerns2Controller');
@@ -71,29 +71,7 @@ Route::prefix('student')->name('student.')->middleware(['verified', 'student', '
     
 
     Route::get('/dashboard', 'HomeController@student_dashboard')->name('dashboard');
-    Route::get('/course/{course}/section/{section}/announcements', 'StudentController@announcement')->name('announcement');
-    Route::get('/course/{course}/section/{section}/mysection', 'StudentController@section_index')->name('section.index');
-    // lesson
-    Route::get('/course/{course}/section/{section}/lessons', 'StudentController@lesson_index')->name('lesson.index');
-    Route::get('/course/{course}/section/{section}/lesson/{lesson}', 'StudentController@lesson_show')->name('lesson.show');
-    Route::get('/course/{course}/section/{section}/lesson/{lesson}/download', 'StudentController@lesson_download')->name('lesson.download');
-
-    Route::get('/course/{course}/section/{section}/quizzes', 'StudentController@quiz_index')->name('quiz.index');
-    Route::get('/course/{course}/section/{section}/quiz/{quiz}', 'StudentController@quiz_show')->name('quiz.show');
-
-    Route::get('/course/{course}/section/{section}/assignments', 'StudentController@assignment_index')->name('assignment.index');
-    Route::get('/course/{course}/section/{section}/assignment/{assignment}', 'StudentController@assignment_show')->name('assignment.show');
-
-    Route::post('/course/{course}/section/{section}/quiz/{quiz}/takes/code-quiz', 'TakeController@storeCodeQuiz')->name('take.storeCodeQuiz');
-    Route::post('/course/{course}/section/{section}/quiz/{quiz}/take', 'TakeController@store')->name('take.store');
-    Route::get('/course/{course}/section/{section}/quiz/{quiz}/take/{take}/result', 'TakeController@result')->name('take.result');
-
-    Route::post('/course/{course}/section/{section}/assignment/{assignment}/pass', 'TakeController@store_assignment')->name('pass.store_assignment');
-    Route::get('/course/{course}/section/{section}/assignment/{assignment}/pass/{pass}/result', 'TakeController@result_assignment')->name('pass.result_assignment');
-
-    Route::post('/dashboard/register-token', 'StudentController@check_token')->name('check_token');
-    Route::get('/dashboard/register-token/{token}', 'StudentController@course_add')->name('course.add');
-    Route::post('/dashboard/register/{section}', 'StudentController@register_store')->name('register.store');
+   
 });
 
 Route::middleware('auth')->group(function () {

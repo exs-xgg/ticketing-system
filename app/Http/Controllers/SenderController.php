@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Concerns2;
+use App\Sender;
 
-class Concerns2Controller extends Controller
+
+class SenderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,12 @@ class Concerns2Controller extends Controller
      */
     public function index()
     {
-        //
+        // $admins = User::where('role', 'admin')->get();
+        // $clients = User::where('role', 'client')->get();
+        // // $priority['priority'] = ['level 1: 24 hours','level 2: 2-3 days','level 3: 4&above']; 
+        // // $status['status'] = ['Open','Ongoing','Resolved','Closed'];
+
+        // return view('admin.concern.edit', compact('concern'), compact('clients'), $priority, $status);
     }
 
     /**
@@ -35,17 +41,17 @@ class Concerns2Controller extends Controller
      */
     public function store(Request $request)
     {
-        $concern =  Concerns2::firstOrNew(['concerns_id' => $request->input('concerns_id')]);
+        $sender =  Sender::firstOrNew(['concerns_id' => $request->input('concerns_id')]);
         // $request = $request->all();
-        $concern->remark = $request->remark;
-        $concern->concerns_id = $request->concerns_id;
-        $concern->priority = $request->priority;
-        $concern->status = $request->status;
-        $concern->receiver2 = $request->receiver2;
+        $sender->remark = $request->remark;
+        $sender->concerns_id = $request->concerns_id;
+        $sender->priority = $request->priority;
+        $sender->status = $request->status;
+        $sender->note_receiver1 = $request->note_receiver1;
         // $request = $request->all();
         // $concern = extract_field_to_save($concern,$request);
 
-        $concern->save();
+        $sender->save();
 
         // return $data->id;
 

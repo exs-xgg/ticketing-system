@@ -4,13 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Reply extends Model
+class Final extends Model
 {
-    //
+     protected $table = 'Final';
     protected $fillable = [
-    	'comment_id',
-    	'name',
-    	'reply',
-    	'user_id'
+        'concern_id', 'note_receiver2'
     ];
 }

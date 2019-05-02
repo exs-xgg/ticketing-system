@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Controllers\Admin;
@@ -6,10 +7,11 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Concern;
+use App\Client;
 use Auth;
 use App\User;
 use DataTables;
-
+use Carbon\carbon;
 class ConcernController extends Controller
 {
     /**
@@ -19,7 +21,13 @@ class ConcernController extends Controller
      */
     public function index()
     {
-        $data['concerns'] = Concern::latest()->get();
+
+        $data['concerns'] = Concern::select('concerns.id', 'ticket', 'prob_category', 'receiver1', 'concern2.receiver2', 'reporter', 'sub_category', 'problem', 'before', 'concern2.priority', 'concern2.status', 'concern2.remark','comment', 'concerns.created_at', 'firstName', 'middleName', 'lastName')
+                            ->join('users', 'users.id', '=', 'concerns.receiver1')
+                            ->leftJoin('concern2', 'concerns.id', '=', 'concern2.concerns_id')
+                            ->orderBy('concerns.created_at')
+                            ->get();
+
         return view('admin.concern.index', $data);
     }
 
@@ -28,15 +36,15 @@ class ConcernController extends Controller
         $concerns = Concern::latest()->get();
         return DataTables::of($concerns)
                         ->addColumn('action', function ($concern) {
-                            return '<a href="'.route('admin.concern.edit', $concern->id).'" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>';
+                            return '<a href="'.route('admin.concern.edit', $concerns->id).'" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>';
                         })
                         
-                        ->addColumn('instructors', function (Course $course) {
-                            return $course->users->map(function($user) {
-                                return '<a class="btn-link" href="'.route('admin.instructor.show', $user->id).'">'.$user->name().'</a>';
-                            })->implode(', ');
-                        })
-                        ->rawColumns(['instructors', 'action', 'status'])
+                        // ->addColumn('admins', function (Concern $concern) {
+                        //     return $concern->users->map(function($user) {
+                        //      return '<a class="btn-link" href="'.route('admin.instructor.show', $user->id).'">'.$user->name().'</a>';
+                        //     })->implode(', ');
+                        // })
+                        ->rawColumns(['admins'])
                         ->toJson();
     }
 
@@ -47,8 +55,17 @@ class ConcernController extends Controller
      */
     public function create()
     {
-        return view('admin.concern.create');
+
+         $admins = User::where('role', 'admin')->get();
+         $clients = User::where('role', 'client')->get();
+       
+        return view('admin.concern.create', compact('admins'),compact('clients'));
+
+
+
+      /*  return view('admin.concern.create');*/
     }
+
 
 
     /**
@@ -65,19 +82,30 @@ class ConcernController extends Controller
 
         $concern = new Concern;
         $concern->prob_category = $request->prob_category;
+         $concern->reporter = $request->reporter;
         $concern->sub_category = $request->sub_category;
         $concern->problem = $request->problem;
         $concern->before = $request->before;
+        $concern->ticket = random_int(1, 10000);
         $concern->receiver1 = $request->receiver1;
+        $concern->receiver2 = $request->receiver2;
+        $concern->comment = $request->comment;
+       
+
+   
 
         $concern->save();
+        $concern->users()->sync($request->admins, false);
+        $concern->users()->sync($request->clients, false);
 
 
         session()->flash('status', 'Successfully saved');
         session()->flash('type', 'success');
 
-        return redirect()->route('admin.concern.index');
 
+        
+
+        return redirect()->route('admin.concern.index');
     }
 
     /**
@@ -86,9 +114,9 @@ class ConcernController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Concern $concern)
     {
-        //
+        return view('admin.concern.show',compact('concern'));
     }
 
     /**
@@ -97,11 +125,12 @@ class ConcernController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Concern $concern)
     {
-      $concern = Concern::findOrFail($id);
+        $admins = User::where('role', 'admin')->get();
+         $clients = User::where('role', 'client')->get();
 
-        return view('admin.concern.edit', compact('concern'));
+        return view('admin.concern.edit', compact('concern'), compact('admins'));
     }
 
     /**
@@ -111,33 +140,31 @@ class ConcernController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Concern $concern)
     {
-        $concern = Concern::findOrFail($id);
+       
 
-        if ($request->name != $course->name) {
-            $request->validate([
-                'name' => 'required|string|unique:courses|max:255',
-            ]);
-        }
+        // $request->validate([
+        //  'priority' => 'required',
+        //   'status' => 'required',
+        
+            
+        // ]);
 
-        $course->name = $request->name;
-        $course->code = $request->code;
-        $course->description = $request->description;
-        $course->save();
-
-        if (isset($request->instructors)) {
-            $course->users()->sync($request->instructors);
-        } else {
-            $course->users()->sync(array());
-        }
+        // $concern2->priority = $request->priority;
+        // $concern2->status = $request->status;
+        // $concern2->receiver2 = $request->receiver2;
+         $concern->comment = $request->comment;
 
 
 
-        session()->flash('status', 'Successfully updated');
-        session()->flash('type', 'success');
+  
+    
 
-        return redirect()->route('admin.course.index');
+        $concern->save();
+        
+        return redirect()->route('admin.concern.index')
+                        ->with('success','Concern updated successfully');
     }
 
     /**

@@ -81,6 +81,7 @@ class ConcernController extends Controller
 
         $concern = new Concern;
         $concern->prob_category = $request->prob_category;
+         $concern->reporter = $request->reporter;
         $concern->sub_category = $request->sub_category;
         $concern->problem = $request->problem;
         $concern->before = $request->before;
@@ -123,14 +124,12 @@ class ConcernController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Concern $concern)
+    public function edit(Concern $concern)
     {
         $admins = User::where('role', 'admin')->get();
-        $clients = User::where('role', 'client')->get();
-        // $data['priority'] = ['level 1: 24 hours','level 2: 2-3 days','level 3: 4&above']; 
-        // $data1['status'] = ['Open','Ongoing','Resolved','Closed'];
+         $clients = User::where('role', 'client')->get();
 
-        return view('admin.concern.edit', compact('concern'), compact('clients'));
+        return view('admin.concern.edit', compact('concern'), compact('admins'));
     }
 
     /**

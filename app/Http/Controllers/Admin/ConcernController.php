@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Controllers\Admin;
@@ -124,12 +125,10 @@ class ConcernController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Concern $concern)
+    public function edit(Concern $concern)
     {
         $admins = User::where('role', 'admin')->get();
-        $clients = User::where('role', 'client')->get();
-        // $data['priority'] = ['level 1: 24 hours','level 2: 2-3 days','level 3: 4&above']; 
-        // $data1['status'] = ['Open','Ongoing','Resolved','Closed'];
+         $clients = User::where('role', 'client')->get();
 
         return view('admin.concern.edit', compact('concern'), compact('admins'));
     }

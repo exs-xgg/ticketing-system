@@ -89,6 +89,7 @@
                         </div>
 
 
+
                              
                                     <input type="text" hidden="" value="{{ Auth::user()->id }}" name="reporter" id="reporter">
         

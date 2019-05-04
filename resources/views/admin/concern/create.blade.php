@@ -43,11 +43,29 @@
                          <div class="md-form">
                              <select class="select-wrapper mdb-select" name="sub_category" id="sub_category">
                                   <option value="" selected>Select</option>
-                                  <option value="Technical" {{ old('sub_category') == 'Technical' ? 'selected' : ''}}>Technical</option>
-                                  <option value="PCB" {{ old('sub_category') == 'PCB' ? 'selected' : ''}}>PCB</option>
-                                  <option value="Eclaims" {{ old('sub_category') == 'Eclaims' ? 'selected' : ''}}>Eclaims</option>
-                                 <option value="HPP" {{ old('sub_category') == 'HPP' ? 'selected' : ''}}>HPP</option>        
+                                  <option value="Network/Connection" {{ old('sub_category') == 'Network/Connection' ? 'selected' : ''}}>Technical- Network/Connection</option>
+                                  <option value="Server/Backup" {{ old('sub_category') == 'Server/Backup' ? 'selected' : ''}}>Technical- Server/Backup</option>
+                                  <option value="Performance Issue" {{ old('sub_category') == 'Performance Issue' ? 'selected' : ''}}>Technical- Performance Issue</option>
+                                 <option value="Submission Statistics" {{ old('sub_category') == 'Submission Statistics' ? 'selected' : ''}}>PCB- Submission Statistics</option>        
+                
+                              <option value="Resubmission Request" {{ old('sub_category') == 'Resubmission Request' ? 'selected' : ''}}>PCB- Resubmission Request</option>        
+                              
+                               <option value="Cipher Keys" {{ old('sub_category') == 'Cipher Keys' ? 'selected' : ''}}>Eclaims- Cipher Keys</option>        
+                              
+                              <option value="Error Encountered" {{ old('sub_category') == 'Error Encountered' ? 'selected' : ''}}>Eclaims- Error Encountered</option>        
+                              
+                              <option value="Module 2 Training" {{ old('sub_category') == 'Module 2 Training' ? 'selected' : ''}}>HPP- Module 2 Training</option>        
+                              
+                              <option value="Module 1 Training" {{ old('sub_category') == 'Module 1 Training' ? 'selected' : ''}}>HPP- Module 1 Training</option>        
+                              
+                              <option value="Module 1&2 Training" {{ old('sub_category') == 'Module 1&2 Training' ? 'selected' : ''}}>HPP- Module 1&2 Training</option>        
+                            
+                               <option value="New Site" {{ old('sub_category') == 'New Site' ? 'selected' : ''}}>HPP- New Site</option>        
+                              
+                              <option value="Refresher Training" {{ old('sub_category') == 'Refresher Training' ? 'selected' : ''}}>HPP- Refresher Training</option>        
                               </select>
+
+
                                 <label for="sub_category">Sub-Category</label>
                         </div>
 
@@ -71,6 +89,27 @@
                             </span>
                             @endif
                         </div>
+
+                        <p class="select2Label mb-0 mt-3">Assign to Receiver 1</p>
+                        <div class="md-form mt-0">
+                            <select class="select-wrapper mdb-select" id="receiver1" name="receiver1" style="width:100% !important;">
+                                @foreach ($admins as $admin)
+                                    <option value="{{ $admin->id }}" {{ $admin->id === old('admin') ? 'selected' : ''  }}>{{ $admin->name() }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                          <p class="select2Label mb-0 mt-3">Reporter</p>
+                        <div class="md-form mt-0">
+                            <select class="select-wrapper mdb-select" id="reporter" name="reporter" style="width:100% !important;">
+                                @foreach ($clients as $client)
+                                    <option value="{{ $client->id }}" {{ $client->id === old('clients') ? 'selected' : ''  }}>{{ $client->name() }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        
+
         
                         <button type="submit" name="button" class="btn btn-primary float-right mt-4"><i class="fa fa-save"></i> Save</button>
                     </form>
@@ -84,9 +123,9 @@
 @section('script')
 <script src="{{ asset('js/select2.min.js') }}"></script>
 <script>
-          $('.mdb-select').material_select();
+    $('.mdb-select').material_select();
     $('.multiple-select').select2();
-    $('.multiple-select').select2().val({!! json_encode(old('instructors')) !!}).trigger('change');
+    $('.multiple-select').select2().val({!! json_encode(old('admins')) !!}).trigger('change');
     $('.datepicker').pickadate({
         max: new Date(),
         formatSubmit: 'yyyy-mm-dd',

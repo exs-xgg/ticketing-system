@@ -49,7 +49,7 @@
                                 <td>{{$instructor->username}}</td>
                                 <td>{{$instructor->mobileNumber}}</td>
                                 <td>
-                                    <a href="{{route('admin.instructor.edit', $instructor->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
+                                  
                                     <a href="javascript:void(0);" data-href="{{ route('admin.instructor.destroy', $instructor->id) }}" class="deactivate text-danger" data-method="delete" data-action="deactivate" data-from="instructor" data-toggle="tooltip" title="Deactivate" data-placement="right"><i class="fa fa-trash"></i></a> 
                                 </td>
                             </tr>

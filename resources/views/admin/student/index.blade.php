@@ -20,7 +20,7 @@
                 <div class="text-white blue text-center py-4 px-4">
                     <i class=""></i>
                     <h2 class="card-title pt-2 text-white text-oswald"><strong>{{ number_format(count($clients) )}}</strong></h2>
-                    <h2 class="text-uppercase text-white text-oswald">RHU Account{{ count($clients) > 1 ? 's' : '' }}</h2>
+                    <h2 class="text-uppercase text-white text-oswald">HCI Account{{ count($clients) > 1 ? 's' : '' }}</h2>
                 </div>
             </div>
         </div>
@@ -47,13 +47,7 @@
                                 <td>{{$client->email}}</td>
                                 <td>{{date('F j, Y',strtotime($client->created_at))}}</td>
                                 <td>
-                                     <span class="switch">
-                                            <label>
-                                                Inactive
-                                                <input class="active-mode-switch" type="checkbox" {{$client->status ? 'checked' : ''}} studentId="{{$client->id}}">
-                                                <span class="lever"></span> Active
-                                            </label>
-                                        </span>
+                                     
                                 </td>
                                 
                                 

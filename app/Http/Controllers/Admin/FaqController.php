@@ -6,7 +6,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Faq;
-use App\Client;
 use Auth;
 use App\User;
 use DataTables;
@@ -23,8 +22,9 @@ class FaqController extends Controller
         $data['faqs'] = Faq::latest()->get();
         return view('admin.faq.index', $data);
     }
-   
-   
+
+    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -34,7 +34,8 @@ class FaqController extends Controller
     {
         return view('admin.faq.create');
     }
-  
+
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -43,89 +44,111 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'prob_category' => 'required',
-            'sub_category' => 'required',
-            'problem' => 'required',
-            'solution' => 'required',
          
-            
-          
-            
+        $request->validate([
+            'prob_category' => 'string|max:255',
         ]);
-  
-        Faq::create($request->all());
+        
+        $faq = new Faq;
+        $faq->prob_category = $request->prob_category;
+        $faq->sub_category = $request->sub_category ;
+        $faq->problem = $request->problem;
+        $faq->solution= $request->solution;
+        $faq->save();
 
-        if (auth()->user())
-            return redirect()->route('admin.faq.index')
-                        ->with('success','Faq created successfully.');
-        else
-            return redirect()->route('view.index')
-                       ->with('email',$request->input('email'));
+
+        session()->flash('status', 'Successfully saved');
+        session()->flash('type', 'success');
+
+        return redirect()->route('admin.faq.index');
+
     }
-   
+
     /**
      * Display the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Faq $faq)
+    public function show(Course $course)
     {
-        return view('admin.faq.show',compact('faq'));
+        //
     }
-   
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Faq $faq)
+     public function edit($id) 
     {
-        return view('admin.faq.edit',compact('faq'));
+       $faq = Faq::findOrFail($id);
+
+        return view('admin.faq.edit', compact('faq'));
     }
-  
+
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
+     * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Faq $faq)
-    {
+    public function update(Request $request, $id)
+     {
+        $faq = Faq::findOrFail($id);
 
-       
+        if ($request->prob_category != $faq->prob_category) {
+            $request->validate([
+                'prob_category' => 'required|string|unique:courses|max:255',
+            ]);
+        }
 
-        $request->validate([
-       
-            'problem' => 'required',
-            'solution' => 'required',
+    
+        $faq->prob_category = $request->prob_category;
+        $faq->sub_category = $request->sub_category;
+        $faq->problem = $request->problem;
+        $faq->solution = $request->solution;
+        $faq->save();
+
+
          
-       
-            
-        ]);
-        
-          $faq->problem = $request->problem;
-           $faq->solution = $request->solution;
-            $faq->save();
-  
-        return redirect()->route('admin.faq.index')
-                        ->with('success','Faq updated successfully');
+
+        session()->flash('status', 'Successfully updated');
+        session()->flash('type', 'success');
+
+        return redirect()->route('admin.faq.index');
     }
-  
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Faq $faq)
+    public function destroy($id)
     {
-        $faq->delete();
-  
-        return redirect()->route('admin.faq.index')
-                        ->with('success','Faq deleted successfully');
+         $faq = Faq::findOrFail($id);
+         $faq->faqs()->detach();
+          $faq->delete();
+
+        session()->flash('status', 'Successfully deleted');
+        session()->flash('type', 'success');
+        return response('success', 200);
     }
+
+
+    public function forceDestroy($id)
+    {
+        $faq = Faq::findOrFail($id);
+        $faq->faqs()->detach();
+        $faq->forceDelete();
+
+        session()->flash('status', 'Successfully deleted');
+        session()->flash('type', 'success');
+        return response('success', 200);
+    }
+
+
 }

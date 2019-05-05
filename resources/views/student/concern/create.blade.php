@@ -96,13 +96,10 @@
                             </select>
                         </div>
 
+
+
                              
                                     <input type="text" hidden="" value="{{ Auth::user()->id }}" name="reporter" id="reporter">
-                          
-                        
-
-                        
-
         
                         <button type="submit" name="button" class="btn btn-primary float-right mt-4"><i class="fa fa-save"></i> Save</button>
                     </form>

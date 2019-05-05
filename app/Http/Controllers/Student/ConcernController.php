@@ -1,8 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Student;
-
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Concern;
@@ -20,8 +17,12 @@ class ConcernController extends Controller
      */
     public function index()
     {
+
+
         $user = Auth::User();
         $data['concerns'] = Concern::select('concerns.id', 'ticket', 'reporter', 'prob_category', 'receiver1', 'concern2.receiver2', 'sub_category', 'problem', 'before', 'concern2.priority', 'concern2.status', 'concern2.remark', 'concerns.created_at', 'firstName', 'middleName', 'lastName')
+
+
                             ->join('users', 'users.id', '=', 'concerns.receiver1')
                             ->leftJoin('concern2', 'concerns.id', '=', 'concern2.concerns_id')
                             ->where('reporter', '=', $user->id)

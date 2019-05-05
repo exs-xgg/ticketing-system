@@ -44,7 +44,7 @@ class ConcernController extends Controller
                         //      return '<a class="btn-link" href="'.route('admin.instructor.show', $user->id).'">'.$user->name().'</a>';
                         //     })->implode(', ');
                         // })
-                        ->rawColumns(['admins'])
+                        ->rawColumns(['clients'])
                         ->toJson();
     }
 

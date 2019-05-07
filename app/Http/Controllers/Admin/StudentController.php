@@ -25,9 +25,11 @@ class StudentController extends Controller
 
     public function status(Request $request)
     {
+
+
         $user = Auth::user();
         // $course = $user->courses()->findOrFail($course_id);
-        $clients = User::where('role', 'client')->findOrFail($request->id);
+        $clients = User::findOrFail($request->id);
         $clients->status = $request->status == 1 ? true : false;
         $clients->save();
         $status = $request->status == 1 ? 'Account Activated' : 'Account Deactivated';

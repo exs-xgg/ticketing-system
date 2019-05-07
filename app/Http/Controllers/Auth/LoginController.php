@@ -74,10 +74,10 @@ protected function validateLogin(Request $request)
 {
     $field = $this->field($request);
 
-    $messages = ["{$this->username()}.exists" => 'These credentials do not match our records'];
+    $messages = ["{$this->username()}.exists" => 'These credentials do not match our records or the account needs to be activated.'];
 
     $this->validate($request, [
-        $this->username() => "required|exists:users,{$field}",
+        $this->username() => "required|exists:users,{$field},status,1'",
         'password' => 'required',
     ], $messages);
 }

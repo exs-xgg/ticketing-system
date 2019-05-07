@@ -46,33 +46,17 @@ class HomeController extends Controller
        
         return view('auth.faq', $data);
     }
+    public function verify()
+    {
+         $user = Auth::user();
+        return view('auth.verify',compact(user));
+    }
 
     public function register(UserRequest $request)
     {
-        $request->validate([
-            'firstName' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
-            'middleName'=> 'nullable|regex:/^[\pL\s\-]+$/u|max:255',
-            'lastName'  => 'required|regex:/^[\pL\s\-]+$/u|max:255',
-            'birthDate' => 'required|max:255',
-            'username'  => 'required|alpha_dash|unique:users|max:255',
-            'email'     => 'required|string|email|unique:users|max:255',
-            'password'  => 'required|string|min:6|confirmed',
-            'mobileNumber'=> 'nullable|alpha_num|digits:11|unique:users',
-        ]);
 
-        $user = User::create([
-            'role'      => 'student',
-            'firstName' => $request->firstName,
-            'middleName'=> $request->middleName,
-            'lastName'  => $request->lastName,
-            'birthDate' => $request->formatted_birthDate_submit,
-            'mobileNumber'     => $request->mobileNumber,
-            'username'  => $request->username,
-            'email'     => $request->email,
-            // 'status'         => $data['status'],
-            'password'  => Hash::make($request->password),
-        ]);
-
+        //this is not a part, notworking
+       
         
 
         return redirect()->route('student.dashboard');

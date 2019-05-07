@@ -112,11 +112,11 @@
                                 <td>{{$data->prob_category}}</td>
                                 <td>{{$data->sub_category}}</td>
 
-                                <td
+                                 <td
                                  class="
-                                @if($data->priority == 'level 1') blue
-                                @elseif($data->priority == 'level 2') yellow 
-                                @elseif($data->priority == 'level 3') amber
+                                @if($data->priority == 'level 1(within 24 hours)') blue
+                                @elseif($data->priority == 'level 2(2-3 days)') yellow 
+                                @elseif($data->priority == 'level 3(4 and above)') amber
                                 @endif">
                                 {{ $data->priority }}</td>
 

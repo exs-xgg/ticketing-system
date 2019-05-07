@@ -29,9 +29,9 @@
                        <div class="md-form">
                              <select class="select-wrapper mdb-select" name="priority" id="priority">
                                   <option value="" selected>Select</option>
-                                  <option value="level 1" {{ old('priority') == 'level 1' ? 'selected' : ''}}>Level 1(within 24 hours)</option>
-                                  <option value="level 2" {{ old('priority') == 'level 2' ? 'selected' : ''}}>Level 2(2-3 days)</option>
-                                  <option value="level 3" {{ old('priority') == 'level 3' ? 'selected' : ''}}>Level 3(4 and above)</option>      
+                                  <option value="level 1(within 24 hours)" {{ old('priority') == 'level 1(within 24 hours)' ? 'selected' : ''}}>Level 1(within 24 hours)</option>
+                                  <option value="level 2(2-3 days)" {{ old('priority') == 'level 2(2-3 days)' ? 'selected' : ''}}>Level 2(2-3 days)</option>
+                                  <option value="level 3(4 and above)" {{ old('priority') == 'level 3(4 and above)' ? 'selected' : ''}}>Level 3(4 and above)</option>      
                               </select>
                                 <label for="priority">Priority level</label>
                             </div>
@@ -57,9 +57,10 @@
 
           
                      <p class="select2Label mb-0 mt-3">Assign to Receiver 2</p>
-                        <div class="md-form mt-0">
+                        <div class="md-form ">
                             <select class="select-wrapper mdb-select" id="receiver2" name="receiver2" style="width:100% !important;">
                                 @foreach ($admins as $admin)
+                                    <option value="" selected>Select</option>
                                     <option value="{{ $admin->id }}" {{ $admin->id === old('admin') ? 'selected' : ''  }}>{{ $admin->name() }}</option>
                                 @endforeach
                             </select>

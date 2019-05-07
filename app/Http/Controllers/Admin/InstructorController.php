@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use App\Section;
 use App\Concern;
 use App\Mail\newAccount;
@@ -21,13 +22,13 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        $instructors = User::where('role', 'instructor')->latest()->get();
+        $instructors = User::where('role', 'admin')->latest()->get();
         return view('admin.instructor.index', compact('instructors'));
     }
 
     public function trash()
     {
-        $instructors = User::where('role', 'instructor')->onlyTrashed()->orderBy('deleted_at', 'desc')->get();
+        $instructors = User::where('role', 'admin')->onlyTrashed()->orderBy('deleted_at', 'desc')->get();
         return view('admin.instructor.deleted', compact('instructors'));
     }
 
@@ -60,9 +61,9 @@ class InstructorController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $password = $this->generateStrongPassword();
+        // $password = $this->generateStrongPassword();
         $user = User::create([
-            'role'         => 'instructor',
+            'role'         => 'admin',
             'firstName'    => $request->firstName,
             'middleName'   => $request->middleName,
             'lastName'     => $request->lastName,
@@ -70,11 +71,11 @@ class InstructorController extends Controller
             'username'     => $request->username,
             'email'        => $request->email,
             'mobileNumber' => $request->mobileNumber,
-            'password'     => bcrypt($password),
+               'password'      => Hash::make($request->password),
             'avatar'       => 'profile_pic.png'
         ]);
 
-        Mail::to($user->email)->queue(new newAccount($user, $password));
+        // Mail::to($user->email)->queue(new newAccount($user, $password));
         // if($request->mobileNumber) {
         //     $message = 'Hi '.$user->name().', Welcome to CCS Learning Management System! \n'.$lesson->course->name;
         //     \App\Helpers\SMS::send($request->mobileNumber, $message);
@@ -85,40 +86,40 @@ class InstructorController extends Controller
         return redirect()->route('admin.instructor.index');
     }
 
-    function generateStrongPassword($length = 8, $add_dashes = false, $available_sets = 'luds')
-    {
-        $sets = array();
-        if(strpos($available_sets, 'l') !== false)
-            $sets[] = 'abcdefghjkmnpqrstuvwxyz';
-        if(strpos($available_sets, 'u') !== false)
-            $sets[] = 'ABCDEFGHJKMNPQRSTUVWXYZ';
-        if(strpos($available_sets, 'd') !== false)
-            $sets[] = '23456789';
-        if(strpos($available_sets, 's') !== false)
-            $sets[] = '!@#$%&*?';
-        $all = '';
-        $password = '';
-        foreach($sets as $set)
-        {
-            $password .= $set[array_rand(str_split($set))];
-            $all .= $set;
-        }
-        $all = str_split($all);
-        for($i = 0; $i < $length - count($sets); $i++)
-            $password .= $all[array_rand($all)];
-        $password = str_shuffle($password);
-        if(!$add_dashes)
-            return $password;
-        $dash_len = floor(sqrt($length));
-        $dash_str = '';
-        while(strlen($password) > $dash_len)
-        {
-            $dash_str .= substr($password, 0, $dash_len) . '-';
-            $password = substr($password, $dash_len);
-        }
-        $dash_str .= $password;
-        return $dash_str;
-    }
+    // function generateStrongPassword($length = 8, $add_dashes = false, $available_sets = 'luds')
+    // {
+    //     $sets = array();
+    //     if(strpos($available_sets, 'l') !== false)
+    //         $sets[] = 'abcdefghjkmnpqrstuvwxyz';
+    //     if(strpos($available_sets, 'u') !== false)
+    //         $sets[] = 'ABCDEFGHJKMNPQRSTUVWXYZ';
+    //     if(strpos($available_sets, 'd') !== false)
+    //         $sets[] = '23456789';
+    //     if(strpos($available_sets, 's') !== false)
+    //         $sets[] = '!@#$%&*?';
+    //     $all = '';
+    //     $password = '';
+    //     foreach($sets as $set)
+    //     {
+    //         $password .= $set[array_rand(str_split($set))];
+    //         $all .= $set;
+    //     }
+    //     $all = str_split($all);
+    //     for($i = 0; $i < $length - count($sets); $i++)
+    //         $password .= $all[array_rand($all)];
+    //     $password = str_shuffle($password);
+    //     if(!$add_dashes)
+    //         return $password;
+    //     $dash_len = floor(sqrt($length));
+    //     $dash_str = '';
+    //     while(strlen($password) > $dash_len)
+    //     {
+    //         $dash_str .= substr($password, 0, $dash_len) . '-';
+    //         $password = substr($password, $dash_len);
+    //     }
+    //     $dash_str .= $password;
+    //     return $dash_str;
+    // }
 
     /**
      * Display the specified resource.
@@ -128,8 +129,8 @@ class InstructorController extends Controller
      */
     public function show($id)
     {
-        $instructor = User::findOrFail($id);
-        return view('admin.instructor.show', compact('instructor'));
+        $admin = User::findOrFail($id);
+        return view('admin.instructor.show', compact('admin'));
     }
 
     public function course($instructor_id, $course_id)
@@ -222,7 +223,6 @@ class InstructorController extends Controller
     public function forceDestroy($id)
     {
         $user = User::withTrashed()->findOrFail($id);
-        $user->courses()->detach();
         $user->forceDelete();
 
         session()->flash('status', 'Successfully deleted');

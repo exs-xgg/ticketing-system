@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="post-prev-title">
-                <h3>RHU Accounts</h3>
+                <h3>HCI Accounts</h3>
             </div>
             <hr class="mt-3">
         </div>
@@ -47,6 +47,15 @@
                                 <td>{{$client->email}}</td>
                                 <td>{{date('F j, Y',strtotime($client->created_at))}}</td>
                                 <td>
+
+                                    <div class="switch">
+                                        <label>
+                                            Deativate
+                                            <input class="active-mode-switch" type="checkbox" {{ $client->status ? 'checked' : '' }} clientId="{{ $client->id }}">
+                                            <span class="lever"></span> Activate
+                                        </label>
+                                    </div>
+                            
                                      
                                 </td>
                                 
@@ -75,18 +84,19 @@
             order:[]
         });
 
- $('#table').on('change', '.active-mode-switch', function() {
-            var status = 0;
-            var id = $(this).attr('studentId');
-            if ($(this).is(':checked')) {
-                status = 1;
-            }
+$('.active-mode-switch').change(function() {
+                var status = 0;
+                var id = $(this).attr('clientId');
+                if ($(this).is(':checked')) {
+                    status = 1;
+                }
+
 
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "/admin/course/"+id+"/status",
+                url: "/admin/student/"+id+"/status",
                 type : 'PUT',
                 data: { id: id, status : status },
                 success: function(result) {

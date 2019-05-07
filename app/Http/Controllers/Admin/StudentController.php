@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Controllers\Admin;
@@ -5,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+// use App\Client;
 use Auth;
 use DataTables;
 
@@ -17,19 +19,24 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = User::where('role', 'student')->latest()->get();
-        return view('admin.student.index', compact('students'));
+        $clients = User::where('role', 'client')->latest()->get();
+        return view('admin.student.index', compact('clients'));
     }
 
 
-    public function status(Request $request, $id)
+    public function status(Request $request)
     {
-        // $user = Auth::user();
+
+
+        $user = Auth::user();
         // $course = $user->courses()->findOrFail($course_id);
-        $data['student'] = User::where('role', 'student')->findOrFail($id);
-        $data['student']->status = $request->status == 1 ? true : false;
-        $data['student']->save();
-        $status = $request->status == 1 ? 'Lesson Activated' : 'Lesson Deactivated';
+        $clients = User::findOrFail($request->id);
+        $clients->status = $request->status == 1 ? true : false;
+        $clients->save();
+        $status = $request->status == 1 ? 'Account Activated' : 'Account Deactivated';
         return json_encode(['text' => 'success', 'return' => '1', 'status' => $status]);
     }
 }
+
+
+        

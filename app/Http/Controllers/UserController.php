@@ -19,6 +19,12 @@ class UserController extends Controller
         return view('profile.index', $data);
     }
 
+     public function verify()
+   {
+    
+        return view('auth.verify');
+    }
+
 
     public function update(Request $request)
     {
@@ -31,8 +37,7 @@ class UserController extends Controller
             'firstName'    => 'required|regex:/^[\pL\s\-]+$/u|min:2|max:255',
             'lastName'     => 'required|regex:/^[\pL\s\-]+$/u|min:2|max:255',
             'middleName'   => 'nullable|regex:/^[\pL\s\-]+$/u|min:2|max:255',
-            'suffix'   => 'nullable|regex:/^[\pL\s\-]+$/u|min:1|max:255',
-            'birthDate'    => 'nullable|max:255',
+
         ]);
 
         if ($request->hasFile('avatar')) {
@@ -61,7 +66,6 @@ class UserController extends Controller
         $user->firstName = $request->firstName;
         $user->middleName = $request->middleName;
         $user->lastName = $request->lastName;
-        $user->suffixName = $request->suffix;
         $user->username = $request->username;
         $user->email = $request->email;
         $user->mobileNumber = $request->mobileNumber;

@@ -55,23 +55,16 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-12 col-lg-6 col-md-6">
-                                        <div class="md-form">
-                                            <select class="select-wrapper mdb-select" name="suffix" id="suffix">
-                                              <option value="" selected>Select</option>
-                                              @foreach($suffix as $data)
-                                                <option value="{{ $data }}" {{ $user->suffixName == $data ? 'selected' : ''}}>{{ $data }}</option>
-                                              @endforeach
-                                            </select>
-                                            
-                                            <!--<input type="text" pattern="[A-Za-z]*" title="Only Alphabets" name="suffix" id="suffix" class="form-control {{$errors->has('suffix') ? 'is-invalid' : ''}}" value="{{$user->suffixName ? $user->suffixName : old('suffix')}}">-->
-                                            <label for="suffix">Suffix</label>
-                                            <!--@if ($errors->has('suffix'))-->
-                                            <!--    <span class="invalid-feedback" role="alert">-->
-                                            <!--        <strong>{{ $errors->first('suffix') }}</strong>-->
-                                            <!--    </span>-->
-                                            <!--@endif-->
-                                        </div>
+                                    <div class="col-sm-12 col-lg-6 col-md-6">    
+                                    <div class="md-form">
+                                    <input type="text" name="mobileNumber" id="mobileNumber" class="form-control {{$errors->has('mobileNumber') ? 'is-invalid' : ''}}" value="{{$user->mobileNumber ? $user->mobileNumber : old('mobileNumber')}}">
+                                    <label for="mobileNumber">Mobile Number</label>
+                                    @if ($errors->has('mobileNumber'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('mobileNumber') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
                                     </div>
 
                                 </div>
@@ -129,15 +122,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="md-form">
-                                    <input type="text" name="mobileNumber" id="mobileNumber" class="form-control {{$errors->has('mobileNumber') ? 'is-invalid' : ''}}" value="{{$user->mobileNumber ? $user->mobileNumber : old('mobileNumber')}}">
-                                    <label for="mobileNumber">Mobile Number</label>
-                                    @if ($errors->has('mobileNumber'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('mobileNumber') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
+                                
                                 <div class="form-row">
                                     <div class="col-12">
                                         <div class="md-form">

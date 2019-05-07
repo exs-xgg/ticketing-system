@@ -36,6 +36,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany('App\Course')->where('status', true)->latest();
     }
+     public function users()
+    {
+        return $this->belongsToMany('App\User')->where('status', true)->latest();
+    }
 
     public function sections()
     {

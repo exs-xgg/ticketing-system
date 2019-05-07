@@ -21,6 +21,7 @@ Route::post('/register/student/{section}', 'HomeController@register')->name('reg
 Route::get('/register', 'HomeController@register')->name('register');
 Route::get('/faq', 'HomeController@faq')->name('faq');
 Route::post('/register/student/{section}', 'HomeController@register')->name('register.student');
+Route::get('/verify', 'HomeController@verify')->name('auth.verify');
 
 // Auth::routes();
 Auth::routes(['verify' => true]);
@@ -48,6 +49,7 @@ Route::prefix('admin')->name('admin.')->middleware(['admin', 'auth'])->group(fun
     
     Route::resource('/instructor', 'Admin\InstructorController');
     Route::get('/student', 'Admin\StudentController@index')->name('student.index');
+    Route::put('/student/{clients}/status', 'Admin\StudentController@status')->name('student.status');
 
     // datables
     Route::get('/list/courses', 'Admin\CourseController@coursesList')->name('courseList');
@@ -58,7 +60,7 @@ Route::resource('concern2', 'Concerns2Controller');
 
 
 
-Route::prefix('student')->name('student.')->middleware(['verified', 'student', 'auth'])->group(function () {
+Route::prefix('student')->name('student.')->middleware(['student', 'auth'])->group(function () {
     Route::get('/concerns', 'Student\ConcernController@index')->name('concern.index');
     Route::resource('/concern', 'Student\ConcernController')->except('index');
 
@@ -102,7 +104,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile/picture', 'UserController@profile_remove')->name('profile.picture.remove');
     Route::get('/change-password', 'UserController@change_password_index')->name('change.password.index');
     Route::put('/change-password', 'UserController@change_password_update')->name('change.password.update');
-
+    Route::get('/verify', 'UserController@verify')->name('auth.verify');
 
        
 });

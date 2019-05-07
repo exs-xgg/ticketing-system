@@ -30,17 +30,18 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/student/dashboard';
+    protected $redirectTo = '/verify';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+    // for email verification(before)
+     public function __construct()
+     {
+         $this->middleware('guest');
+     }
 
     /**
      * Get a validator for an incoming registration request.
@@ -53,12 +54,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'firstName'    => 'required|regex:/^[\pL\s\-]+$/u|min:2|max:255',
             'lastName'     => 'required|regex:/^[\pL\s\-]+$/u|min:2|max:255',
-           
-            
-            
             // 'birthDate'             => 'required|max:255|16Above',
           
-            // 'username'              => 'required|alpha_dash|unique:users|min:5|max:255',
+            'username'              => 'required|alpha_dash|unique:users|min:5|max:255',
             'username'     => ['required','unique:users','min:5','max:255', new ValidUsername],
             'email'                 => 'required|string|email|unique:users|max:255',
             'mobileNumber'          => 'nullable|alpha_num|digits:11|unique:users',
@@ -81,7 +79,7 @@ class RegisterController extends Controller
             'lastName'      => $data['lastName'],
             'username'      => $data['username'],
             'email'         => $data['email'],
-            // 'status'         => $data['status'],
+            'status'         => '0',
             'mobileNumber'  => $data['mobileNumber'],
             'password'      => Hash::make($data['password']),
             'avatar'        => 'profile_pic.png'

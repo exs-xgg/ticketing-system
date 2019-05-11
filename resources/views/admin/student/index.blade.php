@@ -34,7 +34,8 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                 <th>Registered Since</th>
+                                <th>Health Facility</th>
+                                <th>Registered Since</th>
                                 <th>Status</th>
 
                             </tr>
@@ -45,6 +46,7 @@
                                 
                                 <td>{{$client->name()}}</td>
                                 <td>{{$client->email}}</td>
+                                <td>{{$client->facility}}</td>
                                 <td>{{date('F j, Y',strtotime($client->created_at))}}</td>
                                 <td>
 

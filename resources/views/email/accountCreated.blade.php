@@ -35,7 +35,7 @@
     <div class="navbar">
         <p>
             <a href="http://ccslms.online" class="lmstag" style="color: #bbbfc3;">
-                CCS Learning Management System
+                Wireless Access for Health
             </a>
         </p>
     </div>
@@ -45,7 +45,7 @@
                 Hi {{ $user->name() }}!
             </h1>
             <p style="font-size: 16px; line-height: 1.5em; color: #84888d;">
-                Welcome to CCS Learning Management System!
+                Welcome to Wireless Access for Health!
             </p>
 
             <p style="font-size: 16px; line-height: 1.5em; color: #84888d;">
@@ -64,12 +64,12 @@
                 Regards,
             </p>
             <p style="color: #84888d;font-size: 16px;line-height: 1.5em;">
-                CCS Learning Management System
+               Wireless Access for Health
             </p>
         </div>
     </div>
         <div class="footer">
-            <p>&copy; 2018 CCS Learning Management System. All rights reserved.</p>
+            <p>&copy; 2019 Wireless Access for Health. All rights reserved.</p>
         </div>
 </body>
 

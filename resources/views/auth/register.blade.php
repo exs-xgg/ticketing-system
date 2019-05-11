@@ -1,8 +1,6 @@
 @extends('layouts.guest_app')
 
 @section('content')
-
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-10 mt-5">
@@ -41,7 +39,7 @@
                         </div>
                         
                         <div class="form-row">
-                            <div class="col-md-6">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
                                  <div class="md-form">
                                     <input type="email" id="email" name="email" class="form-control {{$errors->has('email') ? 'is-invalid' : ''}}" value="{{old('email')}}">
                                     <label for="email">Email Address <span class="red-asterisk">*</span></label>
@@ -52,7 +50,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
                                  <div class="md-form">
                             <input type="text" id="username" name="username" class="form-control {{$errors->has('username') ? 'is-invalid' : ''}}" value="{{old('username')}}">
                             <label for="username">Username <span class="red-asterisk">*</span></label>
@@ -66,18 +64,19 @@
                         </div> 
 
                         <div class="form-row">
-                            <div class="col-md-6">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="md-form">
-                            <input type="password" id="password" name="password" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}">
-                            <label for="password" class="label_password">Password <span class="red-asterisk">*</span></label>
-                            @if ($errors->has('password'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                            @endif
-                        </div>
+                                    <input type="password" id="password" name="password" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}">
+                                    <label for="password" class="label_password">Password <span class="red-asterisk">*</span></label>
+                                    @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
                             </div>
-                            <div class="col-md-6">
+
+                            <div class="col-sm-12 col-md-6 col-lg-6">
                                <div class="md-form">
                             <input type="password" id="password-confirm" name="password_confirmation" class="form-control {{$errors->has('password_confirmation') ? 'is-invalid' : ''}}">
                             <label for="password-confirm" class="label_confirm">Confirm Password <span class="red-asterisk">*</span></label>
@@ -89,21 +88,75 @@
                         </div>
                             </div>
                         </div> 
-                        <div class="form-row">
+
+                    <div class="form-row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                              <div class="md-form">
+                                <div id="myDropdown">
+                                 <select class="select-wrapper mdb-select"  name="region" id="region">
+                                      <option value="" disabled selected>Select Region</option>
+                                  @foreach(App\region::get() as $region)
+                                      <option value="{{ $region['id'] }}">{{ $region['region'] }}</option>
+                                  @endforeach
+                                  </select>
+                                  <label>Region <span class="red-asterisk">*</span></label>
+                                </div>
+                              </div>
+                        </div>
+                   
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                          <div class="md-form">
+                             <select class="select-wrapper mdb-select" name="categories" id="categories">
+                                  <option value="" disabled selected>Select Province</option>
+                              @foreach(App\categories::get() as $categories)
+                                  <option value="{{ $categories['id'] }}">{{ $categories['categories'] }}</option>
+                              @endforeach
+                              </select>
+                              <label>Province<span class="red-asterisk">*</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="md-form">
+                                  <select class="select-wrapper mdb-select" name="muncity" id="muncity">
+                                    <option value="" disabled selected>Select Municipality</option>
+                                    @foreach(App\muncity::get() as $muncity)
+                                    <option value="{{ $muncity['id'] }}">{{ $muncity['muncity'] }}</option>
+                                    @endforeach
+                                </select>
+                                <label>Municipality<span class="red-asterisk">*</span></label>
+                                </div>
+                            </div>
+
+                          <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="md-form">
+                             <select class="select-wrapper mdb-select" name="facility" id="facility">
+                                  <option value="" disabled selected>Select Facility</option>
+                              @foreach(App\facility::get() as $facility)
+                                  <option value="{{ $facility['id'] }}">{{ $facility['facility'] }}</option>
+                              @endforeach
+                              </select>
+                              <label>Facility<span class="red-asterisk">*</span></label>
+                            </div>
+                          </div>
+                    </div>
+
+                         <div class="form-row">
                             <div class="col-md-6">
                                 <div class="md-form">
-                            <input type="text" id="mobileNumber" name="mobileNumber" class="form-control {{$errors->has('mobileNumber') ? 'is-invalid' : ''}}">
-                            <label for="mobileNumber" class="mobileNumber">Mobile Number <span class="red-asterisk">*</span></label>
-                            @if ($errors->has('mobileNumber'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('mobileNumber') }}</strong>
-                            </span>
-                            @endif
-                        </div>
+                                  <input type="text" id="mobileNumber" name="mobileNumber" class="form-control {{$errors->has('mobileNumber') ? 'is-invalid' : ''}}">
+                                  <label for="mobileNumber" class="mobileNumber">Mobile Number <span class="red-asterisk">*</span></label>
+                                  @if ($errors->has('mobileNumber'))
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $errors->first('mobileNumber') }}</strong>
+                                  </span>
+                                  @endif
+                                </div>
                             </div>
-               
-
-                        
+                          </div>
         
                         <button type="submit" name="button" class="btn btn-primary float-right mt-4"><i class="fa fa-check"></i> NEXT</button>
                     </form>
@@ -145,4 +198,7 @@
      });
 
   </script>
+ 
+
+
 @endsection

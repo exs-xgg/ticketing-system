@@ -65,45 +65,55 @@
                                 </div>
                             </div>
                         </div>
-        
-                        <div class="md-form">
-                            <input type="email" name="email" id="email" class="form-control {{$errors->has('email') ? 'is-invalid' : ''}}" value="{{old('email')}}">
-                            <label for="email">Email Address <span class="red-asterisk">*</span></label>
-                            @if ($errors->has('email'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                            @endif
-                        </div>
-        
-                        <div class="md-form">
-                            <input type="text" name="mobileNumber" id="mobileNumber" class="form-control {{$errors->has('mobileNumber') ? 'is-invalid' : ''}}" value="{{old('mobileNumber')}}">
-                            <label for="mobileNumber">Mobile Number</label>
-                            @if ($errors->has('mobileNumber'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('mobileNumber') }}</strong>
-                            </span>
-                            @endif
-                        </div>
-        
-                        <div class="md-form">
-                            <input type="text" name="username" id="username" class="form-control {{$errors->has('username') ? 'is-invalid' : ''}}" value="{{old('username')}}">
-                            <label for="username">Username <span class="red-asterisk">*</span></label>
-                            @if ($errors->has('username'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('username') }}</strong>
-                            </span>
-                            @endif
-                        </div>
-        
-                         <div class="md-form">
-                            <input type="password" name="password" id="password" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}">
-                            <label for="username">Password <span class="red-asterisk">*</span></label>
-                            @if ($errors->has('password'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                            @endif
+
+                        <div class="form-row">
+                            <div class="col-sm-12 col-lg-6 col-md-6">
+                                <div class="md-form">
+                                    <input type="email" name="email" id="email" class="form-control {{$errors->has('email') ? 'is-invalid' : ''}}" value="{{old('email')}}">
+                                    <label for="email">Email Address <span class="red-asterisk">*</span></label>
+                                    @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-lg-6 col-md-6">
+                                <div class="md-form">
+                                    <input type="text" name="mobileNumber" id="mobileNumber" class="form-control {{$errors->has('mobileNumber') ? 'is-invalid' : ''}}" value="{{old('mobileNumber')}}">
+                                    <label for="mobileNumber">Mobile Number</label>
+                                    @if ($errors->has('mobileNumber'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('mobileNumber') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-lg-6 col-md-6">
+                                <div class="md-form">
+                                    <input type="text" name="username" id="username" class="form-control {{$errors->has('username') ? 'is-invalid' : ''}}" value="{{old('username')}}">
+                                    <label for="username">Username <span class="red-asterisk">*</span></label>
+                                    @if ($errors->has('username'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-lg-6 col-md-6">
+                                <div class="md-form">
+                                    <input type="password" name="password" id="password" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}">
+                                    <label for="username">Password <span class="red-asterisk">*</span></label>
+                                    @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                    @endif
+                                </div> 
+                            </div>
                         </div> 
         
                         <button type="submit" name="button" class="btn btn-primary float-right mt-4"><i class="fa fa-save"></i> Save</button>

@@ -62,8 +62,8 @@
                             <tr>
                                 <th class="th-sm">Ticket#</th>
                                 <th class="th-sm">Date</th>
-                                <th class="th-sm"> Report to</th>
-                                 <th class="th-sm"> Endorse to </th>
+                                <th class="th-sm">Assigned to</th>
+                                <th class="th-sm">Endorsed to </th>
                                 <th class="th-sm">Problem Category</th>
                                 <th class="th-sm">Sub Category</th>
                                 <th class="th-sm">Priority</th>

@@ -6,6 +6,8 @@ use App\User;
 // use App\Client;
 use Auth;
 use DataTables;
+use App\Mail\newVerify;
+use Illuminate\Support\Facades\Mail;
 
 class StudentController extends Controller
 {
@@ -34,9 +36,27 @@ class StudentController extends Controller
         $clients = User::findOrFail($request->id);
         $clients->status = $request->status == 1 ? true : false;
         $clients->save();
+
+
+ 
+        Mail::to($clients->email)->send(new newVerify($clients));
+        Mail::to($user->email)->send(new newVerify($user));
+
+
+
+
+
         $status = $request->status == 1 ? 'Account Activated' : 'Account Deactivated';
         return json_encode(['text' => 'success', 'return' => '1', 'status' => $status]);
+
+       
+
+
+
     }
+
+
+
 }
 
 

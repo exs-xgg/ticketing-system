@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class newAccount extends Mailable
+class newVerify1 extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -31,6 +31,6 @@ class newAccount extends Mailable
      */
     public function build()
     {
-        return $this->view('email.accountCreated')->subject('New Account');
+        return $this->view('email.accountVerify1')->subject('Account Verification');
     }
 }

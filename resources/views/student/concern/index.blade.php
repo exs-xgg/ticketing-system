@@ -121,7 +121,7 @@
                                 <td>{{$data->status}}</td>
                                  <td><pre>{{$data->problem}}<pre></td>
                                 <td><pre>{{$data->before}}<pre></td>
-                                <td>{{$data->remark}}</td>
+                                <td><pre>{{$data->remark}}</pre></td>
 
                                 <td>
 

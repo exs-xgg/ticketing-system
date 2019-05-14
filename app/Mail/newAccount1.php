@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class newAccount extends Mailable
+class newAccount1 extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,7 +19,7 @@ class newAccount extends Mailable
     public $user;
     
 
-    public function __construct($user)
+    public function __construct($user, $password)
     {
         $this->user = $user;
     }

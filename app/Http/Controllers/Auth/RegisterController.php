@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use carbon\Carbon;
 use App\Rules\ValidUsername;
+use App\Mail\newAccount;
+use Illuminate\Support\Facades\Mail;
+
 
 class RegisterController extends Controller
 {
@@ -85,7 +88,7 @@ class RegisterController extends Controller
             'avatar'        => 'profile_pic.png'
         ]);
 
-        
+        Mail::to($user->email)->send(new newAccount($user));
 
         return $user;
     }

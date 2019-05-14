@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="post-prev-title">
-                <h3>Deleted Instructor{{count($instructors) > 1 ? 's' : ''}}</h3>
+                <h3>Deactivated Instructor{{count($instructors) > 1 ? 's' : ''}}</h3>
             </div>
             <hr class="mt-3">
         </div>
@@ -36,6 +36,7 @@
                                 <td>Email</td>
                                 <td>Username</td>
                                 <td>Mobile Number</td>
+                                <td>Date deactivated</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
@@ -46,6 +47,7 @@
                                 <td>{{$instructor->email}}</td>
                                 <td>{{$instructor->username}}</td>
                                 <td>{{$instructor->mobileNumber}}</td>
+                                 <td>{{$instructor->deleted_at}}</td>
                                 <td>
                                     <a href="javascript:void(0);" data-href="{{ route('admin.instructor.restore', $instructor->id) }}" class="restore text-success mr-3" data-method="put" data-from="instructor" data-toggle="tooltip" title="Restore" data-placement="left"><i class="fa fa-undo"></i></a>
                                     <a href="javascript:void(0);" data-href="{{ route('admin.instructor.forceDestroy', $instructor->id) }}" class="perma_delete text-danger" data-method="delete" data-from="instructor" data-toggle="tooltip" title="Delete" data-placement="right"><i class="fa fa-trash"></i></a>                              

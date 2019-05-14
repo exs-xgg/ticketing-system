@@ -9,13 +9,13 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="post-prev-title">
-                <h3>Courses</h3>
+                <h3>Concerns</h3>
             </div>
             <hr class="mt-3">
         </div>
     </div>
-    <div class="row mt-3 justify-content-center">
-        <div class="col-lg-8">
+    <div class="row mt-3 pr-3">
+        <div class="col-lg-6">
             <div class="card">
                 <div class="card-header text-white bg-primary">
                     <h5 class="text-oswald mb-0">Update Concern</h5>
@@ -73,7 +73,10 @@
                 </div>
             </div>
         </div>
+
+       
     </div>
+    
 </div>
 @endsection
 

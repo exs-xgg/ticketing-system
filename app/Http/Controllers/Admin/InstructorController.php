@@ -35,7 +35,7 @@ class InstructorController extends Controller
     public function restore(Request $request, $id)
     {
         $instructor = User::withTrashed()->findOrFail($id);
-        $instructor->instructorSections()->restore();
+        // $instructor->instructorSections()->restore();
         $instructor->restore();
 
         session()->flash('status', 'Successfully restored');
@@ -212,7 +212,7 @@ class InstructorController extends Controller
     {
         $user = User::findOrFail($id);
         // $user->courses()->detach();
-        $user->instructorSections()->delete();
+        // $user->instructorSections()->delete();
         $user->delete();
 
         session()->flash('status', 'Successfully deleted');

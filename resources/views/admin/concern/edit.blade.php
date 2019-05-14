@@ -24,28 +24,29 @@
                     <form action="{{route('concern2.store', $concern->id)}}" method="post">
                         {{ csrf_field() }} 
 
-                        <input type="hidden" id="custId" name="concerns_id" value="{{$concern->id}}">
+                        <input type="hidden" id="custId" name="concerns_id" value="{{$concern->id}}" >
         
                        <div class="md-form">
-                             <select class="select-wrapper mdb-select" name="priority" id="priority">
-                                  <option value="" selected>Select</option>
+                             <select class="select-wrapper mdb-select" name="priority" id="priority" >
+                                  <option value="" disabled selected>Select</option>
                                   <option value="level 1(within 24 hours)" {{ old('priority') == 'level 1(within 24 hours)' ? 'selected' : ''}}>Level 1(within 24 hours)</option>
                                   <option value="level 2(2-3 days)" {{ old('priority') == 'level 2(2-3 days)' ? 'selected' : ''}}>Level 2(2-3 days)</option>
                                   <option value="level 3(4 and above)" {{ old('priority') == 'level 3(4 and above)' ? 'selected' : ''}}>Level 3(4 and above)</option>      
                               </select>
-                                <label for="priority">Priority level</label>
+                              <label>Priority Level<span class="red-asterisk">*</span></label>
                             </div>
 
                          <div class="md-form">
                              <select class="select-wrapper mdb-select" name="status" id="status">
-                                  <option value="" selected>Select</option>
+                                  <option value="" disabled selected>Select</option>
                                   <option value="Ongoing" {{ old('sub_category') == 'Ongoing' ? 'selected' : ''}}>Ongoing</option>
                                   <option value="Resolved" {{ old('sub_category') == 'Resolved' ? 'selected' : ''}}>Resolved</option>
-                                 <option value="Closed" {{ old('sub_category') == 'Closed' ? 'selected' : ''}}>Closed</option>        
+                                  <option value="Closed" {{ old('sub_category') == 'Closed' ? 'selected' : ''}}>Closed</option>        
                               </select>
-                                <label for="status">Status</label>
+                              <label>Status<span class="red-asterisk">*</span></label>
                         </div>
-                                 <div class="form-group">
+                        
+                        <div class="form-group">
                             <label class="select2Label">Remarks</label>
                             <textarea type="text" id="remark" name="remark" rows="5" class="form-control rounded-0 {{$errors->has('remark') ? 'is-invalid' : ''}}">{{old('remark')}}</textarea>
                             @if ($errors->has('remark'))
@@ -56,11 +57,11 @@
                         </div>
 
           
-                     <p class="select2Label mb-0 mt-3">Assign to Receiver 2</p>
                         <div class="md-form ">
+                          <p class="select2Label mb-0 mt-3">Endorse to</p>
                             <select class="select-wrapper mdb-select" id="receiver2" name="receiver2" style="width:100% !important;">
-                              <option value="" selected>Select</option>
-                                @foreach ($admins as $admin)
+                              <option value="" disabled selected>Select</option>
+             @foreach ($admins as $admin)
                                     <option value="{{ $admin->id }}" {{ $admin->id === old('admin') ? 'selected' : ''  }}>{{ $admin->name() }}</option>
                                 @endforeach
                             </select>

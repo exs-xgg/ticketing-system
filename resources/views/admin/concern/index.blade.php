@@ -61,9 +61,9 @@
                             <tr>
                                 <th class="th-sm">Ticket#</th>
                                 <th class="th-sm">Date</th>
-                                <th class="th-sm">Reporter</th>
-                                <th class="th-sm"> Report to</th>
-                                 <th class="th-sm"> Endorse to </th>
+                                <th class="th-sm">Reported By</th>
+                                <th class="th-sm">Assigned To</th>
+                                <th class="th-sm">Endorsed To </th>
                                 <th class="th-sm">Problem Category</th>
                                 <th class="th-sm">Sub Category</th>
                                 <th class="th-sm">Priority</th>
@@ -84,6 +84,7 @@
                               @foreach ($concerns as $data)
                                  <tr>
                                 <td>{{$data->ticket}}</td>
+                                <td>{{$data->created_at}}</td>
                                 <td>{{$data->created_at}}</td>
                                 <td>
                                 {{ \App\User::where('id', $data->reporter)->value('firstName') }}
@@ -128,7 +129,7 @@
 
                                 <td>
                                     <a href="{{route('admin.concern.edit', $data->id)}}" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>
-                                    
+
                                     <a href="javascript:void(0);" data-href="{{ route('admin.concern.destroy', $data->id) }}" class="anchor_delete text-danger" data-method="delete" data-action="concern" data-from="concern" data-toggle="tooltip" title="Delete" data-placement="right"><i class="fa fa-trash"></i></a> 
                                 </td>
                             </tr>    

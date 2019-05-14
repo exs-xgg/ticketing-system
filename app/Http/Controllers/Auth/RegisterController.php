@@ -58,12 +58,11 @@ class RegisterController extends Controller
             'firstName'    => 'required|regex:/^[\pL\s\-]+$/u|min:2|max:255',
             'lastName'     => 'required|regex:/^[\pL\s\-]+$/u|min:2|max:255',
             // 'birthDate'             => 'required|max:255|16Above',
-          
-            'username'              => 'required|alpha_dash|unique:users|min:5|max:255',
+            'username'     => 'required|alpha_dash|unique:users|min:5|max:255',
             'username'     => ['required','unique:users','min:5','max:255', new ValidUsername],
-            'email'                 => 'required|string|email|unique:users|max:255',
-            'mobileNumber'          => 'nullable|alpha_num|digits:11|unique:users',
-            'password' => 'required|min:8|confirmed|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}/',
+            'email'        => 'required|string|email|unique:users|max:255',
+            'mobileNumber' => 'nullable|alpha_num|digits:11|unique:users',
+            'password'     => 'required|min:8|confirmed|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}/',
             'password_confirmation' => 'required'
         ]);
     }
@@ -82,14 +81,27 @@ class RegisterController extends Controller
             'lastName'      => $data['lastName'],
             'username'      => $data['username'],
             'email'         => $data['email'],
-            'status'         => '0',
+            'categories'    => $data['categories'],
+            'region'        => $data['region'],
+            'muncity'       => $data['muncity'],
+            'facility'      => $data['facility'],
+            'status'        => '0',
             'mobileNumber'  => $data['mobileNumber'],
             'password'      => Hash::make($data['password']),
             'avatar'        => 'profile_pic.png'
-        ]);
 
+ ]);
         Mail::to($user->email)->send(new newAccount($user));
+
 
         return $user;
     }
+      public function store(Request $request)
+    {
+      $client = new Client();
+      $client->Categories = $request->input('categories');
+      $client->Region = $request->input('region');
+      $client->Muncity = $request->input('muncity');
+      $client->Facility = $request->input('facility');
+  }
 }

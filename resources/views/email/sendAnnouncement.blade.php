@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>CCS Learning Management System!</title>
+    <title>Wireless Access for Health!</title>
     <style>
         .navbar{
             text-align: center;
@@ -35,7 +35,7 @@
     <div class="navbar">
         <p>
             <a href="http://ccslms.online" class="lmstag" style="color: #bbbfc3;">
-                CCS Learning Management System
+                Wireless Access for Health
             </a>
         </p>
     </div>
@@ -52,12 +52,12 @@
                 Regards,
             </p>
             <p style="color: #84888d;font-size: 16px;line-height: 1.5em;">
-                CCS Learning Management System
+                Wireless Access for Health
             </p>
         </div>
     </div>
         <div class="footer">
-            <p>&copy; 2018 CCS Learning Management System. All rights reserved.</p>
+            <p>&copy; 2019 Wireless Access for Health. All rights reserved.</p>
         </div>
 </body>
 

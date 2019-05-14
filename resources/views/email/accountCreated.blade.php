@@ -34,8 +34,10 @@
 <body style="padding:0px;margin:0px;font-family:'Helvetica Neue', Sans-serif, Arial;background-image:url({{ asset('img/email-bg.jpg') }})">
     <div class="navbar">
         <p>
+
             <a href="" class="lmstag" style="color: #bbbfc3;">
                 Wireless Access for health
+
             </a>
         </p>
     </div>
@@ -45,14 +47,18 @@
                 Hi {{ $user->name() }}!
             </h1>
             <p style="font-size: 16px; line-height: 1.5em; color: #84888d;">
+
                 Congratulations, you just created an HCI account on wahticketing system. Your account is on process for verification, please note that you can't use it unless you are verified by WAH. You will be receiving an E-mail once your account is verified.
+
             </p>
 
             <p style="padding-bottom:0px;margin-bottom:0px;margin-top:30px;color: #84888d;font-size: 16px;line-height: 1.5em;">
                 Regards,
             </p>
             <p style="color: #84888d;font-size: 16px;line-height: 1.5em;">
+h
                 Wireless Access for Health
+
             </p>
         </div>
     </div>

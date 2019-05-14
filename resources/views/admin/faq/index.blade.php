@@ -52,9 +52,9 @@
                         <thead>
 
                                 <th class="th-sm">Problem Category</th>
-                                <th class="th-sm">Sub Category</th>
+                                <th class="th-sm">Sub-Category</th>
                                 <th class="th-sm">Problem</th>
-                                 <th class="th-sm">Solution</th>
+                                <th class="th-sm">Solution</th>
                                 <th class="th-sm">Action</th>
                             </tr>
                         </thead>

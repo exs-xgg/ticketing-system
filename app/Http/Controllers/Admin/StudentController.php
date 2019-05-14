@@ -18,7 +18,11 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $clients = User::where('role', 'client')->latest()->get();
+        
+        
+        
+
+        $clients = User::where('role', 'client')->join('facility', 'users.facility','=','facility.id')->latest()->get();
         return view('admin.student.index', compact('clients'));
     }
 

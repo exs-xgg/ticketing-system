@@ -15,7 +15,7 @@ class CreateConcernsTable extends Migration
     {
         Schema::create('concerns', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('prob_category')->unique();
+            $table->string('prob_category')->index();
             $table->string('ticket')->nullable();
             $table->string('receiver1')->nullable();
             $table->string('receiver2')->nullable();

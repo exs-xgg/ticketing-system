@@ -22,7 +22,7 @@ class StudentController extends Controller
         
         
 
-        $clients = User::where('role', 'client')->join('facility', 'users.facility','=','facility.id')->latest()->get();
+        $clients = User::where('role', 'client')->latest()->get();
         return view('admin.student.index', compact('clients'));
     }
 
@@ -37,27 +37,15 @@ class StudentController extends Controller
         $clients->status = $request->status == 1 ? true : false;
         $clients->save();
 
+        
+        $status = $request->status == 1 ? 'Account Activated' : 'Account Deactivated';
 
- 
+        
         Mail::to($clients->email)->send(new newVerify($clients));
         Mail::to($user->email)->send(new newVerify($user));
-
-
-
-
-
-        $status = $request->status == 1 ? 'Account Activated' : 'Account Deactivated';
         return json_encode(['text' => 'success', 'return' => '1', 'status' => $status]);
-
-       
 
 
 
     }
-
-
-
 }
-
-
-        

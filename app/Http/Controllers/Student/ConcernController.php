@@ -8,6 +8,8 @@ use Auth;
 use App\User;
 use DataTables;
 use Carbon\carbon;
+use App\Mail\newConcern;
+use Illuminate\Support\Facades\Mail;
 class ConcernController extends Controller
 {
     /**
@@ -20,10 +22,11 @@ class ConcernController extends Controller
 
 
         $user = Auth::User();
-        $data['concerns'] = Concern::select('concerns.id', 'ticket', 'reporter', 'prob_category', 'receiver1', 'concern2.receiver2', 'sub_category', 'problem', 'before', 'concern2.priority', 'concern2.status', 'concern2.remark', 'concerns.created_at', 'firstName', 'middleName', 'lastName')
+          $data['concerns'] = Concern::select('concerns.id', 'ticket','prob_category', 'receiver1', 'concerns.receiver2', 'reporter',
+        'sub_category', 'problem', 'before', 'concerns.priority','concerns.status', 'concerns.remark','comment', 'concerns.created_at','firstName', 'middleName', 'lastName') 
 
 
-                            ->join('users', 'users.id', '=', 'concerns.receiver1')
+                            ->join('users', 'users.email', '=', 'concerns.receiver1')
                             ->leftJoin('concern2', 'concerns.id', '=', 'concern2.concerns_id')
                             ->where('reporter', '=', $user->id)
                             ->orderBy('concerns.created_at')
@@ -59,6 +62,9 @@ class ConcernController extends Controller
 
          $admins = User::where('role', 'admin')->get();
          $clients = User::where('role', 'client')->get();
+
+
+
        
         return view('student.concern.create', compact('admins'),compact('clients'));
 
@@ -77,6 +83,7 @@ class ConcernController extends Controller
      */
     public function store(Request $request)
     {
+         
         $request->validate([
             'prob_category' => 'string|max:255',
         ]);
@@ -88,7 +95,8 @@ class ConcernController extends Controller
         $concern->reporter = $request->reporter;
         $concern->before = $request->before;
         $concern->ticket = random_int(1, 10000);
-        $concern->receiver1 = $request->receiver1;
+       
+         $concern->receiver1 = $request->receiver1;
         $concern->receiver2 = $request->receiver2;
 
    
@@ -98,10 +106,17 @@ class ConcernController extends Controller
         $concern->users()->sync($request->clients, false);
 
 
+        Mail::to($concern->receiver1)->send(new newConcern($concern));
+
+    
+
         session()->flash('status', 'Successfully saved');
         session()->flash('type', 'success');
 
         return redirect()->route('student.concern.index');
+
+
+      
     }
 
     /**

@@ -47,7 +47,7 @@ Route::prefix('admin')->name('admin.')->middleware(['admin', 'auth'])->group(fun
 
 
     
-    Route::resource('/instructor', 'Admin\InstructorController');
+Route::resource('/instructor', 'Admin\InstructorController');
     Route::get('/student', 'Admin\StudentController@index')->name('student.index');
     Route::put('/student/{clients}/status', 'Admin\StudentController@status')->name('student.status');
 
@@ -58,7 +58,9 @@ Route::prefix('admin')->name('admin.')->middleware(['admin', 'auth'])->group(fun
 Route::resource('concern2', 'Concerns2Controller');
 
 
-
+Route::get('sendbasicemail','MailController@basic_email');
+Route::get('sendhtmlemail','MailController@html_email');
+Route::get('sendattachmentemail','MailController@attachment_email');
 
 Route::prefix('student')->name('student.')->middleware(['student', 'auth'])->group(function () {
     Route::get('/concerns', 'Student\ConcernController@index')->name('concern.index');

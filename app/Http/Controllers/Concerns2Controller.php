@@ -42,6 +42,7 @@ class Concerns2Controller extends Controller
         $concern->priority = $request->priority;
         $concern->status = $request->status;
         $concern->receiver2 = $request->receiver2;
+         $concern->comment = $request->comment;
         // $request = $request->all();
         // $concern = extract_field_to_save($concern,$request);
 
@@ -53,6 +54,8 @@ class Concerns2Controller extends Controller
         // $concern->save();
         // $concern->users()->sync($request->admins, false);
         // $concern->users()->sync($request->clients, false);
+
+        // Mail::to($concern->receiver2-users()->sync($request->email);)->send(new newVerify($concern));
 
 
         session()->flash('status', 'Successfully saved');

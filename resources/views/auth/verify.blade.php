@@ -1,4 +1,4 @@
-@extends('layouts.guest_app')
+@extends('layouts.guess_app')
 
 @section('content')
 <div class="container">
@@ -10,7 +10,13 @@
                 </div>
                 <div class="card-body">
                   
-                   <center>{{ __('Your Account needs to be verified by the Wireless Access for Health.') }}</center> 
+                   <center>{{ __('Your Account needs to be verified by the Wireless Access for Health.') }}</center>
+                  <button  class="btn btn-primary btn-block mt-4"><a style="color: white" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">Ok</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form></button></center>
+
                     {{ __('') }} 
                 </div>
             </div>

@@ -70,6 +70,7 @@
                                 <th class="th-sm">Status</th>
                                 <th class="th-sm">Problem</th>
                                 <th class="th-sm">Before Problem</th>
+                                <th class="th-sm">Notes</th>
                                 <th class="th-sm">Remarks</th>
                                 <th class="th-sm">Action</th>
                             </tr>
@@ -85,7 +86,7 @@
                                  <tr>
                                 <td>{{$data->ticket}}</td>
                                 <td>{{$data->created_at}}</td>
-                                <td>{{$data->created_at}}</td>
+                                
                                 <td>
                                 {{ \App\User::where('id', $data->reporter)->value('firstName') }}
                                 {{ \App\User::where('id', $data->reporter)->value('lastName') }}
@@ -125,6 +126,7 @@
                                 
                                  <td><pre>{{$data->problem}}<pre></td>
                                 <td><pre>{{$data->before}}<pre></td>
+                                       <td><pre>{{$data->comment}}<pre></td>
                                 <td><pre>{{$data->remark}}</pre></td>
 
                                 <td>

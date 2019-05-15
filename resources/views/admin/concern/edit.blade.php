@@ -14,15 +14,15 @@
             <hr class="mt-3">
         </div>
     </div>
-    <div class="row mt-3 pr-3">
-        <div class="col-lg-6">
+    <div class="row mt-3 justify-content-center">
+        <div class="col-lg-8">
             <div class="card">
                 <div class="card-header text-white bg-primary">
                     <h5 class="text-oswald mb-0">Update Concern</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('concern2.store', $concern->id)}}" method="post">
-                        {{ csrf_field() }} 
+                    <form action="{{route('admin.concern.update', $concern->id)}}" method="post">
+                        {{ csrf_field() }} {{method_field('PUT')}}
 
                         <input type="hidden" id="custId" name="concerns_id" value="{{$concern->id}}" >
         
@@ -46,6 +46,16 @@
                               <label>Status<span class="red-asterisk">*</span></label>
                         </div>
                         
+                        <div class="md-form ">
+                          <p class="select2Label mb-0 mt-3">Endorse to</p>
+                            <select class="select-wrapper mdb-select" id="receiver2" name="receiver2" style="width:100% !important;">
+                              <option value="" disabled selected>Select</option>
+                                @foreach ($admins as $admin)
+                                    <option value="{{ $admin->id }}" {{ $admin->id === old('admin') ? 'selected' : ''  }}>{{ $admin->name() }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label class="select2Label">Remarks</label>
                             <textarea type="text" id="remark" name="remark" rows="5" class="form-control rounded-0 {{$errors->has('remark') ? 'is-invalid' : ''}}">{{old('remark')}}</textarea>
@@ -56,28 +66,36 @@
                             @endif
                         </div>
 
-          
-                        <div class="md-form ">
-                          <p class="select2Label mb-0 mt-3">Endorse to</p>
-                            <select class="select-wrapper mdb-select" id="receiver2" name="receiver2" style="width:100% !important;">
-                              <option value="" disabled selected>Select</option>
-             @foreach ($admins as $admin)
-                                    <option value="{{ $admin->id }}" {{ $admin->id === old('admin') ? 'selected' : ''  }}>{{ $admin->name() }}</option>
-                                @endforeach
-                            </select>
+                        <div class="form-group">
+                          <label class="select2Label">Notes:</label>
+                            <textarea type="text" id="comment" name="comment" rows="5" class="form-control rounded-0 {{$errors->has('comment') ? 'is-invalid' : ''}}">{{old('comment')}}</textarea>
+                            @if ($errors->has('comment'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('comment') }}</strong>
+                            </span>
+                            @endif
                         </div>
 
-
-        
-                        <button type="submit" name="button" class="btn btn-primary float-right mt-4"><i class="fa fa-pencil"></i> Update</button>
+                        <button type="submit" name="submit" class="btn btn-primary float-right mt-4"><i class="fa fa-pencil"></i> Update</button>
                     </form>
+
+                   <!--  <div class="form-group">
+                            <label class="select2Label">Add Notes</label>
+                            <form id="comment-form" method="post" action="{{ route('admin.concern.update' , $concern->id) }}" >
+                                {{ csrf_field() }}  {{method_field('PUT')}}
+                                <textarea type="text" class="form-control" name="comment"></textarea>
+                                <div class="row" style="padding: 0 10px 0 10px;">
+                                  <div class="form-group">
+                                      <input type="submit" class="btn btn-primary btn-lg" style="width: 100%" name="submit">
+                                  </div>
+                                </div>
+                            </form>
+                        </div> -->
+
                 </div>
             </div>
         </div>
-
-       
     </div>
-    
 </div>
 @endsection
 

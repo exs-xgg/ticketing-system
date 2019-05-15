@@ -21,11 +21,12 @@ class ConcernController extends Controller
     public function index()
     {
 
-        $data['concerns'] = Concern::select('concerns.id', 'ticket', 'prob_category', 'receiver1', 'concern2.receiver2', 'reporter', 'sub_category', 'problem', 'before', 'concern2.priority', 'concern2.status', 'concern2.remark','comment', 'concerns.created_at', 'firstName', 'middleName', 'lastName')
-                            ->join('users', 'users.id', '=', 'concerns.receiver1')
-                            ->leftJoin('concern2', 'concerns.id', '=', 'concern2.concerns_id')
-                            ->orderBy('concerns.created_at')
-                            ->get();
+        $data['concerns'] = Concern::select('concerns.id', 'ticket','prob_category', 'receiver1', 'concerns.receiver2', 'reporter',
+        'sub_category', 'problem', 'before', 'concerns.priority','concerns.status', 'concerns.remark','comment', 'concerns.created_at','firstName', 'middleName', 'lastName')     
+        ->join('users', 'users.email','=', 'concerns.receiver1')     
+        ->leftJoin('concern2', 'concerns.id','=', 'concern2.concerns_id')     
+        ->orderBy('concerns.created_at')
+        ->get();
 
         return view('admin.concern.index', $data);
     }
@@ -81,28 +82,21 @@ class ConcernController extends Controller
 
         $concern = new Concern;
         $concern->prob_category = $request->prob_category;
-         $concern->reporter = $request->reporter;
+        $concern->reporter = $request->reporter;
         $concern->sub_category = $request->sub_category;
         $concern->problem = $request->problem;
         $concern->before = $request->before;
         $concern->ticket = random_int(1, 10000);
         $concern->receiver1 = $request->receiver1;
         $concern->receiver2 = $request->receiver2;
-        $concern->comment = $request->comment;
        
-
-   
-
+       
         $concern->save();
         $concern->users()->sync($request->admins, false);
         $concern->users()->sync($request->clients, false);
 
-
         session()->flash('status', 'Successfully saved');
         session()->flash('type', 'success');
-
-
-        
 
         return redirect()->route('admin.concern.index');
     }
@@ -141,7 +135,6 @@ class ConcernController extends Controller
      */
     public function update(Request $request, Concern $concern)
     {
-       
 
         // $request->validate([
         //  'priority' => 'required',
@@ -150,15 +143,12 @@ class ConcernController extends Controller
             
         // ]);
 
-        // $concern2->priority = $request->priority;
-        // $concern2->status = $request->status;
-        // $concern2->receiver2 = $request->receiver2;
-         $concern->comment = $request->comment;
+        $concern->priority = $request->priority;
+        $concern->status = $request->status; 
+        $concern->receiver2 = $request->receiver2;
+        $concern->remark = $request->remark;
+        $concern->comment = $request->comment;
 
-
-
-  
-    
 
         $concern->save();
         

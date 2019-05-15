@@ -80,7 +80,7 @@
         $('#example').DataTable({
             "scrollX": true,
             language: {
-                search: "_INPUT_",
+                search: "INPUT",
                 searchPlaceholder: "Search",
             },
             order:[]

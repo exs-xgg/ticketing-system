@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-lg-12 d-flex justify-content-between">
             <div class="post-prev-title">
-                <h3>Frequently Asked Question</h3>
+                <h3>Frequently Asked Questions</h3>
             </div>
              <a class="btn btn-link mr-0 my-0" href="{{ route('login') }}"> {{ __('Cannot find your concern? Click here to Login and Report a problem.') }} </a>
         </div>

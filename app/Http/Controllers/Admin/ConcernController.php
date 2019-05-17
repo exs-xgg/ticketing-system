@@ -11,6 +11,10 @@ use Auth;
 use App\User;
 use DataTables;
 use Carbon\carbon;
+use App\Mail\updateConcern;
+use App\Mail\newConcern;
+use App\Mail\endorseConcern;
+use Illuminate\Support\Facades\Mail;
 class ConcernController extends Controller
 {
     /**
@@ -21,7 +25,7 @@ class ConcernController extends Controller
     public function index()
     {
 
-        $data['concerns'] = Concern::select('concerns.id', 'ticket','prob_category', 'receiver1', 'concerns.receiver2', 'reporter',
+        $data['concerns'] = Concern::select('concerns.id', 'ticket','prob_category', 'receiver1', 'concerns.receiver2', 'reporter', 
         'sub_category', 'problem', 'before', 'concerns.priority','concerns.status', 'concerns.remark','comment', 'concerns.created_at','firstName', 'middleName', 'lastName')     
         ->join('users', 'users.email','=', 'concerns.receiver1')     
         ->leftJoin('concern2', 'concerns.id','=', 'concern2.concerns_id')     
@@ -95,6 +99,11 @@ class ConcernController extends Controller
         $concern->users()->sync($request->admins, false);
         $concern->users()->sync($request->clients, false);
 
+
+        Mail::to($concern->reporter)->send(new newConcern($concern));
+        Mail::to($concern->receiver1)->send(new newConcern($concern));
+        
+
         session()->flash('status', 'Successfully saved');
         session()->flash('type', 'success');
 
@@ -128,7 +137,7 @@ class ConcernController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     *s
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
@@ -151,6 +160,9 @@ class ConcernController extends Controller
 
 
         $concern->save();
+        Mail::to($concern->reporter)->send(new updateConcern($concern));
+        Mail::to($concern->receiver2)->send(new endorseConcern($concern));
+       
         
         return redirect()->route('admin.concern.index')
                         ->with('success','Concern updated successfully');

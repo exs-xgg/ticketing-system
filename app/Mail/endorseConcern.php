@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class newConcern extends Mailable
+class endorseConcern extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -31,6 +31,6 @@ class newConcern extends Mailable
      */
     public function build()
     {
-        return $this->view('email.newConcern')->subject('New Concern Submitted');
+        return $this->view('email.endorseConcern')->subject('Endorsement of Concern');
     }
 }

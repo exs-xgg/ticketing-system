@@ -48,7 +48,7 @@
             </h1>
             <p style="font-size: 16px; line-height: 1.5em; color: #84888d;">
 
-                There's a new reported problem from HCI, for more information, please login your account to WAH ticketing system.
+                There's a concern that has been endorse to you, for more information, please login your account to WAH ticketing system.
 
             </p>
 

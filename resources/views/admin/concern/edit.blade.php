@@ -51,7 +51,7 @@
                             <select class="select-wrapper mdb-select" id="receiver2" name="receiver2" style="width:100% !important;">
                               <option value="" disabled selected>Select</option>
                                 @foreach ($admins as $admin)
-                                    <option value="{{ $admin->id }}" {{ $admin->id === old('admin') ? 'selected' : ''  }}>{{ $admin->name() }}</option>
+                                    <option value="{{ $admin->email }}" {{ $admin->email === old('admin') ? 'selected' : ''  }}>{{ $admin->name() }}</option>
                                 @endforeach
                             </select>
                         </div>

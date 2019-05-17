@@ -88,8 +88,8 @@
                                 <td>{{$data->created_at}}</td>
                                 
                                 <td>
-                                {{ \App\User::where('id', $data->reporter)->value('firstName') }}
-                                {{ \App\User::where('id', $data->reporter)->value('lastName') }}
+                                {{ \App\User::where('email', $data->reporter)->value('firstName') }}
+                                {{ \App\User::where('email', $data->reporter)->value('lastName') }}
                         </td>
                                  <td>
 

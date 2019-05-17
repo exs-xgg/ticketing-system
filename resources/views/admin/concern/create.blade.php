@@ -84,7 +84,7 @@
                           <p class="select2Label mb-0 mt-3">Assign To:</p>
                             <select class="select-wrapper mdb-select" id="receiver1" name="receiver1" style="width:100% !important;">
                                 @foreach ($admins as $admin)
-                                    <option value="{{ $admin->id }}" {{ $admin->id === old('admin') ? 'selected' : ''  }}>{{ $admin->name() }}</option>
+                                    <option value="{{ $admin->email }}" {{ $admin->email === old('admin') ? 'selected' : ''  }}>{{ $admin->name() }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -93,7 +93,7 @@
                           <p class="select2Label mb-0 mt-3">Reported By:</p>
                             <select class="select-wrapper mdb-select" id="reporter" name="reporter" style="width:100% !important;">
                                 @foreach ($clients as $client)
-                                    <option value="{{ $client->id }}" {{ $client->id === old('clients') ? 'selected' : ''  }}>{{ $client->name() }}</option>
+                                    <option value="{{ $client->email }}" {{ $client->id === old('clients') ? 'selected' : ''  }}>{{ $client->name() }}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -9,6 +9,7 @@ use App\User;
 use DataTables;
 use Carbon\carbon;
 use App\Mail\newConcern;
+use App\Mail\updateConcern;
 use Illuminate\Support\Facades\Mail;
 class ConcernController extends Controller
 {
@@ -28,7 +29,7 @@ class ConcernController extends Controller
 
                             ->join('users', 'users.email', '=', 'concerns.receiver1')
                             ->leftJoin('concern2', 'concerns.id', '=', 'concern2.concerns_id')
-                            ->where('reporter', '=', $user->id)
+                            ->where('reporter', '=', $user->email)
                             ->orderBy('concerns.created_at')
                             ->get();
 
@@ -165,14 +166,12 @@ class ConcernController extends Controller
         $concern->problem = $request->problem;
         $concern->before = $request->before;
      
-    
 
-
-
-  
-    
 
         $concern->save();
+
+        
+         Mail::to($concern->receiver1)->send(new updateConcern($concern));
         
         return redirect()->route('student.concern.index')
                         ->with('success','Concern updated successfully');

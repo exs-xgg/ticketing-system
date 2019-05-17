@@ -48,7 +48,7 @@
             </h1>
             <p style="font-size: 16px; line-height: 1.5em; color: #84888d;">
 
-                There's a new reported problem from HCI, for more information, please login your account to WAH ticketing system.
+                There's a new update on your reported problem, for more information, please login your account to WAH ticketing system.
 
             </p>
 
@@ -56,7 +56,7 @@
                 Regards,
             </p>
             <p style="color: #84888d;font-size: 16px;line-height: 1.5em;">
-h
+
                 Wireless Access for Health
 
             </p>

@@ -38,7 +38,7 @@ class ConcernController extends Controller
     public function concernsList()
     {
         $concerns = Concern::latest()->get();
-        return DataTables::of($concerns)
+        return DataTables::of($concerns)->make(true)
                         ->addColumn('action', function ($concern) {
                             return '<a href="'.route('admin.concern.edit', $concerns->id).'" class="blue-text mr-3" data-toggle="tooltip" title="Edit" data-placement="left"><i class="fa fa-pencil"></i></a>';
                         })
@@ -51,6 +51,8 @@ class ConcernController extends Controller
                         ->rawColumns(['admins'])
                         ->toJson();
     }
+
+
 
     /**
      * Show the form for creating a new resource.

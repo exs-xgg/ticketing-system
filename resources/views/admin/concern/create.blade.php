@@ -41,7 +41,7 @@
                             </div>
 
                          <div class="md-form">
-                             <select class="select-wrapper mdb-select" name="sub_category" id="sub_category">
+                             <select class="select-wrapper mdb-select" name="sub_category" id="sub_category" searchable="Search here..">
                                   <option value="" disabled selected>Select</option>
                                   <option value="Network/Connection" {{ old('sub_category') == 'Network/Connection' ? 'selected' : ''}}>Technical- Network/Connection</option>
                                   <option value="Server/Backup" {{ old('sub_category') == 'Server/Backup' ? 'selected' : ''}}>Technical- Server/Backup</option>

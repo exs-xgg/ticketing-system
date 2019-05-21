@@ -93,7 +93,7 @@
                             <div class="col-sm-12 col-md-6 col-lg-6">
                               <div class="md-form">
                                 <div id="myDropdown">
-                                 <select class="select-wrapper mdb-select"  name="region" id="region">
+                                 <select class="select-wrapper mdb-select"  name="region" id="region" searchable="Search here..">
                                       <option value="" disabled selected>Select Region</option>
                                   @foreach(App\region::get() as $region)
                                       <option value="{{ $region['id'] }}">{{ $region['region'] }}</option>
@@ -107,7 +107,7 @@
 
                         <div class="col-sm-12 col-md-6 col-lg-6">
                           <div class="md-form">
-                             <select class="select-wrapper mdb-select" name="categories" id="categories">
+                             <select class="select-wrapper mdb-select" name="categories" id="categories" searchable="Search here..">
                                   <option value="" disabled selected>Select Province</option>
                               @foreach(App\categories::get() as $categories)
                                   <option value="{{ $categories['id'] }}">{{ $categories['categories'] }}</option>
@@ -121,7 +121,7 @@
                     <div class="form-row">
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="md-form">
-                                  <select class="select-wrapper mdb-select" name="muncity" id="muncity">
+                                  <select class="select-wrapper mdb-select" name="muncity" id="muncity" searchable="Search here..">
                                     <option value="" disabled selected>Select Municipality</option>
                                     @foreach(App\muncity::get() as $muncity)
                                     <option value="{{ $muncity['id'] }}">{{ $muncity['muncity'] }}</option>
@@ -133,7 +133,7 @@
 
                           <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="md-form">
-                             <select class="select-wrapper mdb-select" name="facility" id="facility">
+                             <select class="select-wrapper mdb-select" name="facility" id="facility" searchable="Search here..">
                                   <option value="" disabled selected>Select Facility</option>
                               @foreach(App\facility::get() as $facility)
                                   <option value="{{ $facility['id'] }}">{{ $facility['facility'] }}</option>

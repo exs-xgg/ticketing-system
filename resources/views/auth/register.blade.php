@@ -156,8 +156,9 @@
                                   @endif
                                 </div>
                             </div>
+
                           </div>
-        
+         <div align="center">Upon registering, you agree to our <a href="#" style="color:red">Data Privacy Policy</a></div>
                         <button type="submit" name="button" class="btn btn-primary float-right mt-4"><i class="fa fa-check"></i> NEXT</button>
                     </form>
                 </div>

@@ -97,6 +97,7 @@ class ConcernController extends Controller
         $concern->receiver2 = $request->receiver2;
        
        
+       
         $concern->save();
         $concern->users()->sync($request->admins, false);
         $concern->users()->sync($request->clients, false);
@@ -108,6 +109,7 @@ class ConcernController extends Controller
 
         session()->flash('status', 'Successfully saved');
         session()->flash('type', 'success');
+
 
         return redirect()->route('admin.concern.index');
     }

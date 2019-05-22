@@ -51,6 +51,8 @@
                 </div>
             </div>
         </div>
+
+</div>
     </div>
     <div class="row mt-3">
         <div class="col-xl-12 col-md-12 mb-4">
@@ -148,6 +150,7 @@
 @section('script')
 <script src="{{ asset('js/addons/datatables.min.js') }}"></script>
 <script>
+ $('.mdb-select').material_select();
     $(document).ready(function () {
         $('#table').DataTable({
             scrollX: true,
@@ -161,7 +164,7 @@
             //     {data: 'action', name: 'action'},
             // ],
             language: {
-                search: "_INPUT_",
+                search: "",
                 searchPlaceholder: "Search",
             },
             order: [],

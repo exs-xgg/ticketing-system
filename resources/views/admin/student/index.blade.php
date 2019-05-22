@@ -18,6 +18,7 @@
         <div class="col-lg-4 col-md-4 col-sm-6 mb-3">
             <div class="card">
                 <div class="text-white blue text-center py-4 px-4">
+
                     <i class=""></i>
                     <h2 class="card-title pt-2 text-white text-oswald"><strong>{{ number_format(count($clients) )}}</strong></h2>
                     <h2 class="text-uppercase text-white text-oswald">HCI Account{{ count($clients) > 1 ? 's' : '' }}</h2>
@@ -80,7 +81,7 @@
         $('#example').DataTable({
             "scrollX": true,
             language: {
-                search: "INPUT",
+                search: "",
                 searchPlaceholder: "Search",
             },
             order:[]
